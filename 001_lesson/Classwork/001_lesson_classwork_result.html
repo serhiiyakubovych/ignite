@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+
+		/**
+		 *
+		 * Lesson 1, Classwork, Serhii Yakubovych
+		 * 
+		 */
+
+		/**
+		 * ###Задача 1.
+		 *
+		 * Мини-задача на синтаксис объектов. Напишите код, по строке на каждое действие.
+		 */
+
+		var user = {}; 				// Создайте пустой объект user.
+
+		user.name = 'Вася'; 		// Добавьте свойство name со значением Вася.
+		user.surname = 'Петров'; 	// Добавьте свойство surname со значением Петров.
+		user.name = 'Сергей';		// Поменяйте значение name на Сергей.
+		delete user.name;			// Удалите свойство name из объекта. 
+
+		console.log("FIRST TASK:");
+		console.log(user);
+
+
+		/**
+		 * ###Задача 2.
+		 *
+		 * Создайте функцию isEmpty(obj), которая возвращает true, если в объекте нет свойств и false – если хоть одно свойство есть.
+		 */
+
+		function isEmpty(obj) {
+			var key;
+			for (key in obj) {
+				if ( obj.hasOwnProperty(key) ) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		console.log("SECOND TASK:");
+		console.log("Is { someProp: 'Some value' } empty? " + isEmpty({ someProp: "Some value" }) );
+		console.log("Is Object.create(null) empty? " 		 + isEmpty( Object.create(null) ) );
+
+		
+		/**
+		 * ###Задача 3.
+		 *
+		 * Дан массив чисел: [1,2,31,24,-67,5,3,555,79,-4,21,33,89,-90].
+		 */
+
+		var startArr = [1,2,31,24,-67,5,3,555,79,-4,21,33,89,-90],
+			maxNum = Math.max.apply(Math, startArr), 					// 1) Найдите максимальное и минимальное значение массива.
+			minNum = Math.min.apply(Math, startArr), 					// 1) Найдите максимальное и минимальное значение массива.
+			arrWithPositiveEvenNums = startArr.filter(function(num) { 	// 2) Все положительные и четные числа запишите в другой массив.
+ 				if ( (num > 0) && (num % 2 === 0) ) {
+					return true;
+				}
+			});
+
+		// Результаты выведите на экран. 
+		console.log("THIRD TASK:");
+		console.log("Starting array: " + startArr);
+		console.log("Maximum number of the starting array: " + maxNum);
+		console.log("Minimum number of the starting array: " + minNum);
+		console.log("A new array with only positive and even numbers: " + arrWithPositiveEvenNums);
+		
+	</script>
+
+</body>
+</html>
