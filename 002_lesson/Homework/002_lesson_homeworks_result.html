@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+		/**
+		 *
+		 * Lesson 2, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1. 
+		 * 
+		 * Напишите функцию, которая принимает 1 параметр.
+		 * При первом вызове она его запоминает, при втором - суммирует переданный параметр с параметром, переданным при предыдущем вызове. 
+		 * 
+		 * Например: 
+		 * ```
+		 * sum(3) = 3
+		 * sum(5) = 8
+		 * sum(228) = 236 
+		 * ```
+		 */
+		
+		var sum = (function() {
+			var sum = 0;
+			return function(sumArg) {
+				sum += sumArg;
+				return sum;
+			};
+		}());
+
+		console.log("FIRST TASK:");
+		console.log( sum(3) ); // 3
+		console.log( sum(5) ); // 8
+		console.log( sum(228) ); // 236
+
+		/**
+		 * ###Задача 2. 
+		 * Создайте функцию strCount, которая принимает один аргумент (объект) и считает количество свойств строкового типа. 
+		 * 
+		 * Например: 
+		 * ```
+		 * strCount({
+		 *   first: "1",
+		 *   second: "2",
+		 *   third: false,
+		 *   fourth: ["anytime",2,3,4],
+		 *   fifth:  null
+		 * })
+		 *   //возвращает 3
+		 *     ```
+		 */
+		
+		function strCount(obj) {
+			let stringValueCount = 0;
+			for (let value in obj) {
+				if (typeof obj[value] === "string") {
+					++stringValueCount;
+				} else if (typeof obj[value] === "object") {
+					stringValueCount += strCount(obj[value]);
+				}
+			}
+			return stringValueCount;
+		}
+
+		console.log("SECOND TASK:");
+		console.log( strCount({
+			first: "1",
+		    second: "2",
+		    third: false,
+		    fourth: ["anytime",2,3,4],
+		    fifth:  null
+		}) );
+
+		/**
+		 * ###Задача 3. 
+		 * 
+		 * Напишите функцию, которая складывает числа при двойном вызове.
+		 * 
+		 * Например: 
+		 * ```
+		 * add(3)(4)  // 7
+		 * ```
+		 */
+		
+		function add(firstSumArg) {
+			return function(secondSumArg) {
+				return firstSumArg + secondSumArg;
+			}
+		}
+
+		console.log("THIRD TASK:");
+		console.log( add(3)(4) );
+	</script>
+
+</body>
+</html>
