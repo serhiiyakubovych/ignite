@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+		/**
+		 *
+		 * Lesson 3, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1 
+		 * 
+		 * Почему первое равенство – неверно, а второе – верно?
+		 * ```
+		 * alert( [] == [] ); // false
+		 * alert( [] ==! [] ); // true
+		 * ```
+		 * Какие преобразования происходят при вычислении?
+		 */
+		
+		// - Почему первое равенство – неверно, а второе – верно?
+		// О: Массивы в JavaScript являются объектами, а объекты 
+		// сравниваются и передаются по ссылке. Следовательно, чтобы две
+		// переменные, содержащие объекты, были равными друг другу нужно,
+		// чтобы они указывали на один и тот же объект в памяти. 
+		// Запись вида [] == [] аналогична записи:
+		// var a = [], b = []; a == b; // false, разные объекты в памяти
+		// Следовательно, результат будет false, поскольку это разные объекты.
+		// 
+		// В выражении вида [] == ![] сначала будет приведен в действие
+		// логический оператор ! ("НЕ"), поскольку у него выше приоритет,
+		// чем в оператора сравнения. Результатом ![] будет false (поскольку 
+		// объекты всегда логически эквивалентны значению true). Теперь же в
+		// выражении [] == false сравниваются элементы разных типов, поэтому
+		// для сравнения осуществляется их преобразование к числу. И [], 
+		// и false дают 0 в числовом виде. Выражение 0 == 0 является верным.
+		
+		/**
+		 * ###Задача 2  
+		 * 
+		 * Напишите функцию-конструктор Calculator, которая создает объект с тремя методами:
+		 * * Метод read() запрашивает два значения при помощи prompt и запоминает их в свойствах объекта.
+		 * * Метод sum() возвращает сумму двух значений принятых от пользователя.
+		 * * Метод mul() возвращает произведение двух значений принятых от пользователя. 
+		 * 
+		 * Пример использования:
+		 * ```
+		 * var calculator = new Calculator();
+		 * calculator.read();
+		 * alert( "Сумма=" + calculator.sum() );
+		 * alert( "Произведение=" + calculator.mul() );
+		 * ``` 
+		 */
+		
+		function Calculator() {}
+
+		Calculator.prototype.read = function() {
+			this.firstArg = parseFloat( prompt("Please, write your first argument.", ""), 10);
+			this.secondArg = parseFloat( prompt("Please, write your second argument.", ""), 10);
+		};
+		Calculator.prototype.sum = function() {
+			return this.firstArg + this.secondArg;
+		};
+		Calculator.prototype.mul = function() {
+			return this.firstArg * this.secondArg;
+		};
+
+		/*var calculator = new Calculator();
+		calculator.read();
+		alert( "Сумма=" + calculator.sum() );
+		alert( "Произведение=" + calculator.mul() );*/
+
+		/**
+		 * ###Задача 3 
+		 * 
+		 * Напишите функцию-конструктор Summator, которая создает объект с двумя методами. 
+		 * * Метод sum(a,b) возвращает сумму двух значений;
+		 * * Метод run() запрашивает два значения при помощи prompt и выводит их сумму, используя метод sum. 
+		 * В итоге вызов new Summator().run() должен спрашивать два значения и выводить их сумму.
+		 */
+		function Summator() {}
+
+		Summator.prototype.sum = function(a, b) {
+			return a + b;
+		};
+		Summator.prototype.run = function() {
+			let firstSumArg = parseFloat( prompt("Please, print your first sum argument:", ""), 10 ),
+				secondSumArg = parseFloat( prompt("Please, print your second sum argument:", ""), 10 );
+			console.log( this.sum(firstSumArg, secondSumArg) );
+		};
+
+		new Summator().run();
+	</script>
+
+</body>
+</html>
