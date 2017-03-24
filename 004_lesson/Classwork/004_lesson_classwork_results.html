@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+		"use strict";
+		/**
+		 *
+		 * Lesson 4, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1 
+		 * 
+		 * Напишите функцию sumArgs, которая суммирует все свои аргументы. При решении задачи используйте метод call или apply. 
+		 */
+		function sumArgs() {
+			return Array.prototype.reduce.call(arguments, (totalSum, argValue) => totalSum += argValue, 0);
+		}
+
+		console.log("FIRST TASK:");
+		console.log( sumArgs(1, 2, 3) );
+
+		/**
+		 * ###Задача 2
+		 *
+		 * Перепишите с использованием встроенного метода bind:
+		 */ 
+		/*```
+		function bind(func, context) {
+		  return function() {
+		    return func.apply(context, arguments);
+		  };
+		}
+
+		var user = {
+		  firstName: "Вася",
+		  sayHi: function() {
+		    alert( this.firstName );
+		  }
+		}; 
+
+		var f = bind(user.sayHi, user);  
+		f(); 
+		``` */
+		
+		var user = {
+		  firstName: "Вася",
+		  sayHi: function() {
+		    alert( this.firstName );
+		  }
+		}; 
+
+		var f = user.sayHi.bind(user);  
+		f(); 
+
+		/**
+		 * ###Задача 3 
+		 * 
+		 * Напишите функцию joinArgs, которая выводит свои аргументы, разделенные символом  ‘*’ на экран в виде строки. 
+		 * Используйте прием “одалживания методов”.  У вас должно получиться: 
+		 * ```
+		 * joinArgs(1,2,3) // 1*2*3 
+		 * joinArgs('hello', 'world', '!') // hello*world*!
+		 * ```
+		 */
+		
+		function joinArgs() {
+			return Array.prototype.join.call(arguments, '*');
+		}
+
+		console.log("THIRD TASK:");
+		console.log( joinArgs(1,2,3) );
+		console.log( joinArgs('hello', 'world', '!') );
+	</script>
+
+</body>
+</html>
