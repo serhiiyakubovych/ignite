@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<p id="counter"></p>
+
+	<script>
+		/**
+		 *
+		 * Lesson 5, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1 
+		 * 
+		 * Напишите программу, которая принимает математическое выражение (используйте prompt) и результат его получает через eval.
+		 * При ошибке нужно выводить сообщение и просить изменить некорректный ввод.
+		 * Ошибкой считается не только некорректное выражение, такое как 2+, но и выражение, возвращающее NaN, например 0/0.
+		 */
+		
+		function getMathExpression() {
+			try {
+				let mathExp = prompt("Enter math expression:", ""),
+					resultOfMathExp = eval(mathExp);
+				
+				if ( isNaN(resultOfMathExp) ) {
+					throw new Error("Invalid result of math expression");
+				}
+
+				return resultOfMathExp;
+			} catch (err) {
+				console.log(err.name);
+				console.log(err.message);
+				console.log("Please, fix your input.");
+			}
+		}
+
+		console.log("FIRST TASK:");
+		console.log( getMathExpression() );
+
+		/**
+		 * ###Задача 2  
+		 * 
+		 * Напишите функцию smartSum, которая: 
+		 * * Принимает произвольное количество аргументов; 
+		 * * Возвращает сумму всех переданных ей аргументов; 
+		 * * Принимает за 0 любой аргумент, который не может быть преобразован в числовой тип (т.е при попытке его парсить возвращается NaN); 
+		 * * Может быть вызвана неограниченное количество раз;
+		 * ```
+		 * smartSum(3) // 3; 
+		 * smartSum(1, 2)  // 3;
+		 * smartSum(1, 3)(2) // 6; 
+		 * smartSum(1, 2)(3, 4, 5)(6)(7, 10) // 38; 
+		 * ``` 
+		 */
+		function smartSum(...args) {
+			let totalSum = 0;
+
+			function wrapSum(...wrapArgs) {
+				wrapArgs = wrapArgs.map(function(arg) {
+					if ( isNaN(parseFloat(arg, 10)) ) {
+						return 0;
+					}
+					return arg;
+				});
+				wrapArgs.forEach((arg) => totalSum += arg);
+				return wrapSum;
+			}
+			wrapSum.toString = function() {
+				return totalSum;
+			};
+
+			return wrapSum(...args);
+		}
+
+		console.log("SECOND TASK:");
+		console.log( smartSum(3) ); // 3
+		console.log( smartSum(1, 2) ); // 3
+		console.log( smartSum(1, 3)(2) ); // 6
+		console.log( smartSum(1, 2)(3, 4, 5)(6)(7, 10) ); // 38; 
+
+		/**
+		 * ### Задача 3 
+		 *
+		 * Сделайте таймер обратного отсчета, который выполняет обратный отсчет от зданого числа до нуля. 
+		 * Когда доходит до нуля - выводит сообщение о том, что отсчет закончен.
+		 * 
+		 * Например, var timer=10, каждую секунду на странице меняется числа - 10, 9, 8... и так далее до нуля.
+		 */
+		function decreaseTimerFrom(startFloor) {
+			let counter = startFloor,
+				counterElem = document.getElementById("counter"),
+				timer = setInterval(function() {
+					counterElem.innerHTML = counter--;
+					if (counter < 0) {
+						clearTimeout(timer);
+						alert("Timer is over");
+					}
+				}, 1000);
+		}
+
+		decreaseTimerFrom(10);
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+		/**
+		 *
+		 * Lesson 5, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1 
+		 * 
+		 * Напишите функцию printNumber, которая последовательно выводит в консоль числа от 1 до 20, с интервалом между числами 100мс. 
+		 * То есть, весь вывод должен занимать 2000мс, в течение которых каждые 100мс в консоли появляется очередное число. 
+		 */
+		
+		function printNumber() {
+			var counter = 1,
+				timer = setInterval(function() {
+					console.log(counter++);
+				}, 100);
+			setTimeout(clearInterval, 2000, timer);
+		}
+
+		printNumber();
+
+		/**
+		 * ###Задача 2 
+		 * 
+		 * Превратите объект leader из примера ниже в JSON:
+		 * ```
+		 * var leader = {
+		 *   name: "Василий Иванович",
+		 *   age: 35
+		 * };
+		 * ``` 
+		 * После этого конвертируйте получившуюся строку обратно в объект.
+		 */
+		
+		var leader = {
+			name: "Василий Иванович",
+			age: 35
+		},
+			leaderJSON = JSON.stringify(leader),
+			leaderObjAgain = JSON.parse(leaderJSON);
+
+		console.log("SECOND TASK:");
+		console.log(leaderJSON);
+		console.log(leaderObjAgain);
+
+		/**
+		 * ###Задача 3
+		 * 
+		 * Напишите функцию, которая принимает один аргумент и возвращает его тип данных. 
+		 * Выполните обработку исключений в случае передачи двух и больше аргументов.
+		 */
+		function getType(arg) {
+			try {
+				if (arguments.length > 1) {
+					throw new Error("Too many arguments!");
+				}
+				return typeof arg;
+			} catch (err) {
+				console.log(err.name);
+				console.log(err.message);
+			}
+		}
+
+		console.log("THIRD ERROR:");
+		console.log( getType(5) );
+		console.log( getType("some") );
+		console.log( getType("firstarg", 2) );
+	</script>
+
+</body>
+</html>
