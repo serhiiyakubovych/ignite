@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div class="some">some
+		<div class="else">else</div>
+	</div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 6, Homework, Serhii Yakubovych
+		 */
+		
+		/**
+		 * ###Задача 3 
+		 * 
+		 * Метод elem.closest(css) для поиска ближайшего родителя, удовлетворяющего селектору css, не поддерживается некоторыми браузерами, например IE11-.
+		 * Создайте для него полифилл.
+		 */
+
+		window.onload = function() {
+			if (HTMLElement.prototype.closest === undefined) {
+				HTMLElement.prototype.closest = function(css) {
+					let parent = this;
+					while (parent && !parent.matches(css)) {
+						parent = parent.parentElement;
+					}
+					return parent;
+				};
+			}
+		};
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<ul>
+		<li>Животные
+			<ul>
+				<li>Млекопитающие
+					<ul>
+						<li>Коровы</li>
+						<li>Ослы</li>
+						<li>Собаки</li>
+						<li>Тигры</li>
+					</ul>
+				</li>
+				<li>Другие
+					<ul>
+						<li>Змеи</li>
+						<li>Птицы</li>
+						<li>Ящерицы</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>Рыбы
+			<ul>
+				<li>Аквариумные
+					<ul>
+						<li>Гуппи</li>
+						<li>Скалярии</li>
+					</ul>
+				</li>
+				<li>Морские
+					<ul>
+						<li>Морская форель</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<script>
+		/**
+		 *
+		 * Lesson 6, Homework, Serhii Yakubovych
+		 */
+		
+		/**
+		 * ###Задача 1 
+		 * 
+		 * Есть дерево из тегов ul и li.
+		 * Напишите код, который для каждого элемента li выведет:
+		 * * Текст непосредственно в нём указанный (без подразделов).
+		 * * Количество всех вложенных в него элементов li.
+		 */
+
+		window.onload = function() {
+			var lis = document.querySelectorAll("li");
+			lis.forEach(function(li) {
+				let liText = li.firstChild;
+
+				console.log(liText.data); // * Текст непосредственно в нём указанный (без подразделов).
+
+				liText.data += ' (' + li.querySelectorAll("li").length + ')';
+			});
+		};
+	</script>
+
+</body>
+</html>
