@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<div id="some-block-1">First</div>
+	<div id="some-block-2">Second</div>
+	<div id="some-block-3">Third</div>
+	<div id="some-block-4">Fourth</div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 7, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1. 
+		 * 
+		 * Создайте страницу. Разместите на ней произвольное количеством элементов. 
+		 * Разработайте сценарий, который будет по очереди перемещать span с текстом и интервалом в 400мс:
+		 * 1) Перед элементом.
+		 * 2) Внутри элемента перед тектом
+		 * 3) Внетри элемента после текста.
+		 * 4) После элемента.
+		 */
+		
+		window.onload = function() {
+			let span = document.createElement("span"),
+				refElem = document.getElementById("some-block-2");
+
+			span.textContent = "Some span text";
+
+			let posCommands = ["beforeBegin", "afterBegin", "beforeEnd", "afterEnd"]
+			let i = 0;
+			
+			let timer = setInterval(function insertSpan() {
+				if (i === posCommands.length) {
+					clearInterval(timer);
+					return;
+				}
+				refElem.insertAdjacentElement(posCommands[i++], span);
+			}, 400);
+		};
+	</script>
+
+</body>
+</html>
