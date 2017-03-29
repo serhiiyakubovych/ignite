@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			padding: 50px;
+		}
+		#test-anchor {
+			background: green;
+			color: #fff;
+		}
+		#test-elem {
+			width: 50px;
+			height: 50px;
+			background: orange;
+		}
+	</style>
+</head>
+<body>
+	
+	<main>
+		<a href="#" id="test-anchor">Some anchor</a>
+		<div id="test-elem"></div>
+	</main>
+
+	<script>
+		/**
+		 *
+		 * Lesson 7, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 2. 
+		 * 
+		 * Создайте функцию positionAt(anchor, position, elem), которая позиционирует элемент elem, в зависимости от значения аргумента position: 
+		 * сверху ("top"), справа ("right") или снизу ("bottom"). Функция должна проводить позиционирование относительно элемента anchor. 
+		 * Для решения данной задачи Вам понадобится создать элемент anchor (тег а) и elem (тег div).
+		 */
+		
+		window.onload = function() {
+			let testAnchor = document.getElementById("test-anchor"),
+				testElem = document.getElementById("test-elem");
+			positionAt(testAnchor, "top", testElem);
+			//positionAt(testAnchor, "right", testElem);
+			//positionAt(testAnchor, "left", testElem);
+			//positionAt(testAnchor, "bottom", testElem);
+		};
+
+		function positionAt(anchor, position, elem) {
+			let anchorPageX = anchor.getBoundingClientRect().left + pageXOffset,
+				anchorPageY = anchor.getBoundingClientRect().top + pageYOffset;
+
+			document.body.appendChild(elem);
+			elem.style.position = "absolute";
+
+			if (position === "top") {
+				elem.style.left = anchorPageX + "px";
+				elem.style.top = anchorPageY - elem.offsetHeight + "px";
+			} else if (position === "right") {
+				elem.style.left = anchorPageX + anchor.offsetWidth + "px";
+				elem.style.top = anchorPageY + "px";
+			} else if (position === "left") {
+				elem.style.left = anchorPageX - elem.offsetWidth + "px";
+				elem.style.top = anchorPageY + "px";
+			} else if (position === "bottom") {
+				elem.style.left = anchorPageX + "px";
+				elem.style.top = anchorPageY + anchor.offsetHeight + "px";
+			}
+		}
+	</script>
+
+</body>
+</html>

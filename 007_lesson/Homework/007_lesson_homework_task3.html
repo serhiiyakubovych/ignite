@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.chess-board {
+			border: 1px solid #000;
+			border-collapse: collapse;
+		}
+		.chess-cell {
+			width: 25px;
+			height: 25px;
+			border: 1px solid #000;
+		}
+		.chess-cell_white { background: #fff; }
+		.chess-cell_black { background: #000; }
+	</style>
+</head>
+<body>
+
+	<script>
+		/**
+		 *
+		 * Lesson 7, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 3. 
+		 * 
+		 * Напишите функцию makeBoard, которая генерирует таблицу с указанным количеством строк и столбцов и
+		 * закрашивает ее ечейки черным и белым цветами в шахматном порядке.
+		 */
+		
+		window.onload = function() {
+			makeBoard(8, 8);
+		};
+
+		function makeBoard(rowCount, colCount) {
+			let table = document.createElement("table");
+
+			table.classList.add("chess-board");
+
+			for (let i = 0; i < rowCount; i++) {
+				let tr = document.createElement("tr");
+
+				for (let j = 0; j < colCount; j++) {
+					let td = document.createElement("td");
+
+					td.classList.add("chess-cell");
+					if ((i + j) % 2 === 0) {
+						td.classList.add("chess-cell_white");
+					} else {
+						td.classList.add("chess-cell_black");
+					}
+
+					tr.appendChild(td);
+				}
+
+				table.appendChild(tr);
+			}
+
+			document.body.appendChild(table);
+		}
+	</script>
+
+</body>
+</html>

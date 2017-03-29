@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div data-swap>First</div>
+	<div data-swap>Second</div>
+	<div data-swap>Third</div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 7, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1. 
+		 * 
+		 * Создайте страницу с 3 элементами div. Напишите сценарий, который будет произвольно менять положение этих элементов на странице каждую секунду.
+		 */
+		
+		window.addEventListener("DOMContentLoaded", exchangeElements);
+
+		function exchangeElements() {
+			let swapElems = document.querySelectorAll("[data-swap]"),
+				docFragment = document.createDocumentFragment();
+
+			setInterval(function() {
+				let notInsertedSwapElems = Array.prototype.slice.call(swapElems);
+
+				for (let notInsertedCount = notInsertedSwapElems.length; notInsertedCount > 0; --notInsertedCount) {
+					let randIndex = Math.round(Math.random() * (notInsertedCount - 1));
+
+					docFragment.appendChild(notInsertedSwapElems[randIndex]);
+					notInsertedSwapElems.splice(randIndex, 1);
+				}
+
+				document.body.appendChild(docFragment);
+			}, 1000);
+		}
+	</script>
+
+</body>
+</html>
