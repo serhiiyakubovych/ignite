@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="task1.css">
+</head>
+<body>
+
+	<input type="text" id="input-info">
+	<button id="add-info-btn">Add information</button>
+	<div id="result-area"></div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 8, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 2. 
+		 * 
+		 * Создайте страницу. Разместите на странице поле ввода, кнопку и пустой div.  
+		 * Создайте сценарий, который при нажатии на кнопку будет записывать содержимое поля ввода в пустой div. 
+		 */
+		
+		window.addEventListener("load", function() {
+			let addInfoButton = document.getElementById("add-info-btn");
+
+			addInfoButton.addEventListener("click", function() {
+				let inputElem = document.getElementById("input-info"),
+					resultArea = document.getElementById("result-area");
+
+				resultArea.textContent += inputElem.value;
+			});
+		});
+	</script>
+
+</body>
+</html>
