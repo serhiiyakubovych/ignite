@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#reg-form {
+			margin: auto;
+			padding: 10px;
+			width: 500px;
+			border: 2px solid #000;
+			background: #fff;
+		}
+		#reg-form label {
+			display: inline-block;
+			margin-bottom: 10px;
+			width: 150px;
+		}
+		#reg-form input:not([type=submit]) {
+			width: 340px;
+		}
+		#reg-form input.invalid {
+			background: red;
+		}
+	</style>
+</head>
+<body>
+
+	<form action="#" id="reg-form">
+		<div>
+			<label for="login">Login</label>
+			<input type="text" id="login">
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<input type="password" id="password">
+		</div>
+		<div>
+			<label for="phone">Phone</label>
+			<input type="tel" id="phone">
+		</div>
+		<input type="submit" value="Send">
+	</form>
+
+	<script>
+		/**
+		 *
+		 * Lesson 8, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1. 
+		 * 
+		 * Создайте регистрационную форму:  логин, пароль, телефон и кнопка "Отправить".
+		 * По нажатию на кнопку "Отправить", проверьте корректность ввода данных с помощью JavaScript.
+		 * 1) Логин - не должен содержать цифры.
+		 * 2) Пароль - не дожен содержать знак $.
+		 * 3) Телефон - должен содержать только цифры.
+		 * 
+		 * Закрасьте фон поля ввода в красный цвет, если были введены неправильные данные.
+		 * 
+		 * Используйте для решение данной задачи методы для работы со строками или регулярные выражения: 
+		 * [link](https://learn.javascript.ru/regexp-introduction) 
+		 */
+		
+		window.addEventListener("load", function() {
+			let regForm = document.getElementById("reg-form");
+			regForm.addEventListener("submit", function(event) {
+				event.preventDefault();
+
+				let login = this.querySelector("#login"),
+					password = this.querySelector("#password"),
+					phone = this.querySelector("#phone");
+
+				login.classList.remove("invalid");
+				password.classList.remove("invalid");
+				phone.classList.remove("invalid");
+
+				let loginPattern = /^\D+$/g,
+					passwordPattern = /^[^$]+$/g,
+					phonePattern = /^\d+$/g;
+
+				if ( !loginPattern.test(login.value) ) {
+					login.classList.add("invalid");
+				}
+				if ( !passwordPattern.test(password.value) ) {
+					password.classList.add("invalid");
+				}
+				if ( !phonePattern.test(phone.value) ) {
+					phone.classList.add("invalid");
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>

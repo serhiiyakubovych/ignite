@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<div id="calculator" onclick="getCalculatedValue.call(this, event)"> <!-- DOM Level 0 (через атрибуты) -->
+		<input type="text" id="calc-first-arg">
+		<input type="text" id="calc-second-arg">
+		<button data-operation="addition">+</button>
+		<button data-operation="subtraction">-</button>
+		<button data-operation="multiplication">*</button>
+		<button data-operation="division">/</button>
+		<div>Result: <span id="calc-result"></span></div>
+	</div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 8, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 3.  
+		 * 
+		 * Создайте страницу-калькулятор. 
+		 * Разместите на странице два поля ввода и кнопки для арифметических операций над 
+		 * данными введенными в поля ввода. Реализуйте данную страницу двумя способами – с использованием модели DOM Level 0 (через атрибуты) и DOM Level 2. 
+		 */
+		
+		window.addEventListener("load", function() {
+			let calculator = document.getElementById("calculator");
+
+			// DOM Level 2.
+			calculator.addEventListener("click", getCalculatedValue);
+		});
+
+		function getCalculatedValue(event) {
+			if (!event.target.hasAttribute("data-operation")) {
+				return;
+			}
+			let operation = event.target.dataset.operation,
+				firstArg = +this.querySelector("#calc-first-arg").value,
+				secondArg = +this.querySelector("#calc-second-arg").value,
+				resultField = this.querySelector("#calc-result");
+
+			if (operation === "addition") {
+				resultField.textContent = firstArg + secondArg;
+			} else if (operation === "subtraction") {
+				resultField.textContent = firstArg - secondArg;
+			} else if (operation === "multiplication") {
+				resultField.textContent = firstArg * secondArg;
+			} else if (operation === "division") {
+				resultField.textContent = firstArg / secondArg;
+			}
+		}
+	</script>
+
+</body>
+</html>
