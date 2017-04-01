@@ -51,7 +51,7 @@
 					return;
 				}
 
-				tooltip.textContent = event.target.dataset.tooltip;
+				tooltip.innerHTML = event.target.dataset.tooltip;
 
 				let tooltipCoords = {
 					x: event.target.getBoundingClientRect().left + window.pageXOffset,

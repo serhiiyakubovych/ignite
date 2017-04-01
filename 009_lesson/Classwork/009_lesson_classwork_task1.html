@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+		/**
+		 *
+		 * Lesson 9, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1. 
+		 * 
+		 * Создайте страницу. Реализуйте следующее: 
+		 * * При нажатии комбинации клавиш ctrl + a (регистр не учитывается!) на экран выводится сообщение ‘Данные выбраны’; 
+		 * * При нажатии комбинации клавиш ctrl + s (регистр не учитывается!) на экран выводится сообщение ‘Данные сохранены’; 
+		 */
+		
+		window.addEventListener("DOMContentLoaded", function() {
+			document.addEventListener("keydown", interactWithData);
+
+			function interactWithData(event) {
+				event.preventDefault();
+
+				if (!event.ctrlKey) {
+					return;
+				}
+
+				let key = event.keyCode,
+					message = "";
+
+				if (key === "A".charCodeAt(0)) {
+					message = "Данные выбраны";
+				} else if (key === "S".charCodeAt(0)) {
+					message = "Данные сохранены";
+				}
+
+				if (message) {
+					alert(message);
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

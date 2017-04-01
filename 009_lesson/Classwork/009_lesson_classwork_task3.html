@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<input type="text" id="only-numbers-input">
+
+	<script>
+		/**
+		 *
+		 * Lesson 9, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 3.  
+		 * 
+		 * Создайте поле ввода. При помощи событий клавиатуры сделайте так, чтобы в поле можно было вводить только цифры. 
+		 */
+		
+		window.addEventListener("DOMContentLoaded", function() {
+			let onlyNumbersInput = document.getElementById("only-numbers-input");
+
+			onlyNumbersInput.addEventListener("keypress", checkNumbersInput);
+
+			function checkNumbersInput(event) {
+				let number = +String.fromCharCode(event.charCode);
+				if ( isNaN(number) ) {
+					event.preventDefault();
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

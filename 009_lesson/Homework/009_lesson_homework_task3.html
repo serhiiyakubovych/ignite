@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#moved-block {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+
+	<div>x:
+		<input type="text" id="move-to-x">
+	</div>
+	<div>y:
+		<input type="text" id="move-to-y">
+	</div>
+	<button id="move-btn">Move block</button>
+	<div id="moved-block"></div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 9, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 3.  
+		 * 
+		 * Создайте страницу с двумя полями ввода, кнопкой и элементом div с шириной и высотой 50px. 
+		 * Создайте сценарий, который по нажатию на кнопку будет перемещать div в координаты, указанные в полях ввода. 
+		 * В случае, если при нажатии кнопки хотя бы одно из полей ввода не заполнено, пользователь должен получить предупреждение, 
+		 * а событие click должно быть отменено. 
+		 */
+		
+		window.addEventListener("DOMContentLoaded", function() {
+			let moveButton = document.getElementById("move-btn");
+
+			moveButton.addEventListener("click", moveBlock);
+
+			function moveBlock() {
+				let moveToX = parseFloat( document.getElementById("move-to-x").value ),
+					moveToY = parseFloat( document.getElementById("move-to-y").value );
+
+				if (!isFinite(moveToX) || !isFinite(moveToY)) {
+					alert("One of the fields is empty.");
+					return;
+				}
+
+				let movedBlock = document.getElementById("moved-block");
+
+				movedBlock.style.left = moveToX + "px";
+				movedBlock.style.top = moveToY + "px";
+			}
+		});
+	</script>
+
+</body>
+</html>

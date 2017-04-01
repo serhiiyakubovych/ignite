@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.up-btn {
+			display: none;
+			position: fixed;
+			padding: 10px;
+			right: 20px;
+			bottom: 20px;
+		}
+		.long-text { white-space: pre; }
+	</style>
+</head>
+<body>
+
+	<div class="long-text">
+		<p>
+		XXVIII.
+
+		How can I then return in happy plight,
+		That am debarred the benefit of rest?
+		When day's oppression is not eas'd by night,
+		But day by night and night by day oppressed,
+		And each, though enemies to either's reign,
+		Do in consent shake hands to torture me,
+		The one by toil, the other to complain
+		How far I toil, still farther off from thee. 
+		I tell the day, to please him thou art bright,
+		And dost him grace when clouds do blot the heaven:
+		So flatter I the swart-complexion'd night,
+		When sparkling stars twire not thou gild'st the even.
+		But day doth daily draw my sorrows longer,
+		And night doth nightly make grief's length seem stronger.
+		XXIX.
+
+		When in disgrace with fortune and men's eyes
+		I all alone beweep my outcast state,
+		And trouble deaf heaven with my bootless cries,
+		And look upon myself, and curse my fate,
+		Wishing me like to one more rich in hope,
+		Featured like him, like him with friends possessed,
+		Desiring this man's art, and that man's scope,
+		With what I most enjoy contented least;
+		Yet in these thoughts my self almost despising,
+		Haply I think on thee, and then my state,
+		Like to the lark at break of day arising
+		From sullen earth, sings hymns at heaven's gate;
+		For thy sweet love remembered such wealth brings
+		That then I scorn to change my state with kings.
+		XXX.
+
+		When to the sessions of sweet silent thought
+		I summon up remembrance of things past,
+		I sigh the lack of many a thing I sought,
+		And with old woes new wail my dear time's waste:
+		Then can I drown an eye, unused to flow,
+		For precious friends hid in death's dateless night,
+		And weep afresh love's long since cancelled woe,
+		And moan the expense of many a vanished sight:
+		Then can I grieve at grievances foregone,
+		And heavily from woe to woe tell o'er
+		The sad account of fore-bemoaned moan,
+		Which I new pay as if not paid before.
+		But if the while I think on thee, dear friend,
+		All losses are restor'd and sorrows end.
+		XXXI.
+
+		Thy bosom is endeared with all hearts,
+		Which I by lacking have supposed dead;
+		And there reigns Love, and all Love's loving parts,
+		And all those friends which I thought buried.
+		How many a holy and obsequious tear
+		Hath dear religious love stol'n from mine eye,
+		As interest of the dead, which now appear
+		But things removed that hidden in thee lie!
+		Thou art the grave where buried love doth live,
+		Hung with the trophies of my lovers gone,
+		Who all their parts of me to thee did give,
+		That due of many now is thine alone:
+		Their images I loved, I view in thee,
+		And thou (all they) hast all the all of me.
+		XXVIII.
+
+		How can I then return in happy plight,
+		That am debarred the benefit of rest?
+		When day's oppression is not eas'd by night,
+		But day by night and night by day oppressed,
+		And each, though enemies to either's reign,
+		Do in consent shake hands to torture me,
+		The one by toil, the other to complain
+		How far I toil, still farther off from thee. 
+		I tell the day, to please him thou art bright,
+		And dost him grace when clouds do blot the heaven:
+		So flatter I the swart-complexion'd night,
+		When sparkling stars twire not thou gild'st the even.
+		But day doth daily draw my sorrows longer,
+		And night doth nightly make grief's length seem stronger.</p>
+	</div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 9, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 2.  
+		 * 
+		 * Создайте кнопку навигации, которая помогает при прокрутке страницы.
+		 * Работать должна следующим образом:
+		 * * Пока страница промотана меньше чем на высоту экрана вниз – кнопка не видна.
+		 * * При промотке страницы вниз больше, чем на высоту экрана, появляется кнопка «стрелка вверх».
+		 * * При нажатии на нее страница прыгает вверх, но не только. Дополнительно, кнопка меняется на «стрелка вниз» и при клике возвратит на старое место. 
+		 * Если же в этом состоянии посетитель сам прокрутит вниз больше, чем один экран, то она вновь изменится на «стрелка вверх».
+		 * Должен получиться удобный навигационный помощник.
+		 */
+		
+		window.addEventListener("DOMContentLoaded", function() {
+			let upButton = document.createElement("button");
+			upButton.classList.add("up-btn");
+			document.body.appendChild(upButton);
+
+			document.addEventListener("scroll", showUpButton);
+
+			upButton.addEventListener("click", scrollToTop);
+
+			function showUpButton(event) {
+				if (window.pageYOffset > document.documentElement.clientHeight) {
+					upButton.textContent = "^";
+					upButton.style.display = "block";
+				}
+			}
+
+			function scrollToTop() {
+				let scrollToX = 0,
+					scrollToY = 0;
+
+				if (this.textContent === "^") {
+					this.dataset.oldPageX = window.pageXOffset;
+					this.dataset.oldPageY = window.pageYOffset;
+					this.textContent = "v";
+				} else if (this.textContent === "v") {
+					scrollToX = this.dataset.oldPageX,
+					scrollToY = this.dataset.oldPageY;
+					this.textContent = "^";
+				}
+
+				scrollTo(scrollToX, scrollToY);
+			}
+		});
+	</script>
+
+</body>
+</html>

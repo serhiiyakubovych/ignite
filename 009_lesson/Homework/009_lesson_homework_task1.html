@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<ul id="one-click-select-list">
+		<li>Lorem ipsum dolor.</li>
+		<li>Sapiente, dolores nisi?</li>
+		<li>Omnis, sequi officiis.</li>
+		<li>Ut, vero commodi!</li>
+		<li>Velit, quae, autem!</li>
+	</ul>
+
+	<script>
+		/**
+		 *
+		 * Lesson 9, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 1. 
+		 * 
+		 * Сделайте список, элементы которого можно выделять кликом.
+		 * Используйте для решения данной задачи свойство e.target.
+		 */
+		
+		window.addEventListener("DOMContentLoaded", function() {
+			let oneClickSelectList = document.getElementById("one-click-select-list");
+
+			oneClickSelectList.addEventListener("click", selectListItem);
+
+			function selectListItem(event) {
+				if (event.target.tagName !== "LI") {
+					return;
+				}
+
+				let range = document.createRange();
+				range.selectNode(event.target);
+				
+				let selection = window.getSelection();
+				selection.removeAllRanges();
+				selection.addRange(range);
+			}
+		});
+	</script>
+
+</body>
+</html>

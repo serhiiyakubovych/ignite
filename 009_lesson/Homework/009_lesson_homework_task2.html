@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#avoid-circle {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			line-height: 100px;
+			border-radius: 50%;
+			background: red;
+			cursor: pointer;
+			text-align: center;
+			transition: all .3s;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="avoid-circle">Скидка</div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 9, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 2.  
+		 * 
+		 * Создайте круг красного цвета с надписью "Скидка". Когда курсор пользователя будет приближаться к ней, 
+		 * "Скидка" должна от него "убегать", не давая пользователю нажать на красный круг. 
+		 * Если круг будет выйдет за одну из сторон экрана, то он должен, появится с противоположной стороны.
+		 */
+		
+		window.addEventListener("DOMContentLoaded", function() {
+			let avoidCircle = document.getElementById("avoid-circle");
+
+			avoidCircle.addEventListener("mouseover", runAwayFromCursor);
+			avoidCircle.addEventListener("mousemove", runAwayFromCursor);
+
+			function runAwayFromCursor(event) {
+				let circleCoords = avoidCircle.getBoundingClientRect(),
+					shiftLeft = (event.clientX - circleCoords.left < circleCoords.right - event.clientX) ? 
+								event.clientX - circleCoords.left : event.clientX - circleCoords.right,
+					shiftTop = (event.clientY - circleCoords.top < circleCoords.bottom - event.clientY) ? 
+								event.clientY - circleCoords.top : event.clientY - circleCoords.bottom;
+
+				avoidCircle.style.left = circleCoords.left + shiftLeft * 2 + "px";
+				avoidCircle.style.top = circleCoords.top + shiftTop * 2 + "px";
+
+				if (circleCoords.top < 0) {
+					avoidCircle.style.top = document.documentElement.clientHeight - avoidCircle.offsetHeight + "px";
+				} else if ((circleCoords.top + avoidCircle.offsetHeight) > document.documentElement.clientHeight) {
+					avoidCircle.style.top = "0px";
+				}
+				if (circleCoords.left < 0) {
+					avoidCircle.style.left = document.documentElement.clientWidth - avoidCircle.offsetWidth + "px";
+				} else if ((circleCoords.left + avoidCircle.offsetWidth) > document.documentElement.clientWidth) {
+					avoidCircle.style.left = "0px";
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>
