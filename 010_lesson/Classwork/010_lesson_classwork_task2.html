@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<button id="load-json">Load phones</button>
+	<div id="phones-container"></div>
+
+	<script>
+		/**
+		 *
+		 * Lesson 10, Classwork, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 2.
+		 * 
+		 * Создайте код, который загрузит файл phones.json и выведет все названия телефонов из него в виде списка.
+		 * (файлы для задачи находятся в папке task_phone);
+         */
+
+		window.addEventListener("DOMContentLoaded", function() {
+		    let loadJsonButton = document.getElementById("load-json");
+
+            loadJsonButton.addEventListener("click", function() {
+                loadJsonFrom("task_phone/phones.json")
+                    .then((phones) => {
+                        insertJsonIntoContainer({
+                            jsonDatas: phones,
+                            whichProperties: ["name"],
+                            containerId: "phones-container"
+						});
+					})
+					.catch((err) => {
+					    console.log(err);
+					});
+			});
+
+            /**
+			 * Insert JSON datas into a document container as a list
+			 *
+             * @param {object} jsonDatas
+             * @param {string[]} whichProperties
+             * @param {string} containerId
+             */
+            function insertJsonIntoContainer({jsonDatas, whichProperties, containerId}) {
+				let containerEl = document.getElementById(containerId),
+					ul = document.createElement("ul");
+
+                jsonDatas.forEach((jsonData) => {
+                    for (let prop of whichProperties) {
+                        if (!jsonData.hasOwnProperty(prop)) {
+                            continue;
+						}
+
+                        let li = document.createElement("li");
+                        li.textContent = jsonData[prop];
+
+                        ul.appendChild(li);
+					}
+				});
+
+                containerEl.appendChild(ul);
+			}
+
+            /**
+             * @param {string} jsonUrl
+             * @returns {Promise}
+             */
+		    function loadJsonFrom(jsonUrl) {
+		        return new Promise((resolve, reject) => {
+                    let xhr = new XMLHttpRequest();
+                    xhr.responseType = "json";
+
+                    xhr.open("GET", jsonUrl);
+
+                    xhr.onload = function() {
+                        resolve(this.response);
+                    };
+
+                    xhr.onerror = function(err) {
+                        reject(err);
+					};
+
+                    xhr.send();
+				});
+			}
+		});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 10, Homework, Serhii Yakybovych, Task 3</title>
+</head>
+<body>
+
+    <input type="text" id="first-arg" />
+    <input type="text" id="second-arg" />
+    <button id="calc-btn">Calculate sum</button>
+
+    <div>Sum: <span id="sum-result-container"></span></div>
+
+	<script>
+        "use strict";
+		/**
+		 *
+		 * Lesson 10, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 3. 
+		 * 
+		 * Разработайте страницу с двумя полями ввода и кнопкой. Пользователь
+		 * должен вводить в поля ввода целочисленный значения, а нажатие
+		 * по кнопке должно приводить к асинхронному запросу на сервер.
+		 * Запрашивать следует обработчик CalcHandler.ashx, который находиться
+		 * вместе с задачей в папке Homework, обработчик принимает два post
+		 * параметра с именами ‘a’ и ‘b'.
+		 * Результат который возвращает обработчик выведите на страницу
+		 * (рекомендуется выполнять задачу в Visual Studio).
+		 */
+
+        window.addEventListener("DOMContentLoaded", function () {
+            let calculateButton = document.getElementById("calc-btn");
+            calculateButton.addEventListener("click", function () {
+                calcSumAjax({
+                    firstArgId: "first-arg",
+                    secondArgId: "second-arg",
+                    calcURL: "CalcHandler.ashx",
+                    resultContainerId: "sum-result-container"
+                });
+            });
+
+            function calcSumAjax({firstArgId, secondArgId, calcURL, resultContainerId}) {
+                let firstValue = parseInt(document.getElementById("first-arg").value),
+                    secondValue = parseInt(document.getElementById("second-arg").value),
+                    resultElem = document.getElementById(resultContainerId),
+                    requestBody = `a=${firstValue}&b=${secondValue}`,
+                    xhr = new XMLHttpRequest();
+
+                xhr.open("POST", calcURL, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onload = function () {
+                    resultElem.textContent = this.responseText;
+                };
+
+                xhr.onerror = function (err) {
+                    console.log(err);
+                }
+
+                xhr.send(requestBody);
+            }
+        });
+	</script>
+
+</body>
+</html>

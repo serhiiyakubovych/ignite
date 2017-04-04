@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+    <button id="get-other-pages">Get content from other pages</button>
+
+    <div id="page-1-content"></div>
+    <div id="page-2-content"></div>
+
+	<script>
+        "use strict";
+		/**
+		 *
+		 * Lesson 10, Homework, Serhii Yakubovych
+		 * 
+		 */
+		
+		/**
+		 * ###Задача 2. 
+		 * 
+		 * Модифицируйте код  предыдущего задания так, чтобы максимальное
+		 * время обработки запроса не превышало 20 секунд и при первышении
+		 * этого времени запрос был отменен, а пользователь видел на экране
+		 * сообщение об ошибке. 
+		 */
+
+        window.addEventListener("DOMContentLoaded", function () {
+
+            let getOtherPagesButton = document.getElementById("get-other-pages");
+
+            getOtherPagesButton.addEventListener("click", function () {
+                loadPageIntoContainer("010_lesson_homework_task1-page1.html", "page-1-content");
+                loadPageIntoContainer("010_lesson_homework_task1-page2.html", "page-2-content");
+            });
+
+            function loadPageIntoContainer(pageUrl, containerId) {
+                getPageContent(pageUrl)
+                    .then((pageData) => {
+                        showDataIntoContainer(pageData, containerId);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+
+            function showDataIntoContainer(pagaData, containerId) {
+                let containerEl = document.getElementById(containerId);
+                containerEl.innerHTML = pagaData;
+            }
+
+            function getPageContent(pageUrl) {
+                return new Promise((resolve, reject) => {
+                    let xhr = new XMLHttpRequest();
+
+                    xhr.open("GET", pageUrl);
+                    xhr.timeout = 20000;
+
+                    xhr.onload = function () {
+                        resolve(this.responseText);
+                    };
+
+                    xhr.onerror = function (err) {
+                        reject(err);
+                    };
+
+                    xhr.ontimeout = function (err) {
+                        alert("Time of the request is over.");
+                        reject(err);
+                    };
+
+                    xhr.send();
+                });
+            }
+        });
+	</script>
+
+</body>
+</html>
