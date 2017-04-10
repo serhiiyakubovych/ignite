@@ -1,20 +1,52 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="toDoListApp">
 <head>
+    <meta charset="UTF-8">
     <title>ToDo List (Task2)</title>
     <script src="../../Libraries/angular.js"></script>
     <link href="../../Libraries/bootstrap.css" rel="stylesheet" />
     <link href="../../Libraries/bootstrap-theme.css" rel="stylesheet" />
     <script>
+        /**
+         * Lesson 11, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Откройте файл Task/Task.html.Вам необходимо разработать приложение “To do List”.
+         * Приложение должно отображать пользователю таблицу с задачами и предоставлять возможность
+         * добавлять новые задачи.
+         * Приложение должно быть построено по шаблону, который находится в папке Task в файле template.png
+         */
+        /**
+         * ### Задача2
+         * Добавьте в предыдущую задачу возможность пользователя редактировать задачи и сохранять результат после
+         * редактирования.
+         */
 
-        // Добавьте AngularJS контроллер
+        let works = [{
+            name: "Купить молоко",
+            description: "Сходить на рынок и купить молоко",
+            date: "2/18/2015",
+            completed: false
+        }, {
+            name: "Посмотреть видео урок по AngularJS",
+            description: "Досмотреть урок",
+            date: "2/18/2015",
+            completed: false
+        }];
 
+        window.addEventListener("load", function() {
+            angular.module("toDoListApp", [])
+                .controller("toDoListCtrl", function($scope) {
+                    $scope.works = works;
+                });
+        });
     </script>
 
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" ng-controller="toDoListCtrl">
 
         <h3>ToDo List</h3>
 
@@ -27,11 +59,11 @@
                     <th>Completed</th>
                 </tr>
             </thead>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr ng-repeat="work in works">
+                <td>{{work.name}}</td>
+                <td>{{work.description}}</td>
+                <td>{{work.data}}</td>
+                <td>{{work.completed}}</td>
             </tr>
         </table>
 

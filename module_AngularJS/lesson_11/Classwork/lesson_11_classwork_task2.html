@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="ioApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js" async defer></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 11, Classwork, Serhii Yakubovych
+         */
+
+        /**
+         * ### Задача2
+         *
+         * Создайте страницу с полем ввода и кнопкой. При нажатии на кнопку содержимое поля ввода должно
+         * отображаться на странице.
+         */
+        window.addEventListener("load", function() {
+            angular.module("ioApp", [])
+                .controller("ioCtrl", function($scope) {
+                    $scope.showInputData = function() {
+                        $scope.outputData = $scope.inputData;
+                    };
+                });
+        });
+    </script>
+</head>
+<body>
+    <div ng-controller="ioCtrl">
+        <input type="text" ng-model="inputData">
+        <button ng-click="showInputData()">Show input</button>
+        <div>{{outputData}}</div>
+    </div>
+</body>
+</html>

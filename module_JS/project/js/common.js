@@ -456,40 +456,42 @@
             }
 
             function increaseService(event) {
-                if ($(this).attr("data-grow")) {
+                if ($(this).attr("data-is-increased")) {
                     return;
                 }
+
+                $(this).attr("data-is-increased", "increasing");
 
                 let growScale = 1.1,
-                    oldSize = {
-                        width: $(this).outerWidth(),
-                        height: $(this).outerHeight()
-                    };
+                    storedWidth = $(this).outerWidth(),
+                    storedHeight = $(this).outerHeight();
+
+                if (!$(this).attr("data-stored-width")) {
+                    $(this).attr("data-stored-width", storedWidth);
+                }
+                if (!$(this).attr("data-stored-height")) {
+                    $(this).attr("data-stored-height", storedHeight);
+                }
 
                 $(this).animate({
-                    "width": `${oldSize.width * growScale}`,
-                    "height": `${oldSize.height * growScale}`
+                    "width": `${parseInt(storedWidth * growScale)}`,
+                    "height": `${parseInt(storedHeight * growScale)}`
                 });
 
-                $(this).attr("data-grow", growScale);
+                $(this).attr("data-is-increased", "increased");
             }
             function decreaseService() {
-                if (!$(this).attr("data-grow")) {
+                if ($(this).attr("data-is-increased") !== "increased") {
                     return;
                 }
 
-                let growScale = $(this).attr("data-grow"),
-                    oldSize = {
-                        width: $(this).outerWidth(),
-                        height: $(this).outerHeight()
-                    };
+                let storedWidth = $(this).attr("data-stored-width"),
+                    storedHeight = $(this).attr("data-stored-height");
 
                 $(this).animate({
-                    "width": `${oldSize.width / growScale}`,
-                    "height": `${oldSize.height / growScale}`
-                });
-
-                $(this).attr("data-grow", "");
+                    "width": `${storedWidth}`,
+                    "height": `${storedHeight}`
+                }, () => $(this).attr("data-is-increased", ""));
             }
 
             this.initPage = initPage;

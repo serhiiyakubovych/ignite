@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" ng-app="HelloWorldApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js" async defer></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 11, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача1
+         * Создайте приложение, которое выводит на экран надпись 'Hello World!'.
+         */
+        window.addEventListener("load", function() {
+            let helloApp = angular.module("HelloWorldApp", []);
+
+            helloApp.controller("HelloWorldCtrl", function($scope) {
+                $scope.greeting = "Hello World!";
+            });
+        });
+    </script>
+</head>
+<body ng-controller="HelloWorldCtrl">
+    <div>{{greeting}}</div>
+</body>
+</html>
