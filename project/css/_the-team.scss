@@ -1,0 +1,166 @@
+.the-team {
+  padding-top: 75px;
+  background: #fbfbfb;
+  
+  .section-subtitle {
+    padding: 0;
+    &::after { display: none; }
+  }
+  
+  .member {
+    .member__photo {
+      width: 100%;
+      height: 250px;
+      background: #11343a;
+      cursor: pointer;
+    }
+    .member__person {
+      background: #fff;
+      text-transform: uppercase;
+      text-align: center;
+      font-weight: normal;
+      .member__name {
+        margin-top: 0;
+        padding-top: 20px;
+        font-size: 20px;
+        color: $smak-active-color;
+      }
+      .member__occupation {
+        padding-bottom: 18px;
+        border-bottom: 2px solid #e1e6e6;
+        font-size: 18px;
+        color: #707070;
+      }
+    }
+  }
+
+  .member-details { margin-top: 60px; }
+  .member-details.active {
+    position: relative;
+    .pointer {
+      position: absolute;
+      top: -50px;
+      left: 230px;
+      border: 25px solid transparent;
+      border-bottom-color: #131316;
+    }
+  }
+  .member-details:not(.active) { display: none; }
+  
+  .about-member-outer {
+    position: relative;
+    padding: 65px 0 40px;
+    background: #131316;
+
+    .about-member {
+      position: relative;
+      margin: auto;
+      width: 50%;
+      color: #fff;
+
+      .about-member__name {
+        margin: 0 0 25px;
+        font-size: 20px;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: $smak-active-color;
+      }
+
+      .about-member__details { margin-bottom: 25px; }
+
+      .about-member__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 50px;
+        line-height: 25px;
+        &:hover {
+          transform: scale(1.1);
+          cursor: pointer;
+        }
+      }
+
+      %about-member__social {
+        display: inline-block;
+        position: relative;
+        margin-right: 25px;
+        padding: 10px;
+        width: 38px;
+        height: 38px;
+        border: 1px solid #fff;
+        &:hover {
+          cursor: pointer;
+          opacity: .7;
+        }
+        &::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 20px;
+          height: 20px;
+          transform: translate(-50%, -50%);
+          background: url("../images/social.png") no-repeat;
+          -webkit-background-size: cover;
+          background-size: cover;
+        }
+      }
+      .about-member__social_fb {
+        @extend %about-member__social;
+      }
+      .about-member__social_tw {
+        @extend %about-member__social;
+        &::before {
+          background-position: -40px 0;
+        }
+      }
+    }
+  }
+  
+  .member-skills {
+    padding: 60px 0;
+    background: #131a1d;
+    color: #fff;
+
+    .section-head {
+      .section-subtitle, .section-description { color: #fff; }
+      .section-subtitle { margin: 0; }
+    }
+
+    .skill {
+      text-align: center;
+      color: $smak-active-color;
+
+      .skill__chart {
+        width: 120px;
+        height: 120px;
+        circle {
+          display: block;
+          fill: rgba(0,0,0,0);
+          stroke: #eee;
+          stroke-width: 5;
+          stroke-dasharray: 314px 314px;
+        }
+        circle:nth-child(2n) {
+          fill: rgba(0,0,0,0);
+          stroke: $smak-active-color;
+          stroke-width: 5;
+        }
+        .percent-circle {
+          stroke-dasharray: 0 314px;
+        }
+        .skill_percent {
+          text-anchor: middle;
+          fill: $smak-active-color;
+          stroke-width: 2px;
+          font-size: 30px;
+        }
+      }
+
+      .skill__title {
+        font-size: 20px;
+        font-weight: normal;
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+.portfolio {
+  padding-top: 75px;
+  .works-tab {
+
+    .works-tab__nav {
+      margin-bottom: 60px;
+      list-style: none;
+      text-align: center;
+
+      .works-tab__nav-item {
+        display: inline-block;
+        margin-right: 20px;
+
+        font-size: 16px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        vertical-align: middle;
+        color: #515151;
+        &:hover {
+          cursor: pointer;
+          text-decoration: none;
+          color: $smak-active-color;
+        }
+        &.active { color: $smak-active-color; }
+      }
+
+      .works-tab__nav-item + .works-tab__nav-item::before {
+        content: '';
+        display: inline-block;
+        margin-right: 20px;
+        margin-bottom: 3px;
+        width: 5px;
+        height: 5px;
+        background: $smak-active-color;
+      }
+    }
+
+    .works {
+      padding: 0;
+      margin: 0;
+      .work {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        &:hover {
+          cursor: pointer;
+          .hidden-work { opacity: 1; }
+        }
+        img { width: 100%; }
+        .hidden-work {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding-top: 40px;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          background: rgba(255, 224, 0, .5);
+          text-align: center;
+          text-transform: uppercase;
+          color: #fff;
+          .work-title { font-size: 24px; }
+          .work-subtitle { font-size: 16px; }
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,27 @@
+.contact-us-invitation {
+  padding: 75px 0 70px;
+  text-align: center;
+
+  .to-bottom {
+    display: block;
+    margin: 0 auto 60px;
+    width: 60px;
+    height: 60px;
+    background: $smak-active-color url("../images/to-bottom.png") no-repeat center;
+    &:hover {
+      cursor: pointer;
+      -webkit-background-size: 35%;
+      background-size: 35%;
+      background-color: lighten($smak-active-color, 10%);
+    }
+  }
+
+  .section-subtitle {
+    padding-bottom: 0;
+    &::after {
+      display: none;
+    }
+  }
+
+  .smak-btn { color: #fff; }
+}

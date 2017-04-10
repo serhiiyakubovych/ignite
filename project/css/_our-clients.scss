@@ -1,0 +1,34 @@
+.our-clients {
+  padding: 75px 0;
+  .client-list {
+    text-align: center;
+    .client {
+      margin-bottom: 50px;
+      display: inline-block;
+    }
+    .client + .client { margin-left: 60px; }
+    %nav-clients-arrow {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      &:hover {
+        cursor: pointer;
+        transition: all .3s;
+        filter: brightness(1.05);
+      }
+    }
+    .client-prev {
+      @extend %nav-clients-arrow;
+      margin-right: 30px;
+      background: $smak-active-color url("../images/arrow_prev.png") no-repeat center;
+      -webkit-background-size: 10px;
+      background-size: 10px;
+    }
+    .client-next {
+      @extend %nav-clients-arrow;
+      background: $smak-active-color url("../images/arrow_next.png") no-repeat center;
+      -webkit-background-size: 10px;
+      background-size: 10px;
+    }
+  }
+}

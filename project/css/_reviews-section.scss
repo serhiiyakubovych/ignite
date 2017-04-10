@@ -1,0 +1,57 @@
+.reviews-section {
+  padding: 75px 0;
+  background: #131a1d;
+  color: #fff;
+  font-weight: normal;
+  .reviews {
+    margin: auto;
+    width: 40%;
+    overflow: hidden;
+
+    .reviews-inside {
+      width: 9000px;
+    }
+
+    .review {
+      display: inline-block;
+      max-width: 550px;
+      text-align: center;
+      .review__text {
+        position: relative;
+        padding-bottom: 25px;
+        font-size: 20px;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          margin-top: 25px;
+          width: 170px;
+          height: 3px;
+          background: $smak-active-color;
+        }
+      }
+      .review__author {
+        margin: 20px 0;
+        font-size: 18px;
+      }
+    }
+
+    .reviews__points {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+      .reviews__point {
+        display: inline-block;
+        margin-right: 7px;
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        &:hover { cursor: pointer; }
+        &.active { background: $smak-active-color; }
+      }
+    }
+  }
+}

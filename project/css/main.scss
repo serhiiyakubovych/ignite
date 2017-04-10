@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+
+$smak-active-color: #ffe600;
+
+html, body {
+  font: 15px/1.5 "Oswald", sans-serif;
+  font-weight: lighter;
+}
+
+/* COMMON */
+@import "btn"; /* buttons */
+@import "section-head"; /* section head (section title, subtitle, description) */
+
+/* PAGE HEADER */
+@import "page_navigation";
+
+/* PAGE SLIDER */
+@import "page_slider";
+
+/* SERVICES SECTION */
+@import "services";
+
+/* PORTFOLIO SECTION */
+@import "portfolio";
+
+/* SECTION INVITATION OF CONTACTING WITH US */
+@import "contact-us-invitation";
+
+/* STATISTIC SECTION */
+@import "statistic";
+
+/* ABOUT US SECTION */
+@import "about-us";
+
+/* THE TEAM SECTION */
+@import "the-team";
+
+/* OUR CLIENTS SECTION */
+@import "our-clients";
+
+/* REVIEWS SECTION */
+@import "reviews-section";
+
+/* CONTACT US SECTION */
+@import "contact-us";
+
+/* SECTION OF SENDING A MESSAGE FOR US */
+@import "send-us-a-message";
+
+/* PAGE FOOTER */
+@import "page_footer";
+
+/* MEDIA */
+@import "media";

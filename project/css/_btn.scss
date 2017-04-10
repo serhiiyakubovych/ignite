@@ -1,0 +1,17 @@
+.smak-btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border: none;
+  background: $smak-active-color;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #131316;
+  &:hover {
+    background: #131316;
+    cursor: pointer;
+    text-decoration: none;
+    color: $smak-active-color;
+    transition: all .3s;
+  }
+}

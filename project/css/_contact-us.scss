@@ -1,0 +1,41 @@
+.contact-us {
+  padding: 75px 0;
+  background: #fbfbfb;
+  .mean-of-communication {
+    text-align: center;
+
+    %mean-of-communication__icon {
+      margin: auto;
+      width: 35px;
+      height: 35px;
+      background: url("../images/contacts.png") no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+    .mean-of-communication__icon_address {
+      @extend %mean-of-communication__icon;
+    }
+    .mean-of-communication__icon_mail {
+      @extend %mean-of-communication__icon;
+      background-position: -35px;
+    }
+    .mean-of-communication__icon_phone {
+      @extend %mean-of-communication__icon;
+      background-position: -70px;
+    }
+
+    .mean-of-communication__title {
+      margin: 20px 0;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: normal;
+      color: #131316;
+    }
+
+    .mean-of-communication__value {
+      font-size: 18px;
+      color: #515151;
+    }
+
+  }
+}

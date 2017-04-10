@@ -1,0 +1,49 @@
+.page_navigation {
+  padding: 15px 18%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  background: radial-gradient(circle at 20% 0,
+          rgba(159, 157, 153, .85), rgba(100, 100, 100, .85), rgba(159, 157, 153, .85));
+  transition: all .3s;
+  &.reduced {
+    padding: 0 5%;
+    .nav-menu { padding: 20px; }
+  }
+  .studio-logo { float: left; }
+  .nav-menu {
+    display: inline-block;
+    float: right;
+    padding: 25px 0;
+    margin: 0;
+    list-style: none;
+    .nav-menu__item {
+      display: inline-block;
+      &:not(:last-child) { margin-right: 20px; }
+      &.active a { color: $smak-active-color; }
+      a {
+        font-weight: bold;
+        font-size: 16px;
+        text-transform: uppercase;
+        vertical-align: middle;
+        text-decoration: none;
+        color: #fff;
+        &:hover {
+          color: $smak-active-color;
+          text-decoration: none;
+        }
+      }
+    }
+    .nav-menu__item + .nav-menu__item::before {
+      content: '';
+      display: inline-block;
+      margin-right: 20px;
+      width: 5px;
+      height: 5px;
+      background: #ffe600;
+      vertical-align: middle;
+    }
+  }
+}

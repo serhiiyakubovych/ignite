@@ -1,0 +1,84 @@
+.services {
+  
+  .what-we-love {
+    padding: 75px 0;
+    background: #fbfbfb;
+    .our-likes {
+      text-align: center;
+
+      .our-likes__icon {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: $smak-active-color;
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .our-likes__title {
+        color: #131316;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .how-we-do {
+    padding: 60px 0 70px;
+    background: #131a1d;
+    color: #fff;
+
+    .section-head {
+      .section-subtitle {
+        margin: 0;
+        padding: 0;
+        color: $smak-active-color;
+        &:after {
+          display: none;
+        }
+      }
+      .section-description { color: #fff; }
+    }
+
+    .processes {
+      text-align: center;
+      %process__icon {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        background: url("../images/services-how.png") no-repeat;
+      }
+      .process__icon_analyse {
+        @extend %process__icon;
+        background-position: 0 0; }
+      .process__icon_preparing {
+        @extend %process__icon;
+        background-position: -45px 0; }
+      .process__icon_working {
+        @extend %process__icon;
+        background-position: -90px 0; }
+      .process__icon_finalyse {
+        @extend %process__icon;
+        background-position: -135px 0; }
+      .process__icon_testing {
+        @extend %process__icon;
+        background-position: -180px 0; }
+      .process__icon_deliver {
+        @extend %process__icon;
+        background-position: -225px 0; }
+      .process__title {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+
+  }
+}

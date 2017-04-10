@@ -1,0 +1,38 @@
+.statistic {
+  padding: 75px 0;
+  background: #131a1d;
+  color: #fff;
+
+  .section-head {
+    .section-subtitle {
+      margin: 0;
+      padding-bottom: 0;
+      color: #fff;
+      &::after { display: none; }
+    }
+    .section-description { color: #fff; }
+  }
+
+  .statistic-blocks {
+    margin-top: 60px;
+    text-align: center;
+    .statistic-block {
+      margin-right: 30px;
+      padding: 30px 0;
+      width: 250px;
+      height: 140px;
+      display: inline-block;
+      border: 1px solid $smak-active-color;
+      text-align: center;
+      .statistic-block__value {
+        margin: 0 0 15px 0;
+        font-weight: bold;
+        font-size: 35px;
+      }
+      .statistic-block__title {
+        text-transform: uppercase;
+        color: $smak-active-color;
+      }
+    }
+  }
+}

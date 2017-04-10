@@ -1,0 +1,41 @@
+.section-head {
+  margin-bottom: 60px;
+  text-align: center;
+
+  .section-title {
+    display: block;
+    margin: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #515151;
+  }
+
+  .section-subtitle {
+    position: relative;
+    margin: 20px 0 0 0;
+    padding-bottom: 25px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #000;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 25px;
+      width: 170px;
+      height: 3px;
+      background: $smak-active-color;
+    }
+  }
+
+  .section-description {
+    margin: 25px auto 0;
+    width: 50%;
+    color: #707070;
+  }
+
+}

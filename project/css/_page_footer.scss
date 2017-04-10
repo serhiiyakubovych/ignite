@@ -1,0 +1,55 @@
+.page_footer {
+  padding-top: 25px;
+  border-bottom: 1px solid #fff;
+  background: #131316;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+
+  .copyright { margin-bottom: 25px; }
+  a { color: $smak-active-color; }
+
+  .social-links {
+    margin: 25px 0;
+    %social {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: url("../images/social.png") no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+    .social_fb,
+    .social_unk,
+    .social_tw { margin-right: 20px; }
+    .social_fb { @extend %social; }
+    .social_unk {
+      @extend %social;
+      background-position: -20px 0;
+    }
+    .social_tw {
+      @extend %social;
+      background-position: -40px 0;
+    }
+    .social_g {
+      @extend %social;
+      background-position: -60px 0;
+    }
+  }
+
+  .to-up-btn {
+    display: block;
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    background: $smak-active-color url("../images/to-up.png") no-repeat center;
+    &:hover {
+      cursor: pointer;
+      filter: brightness(1.1);
+    }
+  }
+}
