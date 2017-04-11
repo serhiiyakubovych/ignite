@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="toDoListApp">
+<html lang="en" ng-app="toDoListApp">
 <head>
     <meta charset="UTF-8">
     <title>ToDo List (Task2)</title>
@@ -7,6 +7,7 @@
     <link href="../../Libraries/bootstrap.css" rel="stylesheet" />
     <link href="../../Libraries/bootstrap-theme.css" rel="stylesheet" />
     <script>
+        "use strict";
         /**
          * Lesson 11, Homework, Serhii Yakubovych
          */
@@ -23,30 +24,75 @@
          * редактирования.
          */
 
-        let works = [{
-            name: "Купить молоко",
-            description: "Сходить на рынок и купить молоко",
-            date: "2/18/2015",
-            completed: false
-        }, {
-            name: "Посмотреть видео урок по AngularJS",
-            description: "Досмотреть урок",
-            date: "2/18/2015",
-            completed: false
-        }];
+        let tasksModel = [
+            {
+                name: "Купить молоко",
+                description: "Сходить на рынок и купить молоко",
+                date: "2/18/2015",
+                completed: false
+            },
+            {
+                name: "Посмотреть видео урок по AngularJS",
+                description: "Досмотреть урок",
+                date: "2/18/2015",
+                completed: true
+            }];
 
-        window.addEventListener("load", function() {
             angular.module("toDoListApp", [])
                 .controller("toDoListCtrl", function($scope) {
-                    $scope.works = works;
+                    $scope.tasks = tasksModel;
+                    $scope.submitAction = "Add";
+
+                    $scope.configureTasksList = function() {
+                        if ($scope.submitAction === "Add") {
+                            $scope.tasks.push({
+                                name: $scope.inputName,
+                                description: $scope.inputDescription,
+                                date: $scope.inputDate,
+                                completed: $scope.inputCompleted
+                            });
+
+                            $scope.inputName = $scope.inputDescription = $scope.date = $scope.inputCompleted = "";
+                        } else if ($scope.submitAction === "Save") {
+                            let taskForSavingIndex = $scope.tasks.indexOf($scope.taskForSaving);
+                            if (taskForSavingIndex === -1) {
+                                return;
+                            }
+
+                            $scope.tasks[taskForSavingIndex] = {
+                                name: $scope.inputName,
+                                description: $scope.inputDescription,
+                                date: $scope.inputDate,
+                                completed: $scope.inputCompleted
+                            };
+
+                            $scope.submitAction = "Add";
+                            $scope.inputName = $scope.inputDescription = $scope.inputDate = $scope.inputCompleted = "";
+                        }
+                    };
+
+                    $scope.startEditingTask = function(taskToEdit) {
+                        $scope.submitAction = "Save";
+
+                        $scope.inputName = taskToEdit.name;
+                        $scope.inputDescription = taskToEdit.description;
+                        $scope.inputDate = taskToEdit.date;
+                        $scope.inputCompleted = taskToEdit.completed;
+
+                        $scope.taskForSaving = taskToEdit;
+                    };
+
+                    $scope.cancelEditing = function() {
+                        $scope.submitAction = "Add";
+                        $scope.inputName = $scope.inputDescription = $scope.inputDate = $scope.inputCompleted = "";
+                    };
                 });
-        });
     </script>
 
 </head>
-<body>
+<body ng-controller="toDoListCtrl">
 
-    <div class="container" ng-controller="toDoListCtrl">
+    <div class="container">
 
         <h3>ToDo List</h3>
 
@@ -57,18 +103,42 @@
                     <th>Description</th>
                     <th>Date</th>
                     <th>Completed</th>
+                    <th>Action</th>
                 </tr>
             </thead>
-            <tr ng-repeat="work in works">
-                <td>{{work.name}}</td>
-                <td>{{work.description}}</td>
-                <td>{{work.data}}</td>
-                <td>{{work.completed}}</td>
+            <tr ng-repeat="task in tasks">
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.date}}</td>
+                <td>{{task.completed ? "Yes" : "No"}}</td>
+                <td>
+                    <button ng-click="startEditingTask(task)">Edit</button>
+                </td>
             </tr>
         </table>
 
         <div>
             <!-- Форма для добавления новых задач -->
+            <form ng-submit="configureTasksList()">
+                <div class="form-group">
+                    <label for="task-name">Name</label>
+                    <input type="text" class="form-control" id="task-name" ng-model="inputName">
+                </div>
+                <div class="form-group">
+                    <label for="task-date">Due Date</label>
+                    <input type="text" class="form-control" id="task-date" ng-model="inputDate">
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <input type="text" class="form-control" id="task-description" ng-model="inputDescription">
+                </div>
+                <div class="form-group">
+                    <label for="task-completed">Completed</label>
+                    <input type="checkbox" id="task-completed" ng-model="inputCompleted">
+                </div>
+                <input type="submit" value="{{submitAction}}">
+                <input type="reset" value="Cancel edition" ng-if="submitAction === 'Save'" ng-click="cancelEditing()">
+            </form>
         </div>
     </div>
 </body>
