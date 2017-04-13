@@ -75,11 +75,11 @@
 <body>
     <div ng-controller="TestCtrl">
         <div>
-            <input type="radio" name="taskChoice" ng-click="selectTask(0)">
-            <input type="radio" name="taskChoice" ng-click="selectTask(1)">
-            <input type="radio" name="taskChoice" ng-click="selectTask(2)">
-            <input type="radio" name="taskChoice" ng-click="selectTask(3)">
-            <input type="radio" name="taskChoice" ng-click="selectTask(4)">
+            <input type="radio" name="taskChoice" ng-click="selectTask(0)" value="0">
+            <input type="radio" name="taskChoice" ng-click="selectTask(1)" value="0">
+            <input type="radio" name="taskChoice" ng-click="selectTask(2)" value="0">
+            <input type="radio" name="taskChoice" ng-click="selectTask(3)" value="0">
+            <input type="radio" name="taskChoice" ng-click="selectTask(4)" value="0">
         </div>
         <div ng-switch on="selectedTask">
             <div ng-switch-when="0">

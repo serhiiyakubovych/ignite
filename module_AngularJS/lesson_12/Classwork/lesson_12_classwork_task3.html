@@ -44,28 +44,62 @@
             .controller("ArrayTableCtrl", function($scope) {
                 $scope.items = itemsModel;
 
-                $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-expiration.html";
+                $scope.allowName = true;
+                $scope.allowPrice = true;
+                $scope.allowCategory = true;
+                $scope.allowCount = true;
+                $scope.allowTax = true;
+                $scope.allowExpiration = true;
 
-                $scope.loadItemTable = function(column) {
-                    if (column === "name") {
-                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-name.html";
-                    } else if (column === "price") {
-                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-price.html";
-                    } else if (column === "category") {
-                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-category.html";
-                    } else if (column === "count") {
-                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-count.html";
-                    } else if (column === "tax") {
-                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-tax.html";
-                    } else if (column === "expiration") {
-                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-expiration.html";
+                $scope.itemNameUrl = "./task3_files/lesson_12_classwork_task3-name.html";
+                $scope.itemPriceUrl = "./task3_files/lesson_12_classwork_task3-price.html";
+                $scope.itemCategoryUrl = "./task3_files/lesson_12_classwork_task3-category.html";
+                $scope.itemCountUrl = "./task3_files/lesson_12_classwork_task3-count.html";
+                $scope.itemTaxUrl = "./task3_files/lesson_12_classwork_task3-tax.html";
+                $scope.itemExpirationUrl = "./task3_files/lesson_12_classwork_task3-expiration.html";
+
+                $scope.loadTable = function() {
+                    if ($scope.allowName) {
+                        $scope.itemNameUrl = "./task3_files/lesson_12_classwork_task3-name.html";
+                    } else {
+                        $scope.itemNameUrl = "";
+                    }
+
+                    if ($scope.allowPrice) {
+                        $scope.itemPriceUrl = "./task3_files/lesson_12_classwork_task3-price.html";
+                    } else {
+                        $scope.itemPriceUrl = "";
+                    }
+
+                    if ($scope.allowCategory) {
+                        $scope.itemCategoryUrl = "./task3_files/lesson_12_classwork_task3-category.html";
+                    } else {
+                        $scope.itemCategoryUrl = "";
+                    }
+
+                    if ($scope.allowCount) {
+                        $scope.itemCountUrl = "./task3_files/lesson_12_classwork_task3-count.html";
+                    } else {
+                        $scope.itemCountUrl = "";
+                    }
+
+                    if ($scope.allowTax) {
+                        $scope.itemTaxUrl = "./task3_files/lesson_12_classwork_task3-tax.html";
+                    } else {
+                        $scope.itemTaxUrl = "";
+                    }
+
+                    if ($scope.allowExpiration) {
+                        $scope.itemExpirationUrl = "./task3_files/lesson_12_classwork_task3-expiration.html";
+                    } else {
+                        $scope.itemExpirationUrl = "";
                     }
                 };
             });
     </script>
 </head>
 <body ng-controller="ArrayTableCtrl">
-    <table>
+    <table border="1" cellspacing="0">
         <tr>
             <th>Name</th>
             <th>Price</th>
@@ -75,14 +109,21 @@
             <th>Expiration</th>
         </tr>
         <tr>
-            <td><input name="allowItem" type="radio" ng-click="loadItemTable('name')"></td>
-            <td><input name="allowItem" type="radio" ng-click="loadItemTable('price')"></td>
-            <td><input name="allowItem" type="radio" ng-click="loadItemTable('category')"></td>
-            <td><input name="allowItem" type="radio" ng-click="loadItemTable('count')"></td>
-            <td><input name="allowItem" type="radio" ng-click="loadItemTable('tax')"></td>
-            <td><input name="allowItem" type="radio" ng-click="loadItemTable('expiration')"></td>
+            <td><input type="checkbox" ng-model=allowName ng-click="loadTable()"></td>
+            <td><input type="checkbox" ng-model=allowPrice ng-click="loadTable()"></td>
+            <td><input type="checkbox" ng-model=allowCategory ng-click="loadTable()"></td>
+            <td><input type="checkbox" ng-model=allowCount ng-click="loadTable()"></td>
+            <td><input type="checkbox" ng-model=allowTax ng-click="loadTable()"></td>
+            <td><input type="checkbox" ng-model=allowExpiration ng-click="loadTable()"></td>
+        </tr>
+        <tr ng-repeat="item in items">
+            <td><span ng-include="itemNameUrl"></span></td>
+            <td><span ng-include="itemPriceUrl"></span></td>
+            <td><span ng-include="itemCategoryUrl"></span></td>
+            <td><span ng-include="itemCountUrl"></span></td>
+            <td><span ng-include="itemTaxUrl"></span></td>
+            <td><span ng-include="itemExpirationUrl"></span></td>
         </tr>
     </table>
-    <ng-include src="itemUrl"></ng-include>
 </body>
 </html>

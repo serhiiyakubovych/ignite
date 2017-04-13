@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="AddClassesApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .first-class { background: red; }
+        .second-class { font-weight: bold; }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 13, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ###Задача1
+         * Создайте страницу с элементом div и кнопкой. Реализуйте следующее:
+         * При нажатии на кнопку элементу div присваиваются 2 CSS-класса
+         */
+        angular.module("AddClassesApp", [])
+            .controller("MainCtrl", function($scope) {
+                $scope.blockClassMap = {
+                    "first-class": false,
+                    "second-class": false
+                };
+
+                $scope.addClassesToBlock = function() {
+                    $scope.blockClassMap["first-class"] = true;
+                    $scope.blockClassMap["second-class"] = true;
+                };
+            });
+    </script>
+</head>
+<body ng-controller="MainCtrl">
+    <div ng-class="blockClassMap">Block</div>
+    <button ng-click="addClassesToBlock()">Add 2 CSS classes to 'Block'</button>
+</body>
+</html>
