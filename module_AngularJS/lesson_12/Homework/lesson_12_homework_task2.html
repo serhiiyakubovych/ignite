@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" ng-app="ItemApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        /**
+         * Lesson 12, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 2
+         * Дано массив items:
+         * ```
+         * $scope.items = [
+         * { name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+         * { name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+         * { name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+         * { name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+         * ```
+         * Создайте страницу с элементом select. Реализуйте следующее:
+         * В зависимости от выбранного варианта в списке select, на экране отображаются данные массива или в виде таблицы, или в виде списка
+         */
+        let itemsModel = [
+            { name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+            { name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+            { name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+            { name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }],
+            optionsModel = [
+                { display: "List", value: "list" },
+                { display: "Table", value: "table" }];
+
+        angular.module("ItemApp", [])
+            .controller("ItemCtrl", function($scope) {
+                $scope.items = itemsModel;
+                $scope.options = optionsModel;
+                $scope.selectedViewOption = $scope.options[0];
+            });
+    </script>
+</head>
+<body ng-controller="ItemCtrl">
+    <select ng-model="selectedViewOption" ng-options="option.display for option in options track by option.value"></select>
+    <div ng-switch on="selectedViewOption.value">
+        <div ng-switch-when="list">
+            <ul>
+                <li ng-repeat="item in items">{{$index}}:
+                    <ul>
+                        <li ng-repeat="(itemKey, itemValue) in item">{{itemKey}}: {{itemValue}}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div ng-switch-when="table">
+            <table border="1" cellspacing="0">
+                <tr>
+                    <th ng-repeat="(itemKey, itemValue) in items[0]">{{itemKey}}</th>
+                </tr>
+                <tr ng-repeat="item in items">
+                    <td ng-repeat="(itemKey, itemValue) in item">{{itemValue}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -36,7 +36,8 @@
                 description: "Досмотреть урок",
                 date: "2/18/2015",
                 completed: true
-            }];
+            }],
+            taskForSaving;
 
             angular.module("toDoListApp", [])
                 .controller("toDoListCtrl", function($scope) {
@@ -52,9 +53,9 @@
                                 completed: $scope.inputCompleted
                             });
 
-                            $scope.inputName = $scope.inputDescription = $scope.date = $scope.inputCompleted = "";
+                            $scope.inputName = $scope.inputDescription = $scope.inputDate = $scope.inputCompleted = "";
                         } else if ($scope.submitAction === "Save") {
-                            let taskForSavingIndex = $scope.tasks.indexOf($scope.taskForSaving);
+                            let taskForSavingIndex = $scope.tasks.indexOf(taskForSaving);
                             if (taskForSavingIndex === -1) {
                                 return;
                             }
@@ -79,7 +80,7 @@
                         $scope.inputDate = taskToEdit.date;
                         $scope.inputCompleted = taskToEdit.completed;
 
-                        $scope.taskForSaving = taskToEdit;
+                        taskForSaving = taskToEdit;
                     };
 
                     $scope.cancelEditing = function() {

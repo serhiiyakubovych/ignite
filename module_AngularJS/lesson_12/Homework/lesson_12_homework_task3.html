@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" ng-app="TestApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 12, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 3
+         * Реализуйте SPA приложение, в котором пользователю представляется пройти тест из 5 вопросов, в каждом вопросе
+         * по 4 варианта ответа.
+         * Вопросы должны выбираться с помощью radio-button и когда выбран, например, вопрос №1, то на странице должны
+         * появится варианты ответа только для этого вопроса. В конце тестирования отобразите результат теста.
+         * При решении данной задачи используйте директиву ng-switch.
+         */
+
+        let tasksModel = [
+            {
+                question: "Which of the following is not a valid JavaScript variable name?",
+                answers: ["2names", "_first_and_last_names", "FirstAndLast", "None of the above"],
+                correctAnswerIndex: 0
+            },
+            {
+                question: "Which of these is NOT a valid comment in JavaScript?",
+                answers: ["// This is a comment", "/* This is a comment. */", "/* This is a comment", "<!-- This is a comment. -->"],
+                correctAnswerIndex: 3
+            },
+            {
+                question: "Which of the following is a JavaScript datatype?",
+                answers: ["Null", "Object", "Undefined", "All of above"],
+                correctAnswerIndex: 3
+            },
+            {
+                question: "Which of the following method is used to hide the selected elements?",
+                answers: ["visible(false)", "hidden()", "display(none)", "hide()"],
+                correctAnswerIndex: 3
+            },
+            {
+                question: "Which of the following JQuery selector select elements whose css class is some-class?",
+                answers: ["$('some-class')", "$('#some-class')", "$('.some-class')", "None of the above"],
+                correctAnswerIndex: 2
+            }
+        ];
+
+        angular.module("TestApp", [])
+            .controller("TestCtrl", function($scope) {
+                $scope.tasks = tasksModel;
+
+                $scope.selectTask = function(taskIndex) {
+                    $scope.selectedTask = taskIndex;
+                };
+                $scope.storeAnswer = function({answerIndex, taskIndex}) {
+                    $scope.tasks[taskIndex].storedAnswerIndex = answerIndex;
+                };
+                $scope.checkAnswers = function() {
+                    let countOfCorrectAnswers = 0;
+                    $scope.tasks.forEach(function(task) {
+                        if (task.storedAnswerIndex === task.correctAnswerIndex) {
+                            countOfCorrectAnswers++;
+                        }
+                    });
+
+                    $scope.testResult = countOfCorrectAnswers;
+                };
+            });
+    </script>
+</head>
+<body>
+    <div ng-controller="TestCtrl">
+        <div>
+            <input type="radio" name="taskChoice" ng-click="selectTask(0)">
+            <input type="radio" name="taskChoice" ng-click="selectTask(1)">
+            <input type="radio" name="taskChoice" ng-click="selectTask(2)">
+            <input type="radio" name="taskChoice" ng-click="selectTask(3)">
+            <input type="radio" name="taskChoice" ng-click="selectTask(4)">
+        </div>
+        <div ng-switch on="selectedTask">
+            <div ng-switch-when="0">
+                <div>{{tasks[0].question}}</div>
+                <ul>
+                    <li ng-repeat="answer in tasks[0].answers" ng-click="storeAnswer({answerIndex: $index, taskIndex: 0})">
+                        <label><input type="radio" name="task0">{{answer}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div ng-switch-when="1">
+                <div>{{tasks[1].question}}</div>
+                <ul>
+                    <li ng-repeat="answer in tasks[1].answers" ng-click="storeAnswer({answerIndex: $index, taskIndex: 1})">
+                        <label><input type="radio" name="task1">{{answer}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div ng-switch-when="2">
+                <div>{{tasks[2].question}}</div>
+                <ul>
+                    <li ng-repeat="answer in tasks[2].answers" ng-click="storeAnswer({answerIndex: $index, taskIndex: 2})">
+                        <label><input type="radio" name="task2">{{answer}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div ng-switch-when="3">
+                <div>{{tasks[3].question}}</div>
+                <ul>
+                    <li ng-repeat="answer in tasks[3].answers" ng-click="storeAnswer({answerIndex: $index, taskIndex: 3})">
+                        <label><input type="radio" name="task3">{{answer}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div ng-switch-when="4">
+                <div>{{tasks[4].question}}</div>
+                <ul>
+                    <li ng-repeat="answer in tasks[4].answers" ng-click="storeAnswer({answerIndex: $index, taskIndex: 4})">
+                        <label><input type="radio" name="task4">{{answer}}</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <button ng-click="checkAnswers()">Check answers</button>
+        <div>Count of correct answers: {{testResult}}</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="CalcApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 12, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Создайте приложение-калькулятор. В приложении должно быть два поля ввода и кнопки «+», «-», «*», «/».
+         * Реализуйте двунаправленную привязку таким образом, чтобы при нажатии на кнопки результат арифметических операций выводился на странице.
+         */
+        angular.module("CalcApp", [])
+            .controller("CalcCtrl", function($scope) {
+                $scope.calcResult = 0;
+
+                $scope.getSum = function() {
+                    $scope.calcResult = +$scope.firstArg + +$scope.secondArg;
+                };
+                $scope.getSubtraction = function() {
+                    $scope.calcResult = +$scope.firstArg - +$scope.secondArg;
+                };
+                $scope.getMultiplication = function() {
+                     $scope.calcResult = +$scope.firstArg * +$scope.secondArg;
+                };
+                $scope.getDivision = function() {
+                     $scope.calcResult = +$scope.firstArg / +$scope.secondArg;
+                };
+            });
+    </script>
+</head>
+<body>
+    <div ng-controller="CalcCtrl">
+        <label>A:
+            <input type="text" ng-model="firstArg">
+        </label>
+        <label>B:
+            <input type="text" ng-model="secondArg">
+        </label>
+        <button ng-click="getSum()">+</button>
+        <button ng-click="getSubtraction()">-</button>
+        <button ng-click="getMultiplication()">*</button>
+        <button ng-click="getDivision()">/</button>
+        <div>
+            Result: {{calcResult}}
+        </div>
+    </div>
+</body>
+</html>

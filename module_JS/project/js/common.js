@@ -53,8 +53,8 @@
                 $(document).on("scroll", showStatistic);
 
                 let servicesSection = $("#services");
-                servicesSection.on("mouseenter", ".our-likes__icon", increaseService);
-                servicesSection.on("mouseleave", ".our-likes__icon", decreaseService);
+                $(servicesSection).on("mouseenter", ".our-likes__icon", increaseService);
+                $(servicesSection).on("mouseleave", ".our-likes__icon", decreaseService);
             }
 
             function createSlider({sliderContainer, sliderSel, slideSel,
@@ -370,7 +370,7 @@
                         pattern: namePattern,
                         cleanInputError: "Please enter your name.",
                         invalidInputError: "Invalid name. Your name can include " +
-                        "only English worlds. Please try again."
+                        "only English words. Please try again."
                     });
                 }
 
@@ -379,7 +379,7 @@
                         pattern: mailPattern,
                         cleanInputError: "Please enter your mail.",
                         invalidInputError: "Invalid mail. Your mail can include " +
-                        "only English worlds, digits, _ and @. Please try again."
+                        "only digits, English words, _ and @. Please try again."
                     });
                 }
 
@@ -387,8 +387,8 @@
                     validateInput.call($(this), {
                         pattern: subjectPattern,
                         cleanInputError: "Please enter subject.",
-                        invalidInputError: "Invalid subject. Your name can include " +
-                        "only English worlds and digits. Please try again."
+                        invalidInputError: "Invalid subject. A subject field can include " +
+                        "only digits and English words. Please try again."
                     });
                 }
 

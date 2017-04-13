@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" ng-app="ArrayTableApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task 12.3</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 12, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Дано массив items:
+         * ```
+         * $scope.items = [
+         * { name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+         * { name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+         * { name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+         * { name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+         * ```
+         * С помощью директивы ng-repeat создайте таблицу , отображающую данные массива.
+         *
+         * ### Задача 2
+         * Используйте таблицу с данными массива items из предыдущей задачи. Реализуйте следующее:
+         * * Добавьте на страницу 5 элементов checkbox с именами свойств элементов массива items(name, price и т.д.)
+         * * Нажатие на каждый из checkbox скрывает/отображает соответствующее свойство элементов массива items в таблице
+         * * Используйте директиву ng-switch
+         *
+         * ### Задача 3
+         * Перепишите код предыдущей задачи с использованием директивы ng-include
+         */
+
+        let itemsModel = [
+            { name: "B Item", price: 10.9, category: "Category 1", count: 10, tax: 1.12, expiration: 10 },
+            { name: "A Item", price: 1.1, category: "Category 1", count: 8, tax: 0.55, expiration: 12 },
+            { name: "D Item", price: 2.6, category: "Category 2", count: 7, tax: 0.22, expiration: 5 },
+            { name: "C Item", price: 17.5, category: "Category 2", count: 33, tax: 2.77, expiration: 10 }];
+
+        angular.module("ArrayTableApp", [])
+            .controller("ArrayTableCtrl", function($scope) {
+                $scope.items = itemsModel;
+
+                $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-expiration.html";
+
+                $scope.loadItemTable = function(column) {
+                    if (column === "name") {
+                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-name.html";
+                    } else if (column === "price") {
+                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-price.html";
+                    } else if (column === "category") {
+                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-category.html";
+                    } else if (column === "count") {
+                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-count.html";
+                    } else if (column === "tax") {
+                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-tax.html";
+                    } else if (column === "expiration") {
+                        $scope.itemUrl = "./task3_files/lesson_12_classwork_task3-expiration.html";
+                    }
+                };
+            });
+    </script>
+</head>
+<body ng-controller="ArrayTableCtrl">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Count</th>
+            <th>Tax</th>
+            <th>Expiration</th>
+        </tr>
+        <tr>
+            <td><input name="allowItem" type="radio" ng-click="loadItemTable('name')"></td>
+            <td><input name="allowItem" type="radio" ng-click="loadItemTable('price')"></td>
+            <td><input name="allowItem" type="radio" ng-click="loadItemTable('category')"></td>
+            <td><input name="allowItem" type="radio" ng-click="loadItemTable('count')"></td>
+            <td><input name="allowItem" type="radio" ng-click="loadItemTable('tax')"></td>
+            <td><input name="allowItem" type="radio" ng-click="loadItemTable('expiration')"></td>
+        </tr>
+    </table>
+    <ng-include src="itemUrl"></ng-include>
+</body>
+</html>
