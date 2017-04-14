@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="SearchApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.2 (Homework)</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        /**
+         * Lesson 13, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 2
+         * Создайте страницу с десятью тегами div с текстом, полем ввода и кнопкой.
+         * Добавьте фильтр, который при вводе значения в поле и после нажатия на кнопку,
+         * покажет пользователю только те блоки, текст в которых соответствуют введеному значению.
+         * Остальные блоки должны быть скрыты.
+         */
+        let divContentModel = ["div 01", "div 02", "div 03", "div 04", "div 05",
+            "div 06", "div 07", "div 08", "div 09", "div 10"];
+
+        angular.module("SearchApp", [])
+            .controller("MainCtrl", function($scope) {
+                $scope.divContentList = divContentModel;
+                $scope.searchString = "";
+                $scope.innerString = "";
+
+                $scope.searchInDivs = function() {
+                    $scope.innerString = $scope.searchString;
+                };
+
+                $scope.searchFilter = function(targetContent) {
+                    if (targetContent.indexOf($scope.innerString) !== -1) {
+                        return targetContent;
+                    }
+                };
+            });
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <input type="text" ng-model="searchString">
+        <button ng-click="searchInDivs()">Search</button>
+        <div>
+            <div ng-repeat="divContent in divContentList | filter: searchFilter">{{divContent}}</div>
+        </div>
+    </section>
+</body>
+</html>

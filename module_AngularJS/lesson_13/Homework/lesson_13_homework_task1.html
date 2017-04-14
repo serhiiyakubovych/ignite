@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" ng-app="AddClassesApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.1 (Homework)</title>
+    <style>
+        .first-class {
+            padding: 10px;
+            background: #ffc392; }
+        .second-class {
+            border-radius: 10px;
+            cursor: pointer; }
+        .third-class {
+            color: #ff0d64;
+            text-align: center; }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 13, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 1
+         * Создайте три разных CSS класса, которые по-разному будут оформлять блок текста на странице.
+         * Реализуйте возможность выбирать стиль для оформления страницы с помощью кнопок или checkbox
+         */
+        let styleClassesModel = {
+            "first-class": false,
+            "second-class": false,
+            "third-class": false
+        };
+        angular.module("AddClassesApp", [])
+            .controller("MainCtrl", function($scope) {
+                $scope.styleClasses = styleClassesModel;
+            });
+    </script>
+</head>
+<body ng-controller="MainCtrl">
+    <div>
+        <div ng-repeat="(styleClassName, isAllowed) in styleClasses">
+            {{styleClassName}}: {{isAllowed}}
+            <input type="checkbox" ng-model="styleClasses[styleClassName]">
+        </div>
+        <p ng-class="styleClasses">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa debitis dolorem,
+            doloremque et facere iure libero nihil nulla quidem soluta?
+        </p>
+    </div>
+</body>
+</html>

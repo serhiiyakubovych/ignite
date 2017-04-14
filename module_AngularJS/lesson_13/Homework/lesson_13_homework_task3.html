@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" ng-app="formValidatorApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.3 (Homework)</title>
+    <link rel="stylesheet" href="../Libraries/bootstrap.css">
+    <link rel="stylesheet" href="../Libraries/bootstrap-theme.css">
+    <style>
+        .registration-form { padding: 40px; }
+        .input-error { color: red; }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        /**
+         * Lesson 13, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 3
+         * Создайте форму для регистрации нового пользователя. Форма должна содержать поля:
+         * ФИО, email, телефон, пароль, подтверждение пароля. Реализуйте real-time валидацию пользовательского ввода.
+         */
+        angular.module("formValidatorApp", [])
+            .controller("mainCtrl", function($scope) {
+                $scope.namePattern = /^\w+$/i;
+                $scope.emailPattern = /^[\w._-]+@[\w._-]+\.[\w]{1,5}$/i;
+                $scope.phonePattern = /^\d+$/;
+                $scope.passwordPattern = /^\w+$/i;
+                $scope.repeatPasswordPattern = /^\w+$/i;
+
+                $scope.getInputError = function(error, invalidInputMessage) {
+                    if (!angular.isDefined(error)) {
+                        return;
+                    }
+                    if (error.required) {
+                        return "No data entered.";
+                    }
+                    return invalidInputMessage;
+                }
+            });
+    </script>
+</head>
+<body>
+    <section ng-controller="mainCtrl">
+        <form name="regForm" class="registration-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input name="name" class="form-control" type="text" id="name" required ng-model="newUser.name" ng-pattern="namePattern">
+                <div class="input-error" ng-show="regForm.name.$invalid && regForm.name.$dirty">
+                    {{getInputError(regForm.name.$error, "Invalid name.")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input name="email" class="form-control" type="email" id="email" required ng-model="newUser.email" ng-pattern="emailPattern">
+                <div class="input-error" ng-show="regForm.email.$invalid && regForm.email.$dirty">
+                    {{getInputError(regForm.email.$error, "Invalid email. Email must be in abc@xyz.com format")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input name="phone" class="form-control" type="tel" id="phone" required ng-model="newUser.phone" ng-pattern="phonePattern">
+                <div class="input-error" ng-show="regForm.phone.$invalid && regForm.phone.$dirty">
+                    {{getInputError(regForm.phone.$error, "Invalid phone. Phone can consist of only numbers.")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input name="password" class="form-control" type="password" id="password" required ng-model="newUser.password" ng-pattern="passwordPattern">
+                <div class="input-error" ng-show="regForm.password.$invalid && regForm.password.$dirty">
+                    {{getInputError(regForm.password.$error, "Invalid password.")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="repeat-password">Repeat Password</label>
+                <input name="repeat-password" class="form-control" type="password" id="repeat-password" required ng-model="newUser.repeatPassword" ng-pattern="repeatPasswordPattern">
+                <div class="input-error" ng-show="(newUser.repeatPassword !== newUser.password) ||
+                    (regForm['repeat-password'].$invalid && regForm['repeat-password'].$dirty)">
+                    {{getInputError(regForm['repeat-password'].$error, "Invalid repeat of password.")}}
+                </div>
+            </div>
+            <input type="submit" class="btn-lg btn-info" ng-disabled="regForm.$invalid">
+        </form>
+    </section>
+</body>
+</html>
