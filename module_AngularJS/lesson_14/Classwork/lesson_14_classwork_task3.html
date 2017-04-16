@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="httpInteractionApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .price-table {
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        .price-table,
+        .price-table th,
+        .price-table td {
+            padding: 5px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 14, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 3
+         * Используйте сервис $http для получения данных из файла data.json, который находится в папке data.
+         * Отобразите полученные данные на странице в виде таблицы. Предусмотрите обработку ошибок в
+         * запросе (используя Promise).
+         */
+        angular.module("httpInteractionApp", [])
+            .controller("mainCtrl", ["$scope", "$http", function($scope, $http) {
+                $scope.downloadJsonIntoContainer = function() {
+                    $http.get("./data/data.json").then(function(response) {
+                        $scope.items = response.data;
+                    }, function(response) {
+                        console.log("HTTP Request error. " + response.statusCode + response.statusText);
+                    });
+                };
+            }]);
+    </script>
+</head>
+<body ng-controller="mainCtrl">
+    <button ng-click="downloadJsonIntoContainer()">Get JSON Data</button>
+    <table class="price-table" ng-show="items !== undefined">
+        <tr>
+            <th ng-repeat="(key, value) in items[0]">{{key}}</th>
+        </tr>
+        <tr ng-repeat="item in items">
+            <td ng-repeat="(key, value) in item">{{key}} : {{value}}</td>
+        </tr>
+    </table>
+</body>
+</html>

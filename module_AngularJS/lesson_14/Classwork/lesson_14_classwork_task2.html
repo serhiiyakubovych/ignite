@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="clickApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        /**
+         * Lesson 14, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 2
+         * Создайте сервис из предыдущей задачи, используя метод провайдера.
+         */
+        let clickApp = angular.module("clickApp", []);
+
+        clickApp.provider("clickCounter", function() {
+            return {
+                $get: function() {
+                    let buttonClickCount = 0;
+                    return function() {
+                        console.log(`The button was clicked ${++buttonClickCount} times.`);
+                        return buttonClickCount;
+                    };
+                }
+            };
+        });
+
+        clickApp.controller("mainCtrl", ["$scope", "clickCounter", function($scope, clickCounter) {
+            $scope.getButtonClickCount = function() {
+                $scope.clickCount = clickCounter();
+            };
+        }]);
+    </script>
+</head>
+<body ng-controller="mainCtrl">
+    <button ng-click="getButtonClickCount()">Click here</button>
+    <div>The button was clicked <span ng-init="clickCount = 0">{{clickCount}}</span> times.</div>
+</body>
+</html>

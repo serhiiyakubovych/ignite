@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="clickApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 14, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Создайте страницу с кнопкой. Разработайте сервис, который будет считать количество кликов по кнопке и
+         * выводить его в консоль. Используйте фабричную функцию для создания сервиса.
+         */
+        let clickApp = angular.module("clickApp", []);
+
+        clickApp.factory("clickCounterService", function() {
+            let clickCounter = 0;
+            return function() {
+                console.log(`The button was clicked ${++clickCounter} times.`);
+                return clickCounter;
+            };
+        });
+
+        clickApp.controller("mainCtrl", ["$scope", "clickCounterService", function($scope, clickCounterService) {
+            $scope.increaseButtonClickCounter = function() {
+                $scope.clickCount = clickCounterService();
+            };
+        }]);
+
+    </script>
+</head>
+<body ng-controller="mainCtrl">
+    <button ng-click="increaseButtonClickCounter()">Click me</button>
+    <div>Click count: <span>{{clickCount}}</span></div>
+</body>
+</html>
