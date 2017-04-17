@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" ng-app="calcApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 14, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Создайте сервис, который предоставляет стандартные математические операции – сложение, умножение и т.д.
+         * Используйте три разных способа для создания сервиса.
+         */
+        let calcApp = angular.module("calcApp", []);
+
+        /* Factory */
+        calcApp.factory("calculatorFactService", function() {
+            return function(action, ...args) {
+                if (action === "add") {
+                    return args.reduce((sum, arg) => sum + arg, 0);
+                } else if (action === "subtract") {
+                    return args.reduce((result, arg) => result - arg);
+                } else if (action === "multiply") {
+                    return args.reduce((product, arg) => product * arg);
+                } else if (action === "divide") {
+                    return args.reduce((fraction, arg) => fraction / arg);
+                }
+            };
+        });
+
+        /* Service */
+        let calculatorServ = function() {};
+        calculatorServ.prototype = {
+            add(...args) {
+                return args.reduce((sum, arg) => sum + arg, 0);
+            },
+            subtract(...args) {
+                return args.reduce((result, arg) => result - arg);
+            },
+            multiply(...args) {
+                return args.reduce((product, arg) => product * arg);
+            },
+            divide(...args) {
+                return args.reduce((fraction, arg) => fraction / arg);
+            }
+        };
+        calculatorServ.prototype.constructor = calculatorServ;
+        calcApp.service("calculatorServService", calculatorServ);
+
+        /* Provider */
+        calcApp.provider("calculatorProvService", function() {
+            let invalidInputMessage;
+            return {
+                setInvalidInputMessage: function(msg) {
+                    invalidInputMessage = msg;
+                },
+                $get: function() {
+                    return function(action, ...args) {
+                        let caclResult;
+                        if (action === "add") {
+                            caclResult = args.reduce((sum, arg) => sum + arg, 0);
+                        } else if (action === "subtract") {
+                            caclResult = args.reduce((result, arg) => result - arg);
+                        } else if (action === "multiply") {
+                            caclResult = args.reduce((product, arg) => product * arg);
+                        } else if (action === "divide") {
+                            caclResult = args.reduce((fraction, arg) => fraction / arg);
+                        }
+
+                        if (isNaN(caclResult) && angular.isDefined(invalidInputMessage)) {
+                            return invalidInputMessage;
+                        }
+                        return caclResult;
+                    };
+                }
+            };
+        });
+
+        /* Controllers */
+        calcApp
+            .config(function(calculatorProvServiceProvider) {
+                calculatorProvServiceProvider.setInvalidInputMessage("Invalid input. Please check your numbers.");
+            })
+            .controller("mainCtrl", ["$scope", "calculatorFactService", "calculatorServService", "calculatorProvService",
+                function($scope, calculatorFactService, calculatorServService, calculatorProvService) {
+                $scope.servicesList = [
+                    {display: "calculatorFactService", serv: calculatorFactService},
+                    {display: "calculatorServService", serv: calculatorServService},
+                    {display: "calculatorProvService", serv: calculatorProvService}];
+                $scope.selectedService = $scope.servicesList[0];
+                $scope.inputNumbers = 0;
+
+                $scope.getCalcResult = function(action) {
+                    let args;
+                    if (typeof $scope.inputNumbers === "string") {
+                        args = $scope.inputNumbers.split(" ").map((arg) => +arg);
+                    } else {
+                        args = [+$scope.inputNumbers];
+                    }
+
+                    if ($scope.selectedService.display === "calculatorServService") {
+                        $scope.calcResult = $scope.selectedService.serv[action](...args);
+                        return;
+                    }
+                    $scope.calcResult = $scope.selectedService.serv(action, ...args);
+                };
+            }])
+    </script>
+</head>
+<body ng-controller="mainCtrl">
+    <!--<section ng-controller="factCtrl">-->
+        <select ng-model="selectedService" ng-options="service.display for service in servicesList"></select>
+        <div>Enter your numbers divided by gaps:</div>
+        <input type="text" ng-model="inputNumbers">
+        <button ng-click="getCalcResult('add')">Add</button>
+        <button ng-click="getCalcResult('subtract')">Subtract</button>
+        <button ng-click="getCalcResult('multiply')">Multiply</button>
+        <button ng-click="getCalcResult('divide')">Divide</button>
+        <div>{{calcResult}}</div>
+    <!--</section>-->
+    <!--<section ng-controller="servCtrl"></section>-->
+    <!--<section ng-controller="provCtrl"></section>-->
+</body>
+</html>

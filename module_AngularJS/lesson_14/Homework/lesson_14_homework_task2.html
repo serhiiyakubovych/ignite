@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" ng-app="toDoListApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Libraries/bootstrap.css">
+    <link rel="stylesheet" href="../Libraries/bootstrap-theme.css">
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        /**
+         * Lesson 14, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 2
+         * Создайте приложение с интерфейсом показанном в файле template.png. Файл находится в папке Task.
+         * Напишите сервис, который после каждого изменения формы, будет создавать JSON обьект с новыми данными и
+         * отправлять на сервер.
+         * Выведите подготовленный к отправке объект на экран.
+         */
+        let tasksModel = [
+                {
+                    name: "Купить молоко",
+                    description: "Сходить на рынок и купить молоко",
+                    date: "2/18/2015",
+                    completed: false
+                },
+                {
+                    name: "Посмотреть видео урок по AngularJS",
+                    description: "Досмотреть урок",
+                    date: "2/18/2015",
+                    completed: true
+                }];
+
+        angular.module("toDoListApp", [])
+            .factory("sendDataAsJSON", ["$http", function($http) {
+                return function(url, data) {
+                    let httpConfig = {
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        transformRequest: function(data, headers) {
+                            let json;
+                            try {
+                                json = JSON.stringify(data);
+                                alert(json);
+                            } catch(err) {
+                                alert("Cannot convert to JSON.");
+                                console.log(err);
+                                return;
+                            }
+                            return json;
+                        }
+                    };
+                    $http.post(url, data, httpConfig);
+                };
+            }])
+            .controller("toDoListCtrl", function($scope, sendDataAsJSON) {
+                $scope.tasks = tasksModel;
+
+                $scope.submitTasksList = function() {
+                    let taskForSending = {
+                        name: $scope.inputName,
+                        description: $scope.inputDescription,
+                        date: $scope.inputDate,
+                        completed: $scope.inputCompleted
+                    };
+
+                    sendDataAsJSON("server.js", taskForSending);
+
+                    $scope.tasks.push(taskForSending);
+
+                    $scope.inputName = $scope.inputDescription = $scope.inputDate = $scope.inputCompleted = "";
+                };
+            });
+    </script>
+</head>
+<body ng-controller="toDoListCtrl">
+<div class="container">
+
+    <h3>ToDo List</h3>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Completed</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="task in tasks">
+            <td>{{task.name}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.date}}</td>
+            <td>{{task.completed ? "+" : ""}}</td>
+        </tr>
+    </table>
+
+    <div>
+        <!-- Форма для добавления новых задач -->
+        <form ng-submit="submitTasksList()">
+            <div class="form-group">
+                <label for="task-name">Name</label>
+                <input type="text" class="form-control" id="task-name" ng-model="inputName">
+            </div>
+            <div class="form-group">
+                <label for="task-date">Due Date</label>
+                <input type="text" class="form-control" id="task-date" ng-model="inputDate">
+            </div>
+            <div class="form-group">
+                <label for="task-description">Description</label>
+                <input type="text" class="form-control" id="task-description" ng-model="inputDescription">
+            </div>
+            <div class="form-group">
+                <label for="task-completed">Completed</label>
+                <input type="checkbox" id="task-completed" ng-model="inputCompleted">
+            </div>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</div>
+</body>
+</html>
