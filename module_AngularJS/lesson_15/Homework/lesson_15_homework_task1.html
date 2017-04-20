@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="timerApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 15, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         *
+         * Создайте страницу с двумя кнопками Start и Stop. Реализуйте следующее:
+         * * при нажатии на кнопку start, на страницу начинают выводиться чила в возрастающем порядке с интервалом 1 с.
+         * * При нажатии на кнопку stop вывод чисел останавливается.
+         * * При нажатии на кнопку start отсчет начинается всегда с 0.
+         */
+        angular.module("timerApp", [])
+            .controller("MainCtrl", ["$scope", "$interval", function($scope, $interval) {
+                $scope.time = 0;
+
+                let timer;
+
+                $scope.startTimer = function() {
+                    $scope.time = 0;
+                    timer = $interval(() => ++$scope.time, 1000);
+                };
+
+                $scope.stopTimer = function() {
+                    $interval.cancel(timer);
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <button ng-click="startTimer()">Start</button>
+        <button ng-click="stopTimer()">Stop</button>
+        <div>Timer: <span>{{time}}</span></div>
+    </section>
+</body>
+</html>

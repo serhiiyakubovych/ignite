@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" ng-app="compileApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 15, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 3
+         * Используя сервис $compile выведите имя в шаблоне жирным начертанием используя тег <strong>:
+         *
+         * ```
+         * "Hello my name is {{name}}"
+         * var data = { name: "<strong>Ivan</strong>" }
+         * ```
+         */
+        let stringForCompiling = "Hello my name is {{name}}",
+            data = { name: "<strong>Ivan</strong>" };
+        angular.module("compileApp", [])
+            .controller("MainCtrl", ["$scope", "$compile", function($scope, $compile) {
+                $scope.compileExpression = function() {
+                    let compiledString = $compile('<expr name=' + encodeURIComponent(data.name) + '></expr>')($scope);
+                    angular.element(document.getElementById("compiled-expression")).append(compiledString);
+                };
+            }])
+            .filter("decode", function() {
+                return (item) => decodeURIComponent(item);
+            })
+            .directive('expr', function () {
+                return {
+                    restrict: 'E',
+                    scope: { 'name': '@' },
+                    template: '<span>Hello my name is {{name | decode}}</span>',
+                    replace: true
+                }
+            });
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <div ng-non-bindable>Hello my name is {{name}}</div>
+        <button ng-click="compileExpression()">Compile</button>
+        <div id="compiled-expression"></div>
+    </section>
+</body>
+</html>

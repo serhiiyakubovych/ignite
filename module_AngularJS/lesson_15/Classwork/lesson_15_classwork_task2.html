@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app="interpolatingApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script src="../Libraries/angular-sanitize.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 15, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 2
+         * Используя сервис $interpolate выведите имя в шаблоне жирным начертанием используя тег strong:
+         * ```
+         * "Hello my name is {{name}}"
+         * var data = { name: "<strong>Ivan</strong>" }
+         * ```
+         */
+        let stringForInterpolating = "Hello my name is {{name}}",
+            data = { name: "<strong>Ivan</strong>" };
+
+        angular.module("interpolatingApp", ["ngSanitize"])
+            .controller("MainCtrl", ["$scope", "$interpolate", function($scope, $interpolate) {
+                $scope.interpolateExpression = function() {
+                    $scope.resultOfInterpolating = $interpolate(stringForInterpolating)(data);
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <div ng-non-bindable>Hello my name is {{name}}</div>
+        <button ng-click="interpolateExpression()">Interpolate</button>
+        <div ng-bind-html="resultOfInterpolating"></div>
+    </section>
+</body>
+</html>

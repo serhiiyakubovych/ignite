@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="calcApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 15, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Используя сервис $parse, реализуйте калькулятор без использования деректив.
+         */
+        angular.module("calcApp", [])
+            .controller("calcCtrl", ["$scope", "$parse", function($scope, $parse) {
+                $scope.getCalcResult = function() {
+                    $scope.calcResult = $parse($scope.userExpression)();
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="calcCtrl">
+        <label>Enter your expression:
+            <input type="text" ng-model="userExpression">
+        </label>
+        <button ng-click="getCalcResult()">Calculate</button>
+        <div>{{calcResult}}</div>
+    </section>
+</body>
+</html>
