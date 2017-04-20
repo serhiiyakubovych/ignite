@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" ng-app="routeApp">
+<head>
+    <base href="/Educational%20program/ignite/module_AngularJS/lesson_16/Homework/">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="Task/Libraries/angular.js"></script>
+    <script src="Task/Libraries/angular_route.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 16, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 2 Добавьте в шаблон страницы home список со свойством name из следующего массива:
+         * ```
+         * var people = [{name: 'Vasya', age: 20, email: 'vasya@mail.ru', employed: false},
+         * {name: 'Masha', age: 25, email: 'm@m', employed: true},
+         * {name: 'Petya', age: 27, email: 'petya@stuff', employed: true},
+         * {name: 'John', age: 36, email: 'johnDoe@mail', employed: true},
+         * {name: 'Jane', age: 28, email: 'janeDoe@mail', employed: false}]
+         * ```
+         * Добавьте на страницу поддержку htm5Mode.
+         *
+         * ### Задача 3
+         * Добавьте на страницу следующий функционал:
+         * * При клике по элементу списка на странице home, пользователь перенаправляется на страницу contact по адресу
+         * ‘/contact + routeParams’, где routeParams – параметры маршрутизации, созданные с помощью сервиса $routeParams,
+         * представляющие собой значения свойств массива people для элемента, по которому кликнул пользователь.
+         * * Используйте данные, переданные через $routeParams, для автозаполнения формы на странице contact
+         */
+        let peopleModel = [{name: 'Vasya', age: 20, email: 'vasya@mail.ru', employed: false},
+            {name: 'Masha', age: 25, email: 'm@m', employed: true},
+            {name: 'Petya', age: 27, email: 'petya@stuff', employed: true},
+            {name: 'John', age: 36, email: 'johnDoe@mail', employed: true},
+            {name: 'Jane', age: 28, email: 'janeDoe@mail', employed: false}];
+
+        angular.module("routeApp", ["ngRoute"])
+            .config(function($routeProvider, $locationProvider) {
+                $routeProvider
+                    .when("/home", {
+                        templateUrl: "Task/home3.html",
+                        controller: "HomeCtrl"
+                    })
+                    .when("/contact", {
+                        templateUrl: "Task/contact3.html"
+                    })
+                    .when("/contact/:name/:age/:email/:employed", {
+                        templateUrl: "Task/contact3.html",
+                        controller: "ContactCtrl"
+                    })
+                    .otherwise({
+                        redirectTo: "/"
+                    });
+                $locationProvider.html5Mode(true);
+            })
+            .controller("HomeCtrl", ["$scope", function($scope) {
+                $scope.peoples = peopleModel;
+            }])
+            .controller("ContactCtrl", ["$scope", "$routeParams", function($scope, $routeParams) {
+                $scope.userName = $routeParams.name;
+                $scope.userAge = $routeParams.age;
+                $scope.userEmail = $routeParams.email;
+                $scope.userEmployed = ($routeParams.employed === "true");
+            }]);
+    </script>
+</head>
+<body>
+    <section>
+        <nav>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </nav>
+        <ng-view></ng-view>
+    </section>
+</body>
+</html>

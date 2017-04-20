@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="tabApp">
+<head>
+    <!-- Довелося вказувати абсолютний шлях у base для уникнення помилок з Angular -->
+    <base href="/Educational%20program/ignite/module_AngularJS/lesson_16/Classwork/">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="Task/Libraries/angular.js"></script>
+    <script src="Task/Libraries/angular_route.js"></script>
+    <script>
+        /**
+         * Lesson 16, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Создайте страницу с двумя ссылками view1 и view2.
+         * Реализуйте переключение view между view1 и view2 при клике по ссылкам.
+         * Файлы для задачи находятся в папке Task
+         *
+         * ### Задача 2
+         * Добавьте в код предыдущей задачи путь, который будет использоваться по умолчанию и поддержку режима html5Mode
+         */
+        angular.module("tabApp", ["ngRoute"])
+            .config(function($routeProvider, $locationProvider) {
+                $routeProvider
+                    .when("/view1", {
+                        templateUrl: "Task/view1.html"
+                    })
+                    .when("/view2", {
+                        templateUrl: "Task/view2.html"
+                    })
+                    .otherwise({
+                        redirectTo: "/"
+                    });
+
+                $locationProvider.html5Mode(true);
+            })
+            .controller("mainCtrl", ["$scope", function($scope) {}]);
+    </script>
+</head>
+<body>
+<section ng-controller="mainCtrl">
+    <div><a href="view1">View 1</a></div>
+    <div><a href="view2">View 2</a></div>
+    <ng-view></ng-view>
+</section>
+</body>
+</html>

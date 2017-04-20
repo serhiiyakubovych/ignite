@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="routeApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="Task/Libraries/angular.js"></script>
+    <script src="Task/Libraries/angular_route.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 16, Homework, Serhii Yakubovych
+         */
+        /**
+         * ### Задача 1
+         * Создайте страницу с панелью навигации со следуюшими пунктами: home, contact.
+         * Используйте маршрутизацию для переключения меду пунктами меню. Файлы для задачи находятся в папке Task.
+         */
+        angular.module("routeApp", ["ngRoute"])
+            .config(function($routeProvider) {
+                $routeProvider
+                    .when("/home", {
+                        templateUrl: "Task/home.html"
+                    })
+                    .when("/contact", {
+                        templateUrl: "Task/contact.html"
+                    })
+                    .otherwise({
+                        redirectTo: "/"
+                    });
+            });
+    </script>
+</head>
+<body>
+    <section>
+        <nav>
+            <ul>
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <ng-view></ng-view>
+    </section>
+</body>
+</html>
