@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" ng-app="formApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Libraries/bootstrap.css">
+    <style>
+        .reg-form { padding: 50px; }
+        .reg-form__error { color: red; }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script type="text/ng-template" id="regFormTemplate">
+        <form class="reg-form" name="regForm" novalidate>
+            <div class="form-group">
+                <label>Username:</label>
+                <input name="name" class="form-control" type="text" required ng-model="newUser.name" ng-pattern="namePattern">
+                <div class="reg-form__error" ng-show="regForm.name.$invalid && regForm.name.$dirty">
+                    {{getError(regForm.name.$error, "Invalid name.")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Login:</label>
+                <input class="form-control" type="text" name="login" required ng-model="newUser.login" ng-pattern="loginPattern">
+                <div class="reg-form__error" ng-show="regForm.login.$invalid && regForm.login.$dirty">
+                    {{getError(regForm.login.$error, "Invalid login.")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input class="form-control" type="password" name="password" required ng-model="newUser.password" ng-pattern="passwordPattern">
+                <div class="reg-form__error" ng-show="regForm.password.$invalid && regForm.password.$dirty">
+                    {{getError(regForm.password.$error, "Invalid password.")}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" type="email" name="email" required ng-model="newUser.email" ng-pattern="emailPattern">
+                <div class="reg-form__error" ng-show="regForm.email.$invalid && regForm.email.$dirty">
+                    {{getError(regForm.email.$error, "Invalid email.")}}
+                </div>
+            </div>
+            <input type="submit" ng-disabled="regForm.$invalid">
+        </form>
+    </script>
+    <script>
+        /**
+         * Lesson 17, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 2
+         * Создайте директиву, которая создает форму и добавляет ее на страницу. В форме должны быть следующие поля:
+         * Username, login, password, email.
+         *
+         * ###Задача 3
+         * Для формы из предыдущей задачи добавьте валидацию на AngularJS. Используйте регулярные выражения.
+         */
+        angular.module("formApp", [])
+            .directive("regForm", function() {
+                return {
+                    replace: true,
+                    template: function() {
+                        return angular.element(document.getElementById("regFormTemplate")).html();
+                    },
+                    controller: function($scope) {
+                        $scope.namePattern = /^\w+$/i;
+                        $scope.loginPattern = /^\w+$/i;
+                        $scope.passwordPattern = /^[\w ]+$/i;
+                        $scope.emailPattern = /^\w+@\w+\.\w{1,10}$/i;
+
+                        $scope.getError = function(error, invalidInputMessage) {
+                            if (!angular.isDefined(error)) {
+                                return;
+                            }
+                            if (error.required) {
+                                return "No data entered";
+                            }
+                            return invalidInputMessage;
+                        };
+                    }
+                }
+            });
+    </script>
+</head>
+<body>
+    <section>
+        <reg-form>Registration form will be here.</reg-form>
+    </section>
+</body>
+</html>

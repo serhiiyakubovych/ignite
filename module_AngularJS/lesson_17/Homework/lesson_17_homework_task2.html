@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" ng-app="dirApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 17, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 2
+         * Создайте директиву, которая на основе массива будет создавать определенное количество параграфов:
+         * 1) генерация должна происходить не с помощью jqLite, а с помощью шаблона,
+         * 2) директиву можно применить только как атрибут,
+         * 3) сгенерированный контент должен полностью заменить собой элемент, к которому применяется директива,
+         * 4) у неё должен быть независимый scope.
+         */
+        let pArrayModel = [
+            "Rome's history spans more than 2,500 years. While Roman mythology dates the founding of Rome at only",
+            "After the fall of the Western Empire, which marked the beginning of the Middle Ages, Rome slowly fell",
+            "Beginning with the Renaissance, almost all the popes since Nicholas V (1447–55) pursued coherently along",
+            "Rome has the status of a global city. Rome ranked in 2014 as the 14th-most-visited city in"
+        ];
+        angular.module("dirApp", [])
+            .controller("MainCtrl", ["$scope", function($scope) {
+                $scope.pArray = pArrayModel;
+            }])
+            .directive("pBlocks", ["$parse", function($parse) {
+                return {
+                    link: function(scope, element, attributes) {
+                        scope.pList = $parse(attributes["arr"])(scope);
+                    },
+                    restrict: "A",
+                    template: "<p ng-repeat='pItem in pList'>{{pItem}}</p>",
+                    replace: true,
+                    scope: true
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <div p-blocks arr="pArray"></div>
+    </section>
+</body>
+</html>

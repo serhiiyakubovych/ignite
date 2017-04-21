@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" ng-app="dirApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 17, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 1
+         * Создайте пользовательскую директиву, которой можно передать массив,
+         * а результатом её работы будет сгенерированный список.
+         */
+        angular.module("dirApp", [])
+            .controller("MainCtrl", ["$scope", function($scope) {
+                $scope.arr = ["John", "Bob", "Ann", "Mark"];
+            }])
+            .directive("list", ["$parse", function($parse) {
+                return {
+                    restrict: "E",
+                    link: function(scope, element, attributes) {
+                        scope.items = $parse(attributes.items)(scope);
+                    },
+                    template: "<ul><li ng-repeat='item in items'>{{item}}</li></ul>"
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <list items="{{arr}}"></list>
+    </section>
+</body>
+</html>

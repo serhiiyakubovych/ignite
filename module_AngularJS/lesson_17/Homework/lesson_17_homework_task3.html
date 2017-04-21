@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="dirApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 17, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 3
+         * Создайте директиву для генерации меню.
+         * В качестве источника данных директива должна использовать массив объектов,
+         * одно из свойств объекта должено содержать текст элемента меню,
+         * второе свойство должно использоватся для определения адреса перехода при клике по элементу меню.
+         */
+        let anchorsModel = [
+            { display: "Home", href: "#/home" },
+            { display: "Portfolio", href: "#/works" },
+            { display: "Our customers", href: "#/customers" },
+            { display: "Contact", href: "#/contact" },
+        ];
+        angular.module("dirApp", [])
+            .controller("MainCtrl", ["$scope", function($scope) {
+                $scope.anchors = anchorsModel;
+            }])
+            .directive("menu", ["$parse", function($parse) {
+                return {
+                    link: function(scope, element, attributes) {
+                        scope.anchors = $parse(attributes["arr"])(scope);
+                    },
+                    template: "<ul><li ng-repeat='anchor in anchors'><a href='{{anchor.href}}'>{{anchor.display}}</a></li></ul>"
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <menu arr="{{anchors}}"></menu>
+    </section>
+</body>
+</html>

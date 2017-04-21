@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" ng-app="formApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../Libraries/bootstrap.css">
+    <style>
+        .reg-form { padding: 50px; }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script type="text/ng-template" id="regFormTemplate">
+        <form class="reg-form">
+            <div class="form-group">
+                <label>Username:</label>
+                <input class="form-control" type="text" name="name">
+            </div>
+            <div class="form-group">
+                <label>Login:</label>
+                <input class="form-control" type="text" name="login">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input class="form-control" type="password" name="password">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" type="email" name="email">
+            </div>
+            <input type="submit">
+        </form>
+    </script>
+    <script>
+        /**
+         * Lesson 17, Classwork, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 2
+         * Создайте директиву, которая создает форму и добавляет ее на страницу. В форме должны быть следующие поля:
+         * Username, login, password, email.
+         */
+        angular.module("formApp", [])
+            .directive("regForm", function() {
+                return {
+                    replace: true,
+                    template: function() {
+                        return angular.element(document.getElementById("regFormTemplate")).html();
+                    }
+                }
+            });
+    </script>
+</head>
+<body>
+    <section>
+        <reg-form>Registration form is here.</reg-form>
+    </section>
+</body>
+</html>

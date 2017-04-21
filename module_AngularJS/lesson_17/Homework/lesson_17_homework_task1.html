@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" ng-app="tableApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .custom-table { border-collapse: collapse; }
+        .custom-table,
+        .custom-table th,
+        .custom-table td {
+            padding: 5px 10px;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 17, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 1
+         * Создайте пользовательскую директиву, которой можно передать массив объектов,
+         * а результатом её работы будет сгенерированная таблица.
+         * Столбцы таблицы, будут соответствовать свойствам объекта.
+         * Используйте подход с link function и генерацию элементов с помощью jqLite.
+         */
+        let arrayOfObjectsModel = [
+            { name: "Oliver", age: 45, team: "A" },
+            { name: "Ann", age: 20, team: "B" },
+            { name: "Karl", age: 60, team: "C" }];
+
+        angular.module("tableApp", [])
+            .controller("MainCtrl", ["$scope", function($scope) {
+                $scope.arrayOfObjects = arrayOfObjectsModel;
+            }])
+            .directive("customTable", ["$parse", function($parse) {
+                return function(scope, element, attributes) {
+                    let tableRecords = $parse(attributes["arr"])(scope),
+                        table = angular.element("<table class='custom-table'>"),
+                        trHead = angular.element("<tr>");
+
+                    for (let key in tableRecords[0]) {
+                        if (!tableRecords[0].hasOwnProperty(key)) {
+                            return;
+                        }
+                        let th = angular.element("<th>");
+                        th.text(key);
+                        trHead.append(th);
+                    }
+                    table.append(trHead);
+
+                    for (let record of tableRecords) {
+                        let tr = angular.element("<tr>");
+                        for (let key in record) {
+                            if (!record.hasOwnProperty(key)) {
+                                return;
+                            }
+                            let td = angular.element("<td>");
+                            td.text(record[key]);
+                            tr.append(td);
+                        }
+                        table.append(tr);
+                    }
+
+                    element.append(table);
+                };
+            }]);
+    </script>
+</head>
+<body>
+    <section ng-controller="MainCtrl">
+        <custom-table arr="{{arrayOfObjects}}"></custom-table>
+    </section>
+</body>
+</html>
