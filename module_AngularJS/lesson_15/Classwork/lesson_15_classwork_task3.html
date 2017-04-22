@@ -21,26 +21,25 @@
          * var data = { name: "<strong>Ivan</strong>" }
          * ```
          */
-        let stringForCompiling = "Hello my name is {{name}}",
-            data = { name: "<strong>Ivan</strong>" };
         angular.module("compileApp", [])
             .controller("MainCtrl", ["$scope", "$compile", function($scope, $compile) {
                 $scope.compileExpression = function() {
-                    let compiledString = $compile('<expr name=' + encodeURIComponent(data.name) + '></expr>')($scope);
+                    let compiledString = $compile("<expr></expr>")($scope);
                     angular.element(document.getElementById("compiled-expression")).append(compiledString);
                 };
             }])
-            .filter("decode", function() {
-                return (item) => decodeURIComponent(item);
-            })
-            .directive('expr', function () {
+            .directive('expr', ["$compile", function ($compile) {
                 return {
-                    restrict: 'E',
-                    scope: { 'name': '@' },
-                    template: '<span>Hello my name is {{name | decode}}</span>',
-                    replace: true
-                }
-            });
+                    scope: true,
+                    link: function(scope, element, attributes) {
+                        scope.message = "<span>Hello my name is {{name}}</span>";
+                        scope.name = "<strong>Ivan</strong>";
+
+                        let span = angular.element(scope.message);
+                        element.append( $compile(span)(scope) );
+                    }
+                };
+            }]);
     </script>
 </head>
 <body>

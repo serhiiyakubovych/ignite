@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" ng-app="dirApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red { color: red; }
+    </style>
+    <script src="../Libraries/angular.js"></script>
+    <script>
+        "use strict";
+        /**
+         * Lesson 18, Homework, Serhii Yakubovych
+         */
+        /**
+         * ###Задача 2
+         * Создайте две директивы. Первая создает список ul с произвольным количеством элементов.
+         * Вторая директива добавляет четным элементам списка CSS класс ‘red’ со следующим значением:
+         * ```
+         * .red {
+         *      color: red
+         * }
+         * ```
+         * Обе директивы используются в качестве атрибутов и применяются к одному и тому же элементу.
+         * При решении задачи используйте приоритет директив.
+         */
+        angular.module("dirApp", [])
+            .directive("createList", function() {
+                return {
+                    restrict: "A",
+                    priority: 5,
+                    scope: true,
+                    link: function(scope, element, attributes) {
+                        let countRoof = angular.isDefined(attributes["withRoof"]) ? attributes["withRoof"] : 0,
+                            randomItemsCount = Math.floor( Math.random() * countRoof ),
+                            ul = angular.element("<ul>");
+                        for (let i = 0; i < randomItemsCount; i++) {
+                            let li = angular.element("<li>");
+                            li.text(`Item ${i}`);
+                            ul.append(li);
+                        }
+                        element.append(ul);
+                    },
+                    controller: function($scope) {}
+                };
+            })
+            .directive("addRedClass", function() {
+                return {
+                    restrict: "A",
+                    priority: 10,
+                    require: "createList",
+                    link: function(scope, element, attributes, createListCtrl) {
+                        let liList = element.find("li");
+                        for (let i = 0, liLen= liList.length; i < liLen; i++) {
+                            if ( ((i + 1) % 2) !== 0 ) {
+                                continue;
+                            }
+                            liList.eq(i).addClass("red");
+                        }
+                    }
+                };
+            });
+    </script>
+</head>
+<body>
+    <section>
+        <nav create-list with-roof="10" add-red-class></nav>
+    </section>
+</body>
+</html>
