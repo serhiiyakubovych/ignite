@@ -1,0 +1,27 @@
+.section-title {
+  position: relative;
+  padding-bottom: 30px;
+  margin: 0;
+  font-size: 40px;
+  color: #3f4244;
+  font-weight: normal;
+  text-align: center;
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    @include transform( translateX(-50%) );
+    width: 170px;
+    height: 2px;
+    content: '';
+    background: $active-color;
+  }
+}
+
+.section-description {
+  margin: 35px auto;
+  width: 50%;
+  font-size: 13px;
+  color: #444;
+  text-align: center;
+}

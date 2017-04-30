@@ -1,0 +1,9 @@
+.news-page {
+  .news-page__banner {
+    width: 100%;
+    height: 50vh;
+    background: url("../images/news-page-banner.jpg") no-repeat center center;
+    @include bg-size(cover);
+  }
+  .news-block { padding: 60px 0; }
+}

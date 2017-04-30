@@ -1,0 +1,57 @@
+$contact-bg-color: #131316;
+
+.contact {
+  padding: 120px 0;
+  background: $contact-bg-color;
+  text-align: center;
+  .section-title,
+  .section-description { color: #fff; }
+  .contact-form {
+    margin: 80px auto 0;
+    width: 50%;
+    .contact-form-group .contact-form__input-field,
+    .contact-form__message {
+      position: relative;
+      padding: 20px 25px;
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #fff;
+      outline: none;
+      resize: none;
+      background: transparent;
+      background-image: linear-gradient(180deg, $contact-bg-color calc(100% - 9px), transparent calc(100% - 8px)),
+              linear-gradient(90deg, #fff 2px, transparent 3px, transparent calc(100% - 3px), #fff calc(100% - 2px));
+      color: #fff;
+      font-weight: 500;
+      @include placeholder {
+        color: #fff;
+        font-weight: 500;
+      }
+      &:focus {
+        background: #fff;
+        color: #000;
+        @include placeholder { color: #000 };
+      }
+    }
+    .contact-form__message {
+      margin-top: 70px;
+      height: 65px;
+    }
+    .contact-form__error {
+      margin-top: 10px;
+      color: red;
+    }
+    .contact-form__submit {
+      @extend %ket-button;
+      float: right;
+      margin-top: 25px;
+      border: 1px solid $active-color;
+      color: #fff;
+      @include transition(all .3s);
+      &:hover {
+        background: $active-color;
+        color: #131316;
+      }
+    }
+  }
+}

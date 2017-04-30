@@ -1,0 +1,144 @@
+$services-bg-color: #f7f7f7;
+
+.services {
+  .services-tabs {
+    padding: 130px 15% 120px;
+    .service-list {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid $active-color;
+
+      .service {
+        position: relative;
+        padding-bottom: 20px;
+        margin-bottom: 120px;
+        text-align: center;
+
+        &:hover { cursor: pointer; }
+
+        &:after {
+          position: absolute;
+          left: 50%;
+          bottom: -122px;
+          @include transform( translateX(-50%) );
+          width: 70px;
+          height: 60px;
+          border-top: 2px solid $active-color;
+          border-bottom: 2px solid $active-color;
+          content: '';
+          background: #fff;
+        }
+        &.active:after { border-bottom: 2px solid #fff; }
+        &.active:not(:first-child):after { border-left: 2px solid $active-color; }
+        &.active:not(:last-child):after { border-right: 2px solid $active-color; }
+
+        %service__logo {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          background: url("../images/services.png") no-repeat;
+          @include bg-size(cover);
+        }
+        .service__logo_web {
+          @extend %service__logo;
+        }
+        .service__logo_graphic {
+          @extend %service__logo;
+          background-position: -60px 0;
+        }
+        .service__logo_programming {
+          @extend %service__logo;
+          background-position: -120px 0;
+        }
+        .service__logo_photography {
+          @extend %service__logo;
+          background-position: -180px 0;
+        }
+
+        .service__title {
+          position: absolute;
+          left: 50%;
+          @include transform( translate(-50%) );
+          width: 150px;
+          text-transform: uppercase;
+          color: #3f4244;
+          font-size: 15px;
+        }
+      } // /service
+    } // /service-list
+    .service-description {
+      margin: 50px auto 0;
+      width: 80%;
+      color: #929ba0;
+    }
+  } // /services-tabs
+
+  .invitation-to-start {
+    padding: 50px 15% 100px;
+    background: $services-bg-color;
+
+    .switch-buttons .switch-button {
+      display: inline-block;
+      padding: 15px 0 20px;
+      margin-left: -1px;
+      margin-bottom: 85px;
+      width: 50%;
+      border: 1px solid #c8cdce;
+      text-align: center;
+      color: #3f4244;
+      text-transform: uppercase;
+      font-weight: 500;
+      &:hover {
+        color: $active-color;
+        cursor: pointer;
+      }
+      &.active {
+        position: relative;
+        border-color: $active-color;
+        &:after {
+          position: absolute;
+          left: 50%;
+          bottom: -5px;
+          @include transform( translateX(-50%) rotate(-45deg) );
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-left: 1px solid $active-color;
+          border-bottom: 1px solid $active-color;
+          background: $services-bg-color;
+        }
+      }
+    }
+    .invitation {
+      .invitation__phone-photo {
+        float: left;
+        width: 45%;
+        img { min-width: 100%; }
+      }
+      .invitation__info-block {
+        float: right;
+        width: 45%;
+        .invitation__title {
+          margin-bottom: 35px;
+          font-size: 40px;
+          font-weight: normal;
+        }
+        .invitation__description {
+          margin-bottom: 35px;
+          color: #929ba0;
+        }
+        .invitation__button {
+          @extend %ket-button;
+          border: 1px solid $active-color;
+          color: $active-color;
+          text-transform: uppercase;
+          @include transition(all .3s);
+          &:hover {
+            background: $active-color;
+            color: $services-bg-color;
+          }
+        }
+      }
+    }
+  }
+} // /services

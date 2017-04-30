@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="Ket Serhii Yakubovych">
+    <meta name="description" content="Ket is an educational project">
+    <meta name="author" content="Serhii Yakubovych">
+    <title>K E T</title>
+    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="assets/libs/bootstrap/bootstrap.min.css">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="assets/libs/bootstrap/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body ng-app="ketApp">
+
+    <!-- PAGE NAVIGATION -->
+    <header>
+        <nav class="page-nav clearfix" ng-controller="MenuCtrl as menu" ng-cloak>
+            <div class="page-nav__logo">
+                <a href="#"><img src="assets/images/logo.png" alt="Ket logo"></a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_menu">
+                    <span class="fa fa-list"></span>
+                </button>
+            </div>
+            <ul id="nav_menu" class="page-nav__menu collapse navbar-collapse">
+                <li class="page-nav__menu-item" ng-repeat="item in menu.data.items">
+                    <a ng-href="#{{item.id}}" du-smooth-scroll du-scrollspy>{{item.display}}</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- /PAGE NAVIGATION -->
+
+    <main id="top">
+        <ng-view></ng-view>
+    </main>
+
+    <!-- FOOTER OF THE PAGE -->
+    <footer class="page-footer">
+        <div class="main-contact">
+            <div class="main-contact-inner">
+                <p>Awesome Address 432</p>
+                <p>ourmail@sometype.com</p>
+                <p>+321(0)32 123 343 492</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="to-up-button">
+                <a class="fa fa-angle-up" href="#top" du-smooth-scroll></a>
+            </div>
+            <p> © 2014 - <a href="#">Kat</a> All Right Reserved</p>
+        </div>
+    </footer>
+    <!-- /FOOTER OF THE PAGE -->
+
+    <script src="assets/libs/jquery/jquery-3.2.1.js"></script>
+    <script src="assets/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- ASSETS -->
+    <script src="assets/libs/angular/angular.min.js"></script>
+    <script src="assets/libs/angular/angular-route.min.js"></script>
+    <script src="assets/libs/angular/angular-scroll.min.js"></script>
+    <!-- /ASSETS -->
+    <!-- MODULES -->
+    <script src="ket-app/ket-app.js"></script>
+    <script src="ket-app/ket-app.core.js"></script>
+    <script src="ket-app/ket-app.config.js"></script>
+    <script src="ket-app/ket-app.routes.js"></script>
+    <script src="ket-app/ket-app.services.js"></script>
+    <!-- /MODULES -->
+    <!-- CONTROLLERS -->
+    <script src="ket-app/components/menu/menu.ctrl.js"></script>
+    <script src="ket-app/sections/home/home.ctrl.js"></script>
+    <script src="ket-app/sections/news/news.ctrl.js"></script>
+    <!-- /CONTROLLERS -->
+    <!-- SERVICES -->
+    <script src="ket-app/services/menuitems.val.js"></script>
+    <!-- /SERVICES -->
+    <!-- DIRECTIVES -->
+    <script src="ket-app/directives/achievements-counter.drct.js"></script>
+    <script src="ket-app/components/news-block/news-block.drct.js"></script>
+    <script src="ket-app/components/team-member/team-member.drct.js"></script>
+    <!-- /DIRECTIVES -->
+
+</body>
+</html>

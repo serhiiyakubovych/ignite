@@ -1,0 +1,112 @@
+@media screen and (max-width: 1025px) {
+  .page-nav {
+    padding: 0 5%;
+  }
+  .services {
+    .services-tabs,
+    .invitation-to-start {
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+    .invitation-to-start .invitation {
+      .invitation__phone-photo {
+        display: none;
+      }
+      .invitation__info-block {
+        float: none;
+        margin: auto;
+        width: auto;
+        text-align: center;
+      }
+    }
+  }
+  .portfolio .work-tabs .works .work { height: 200px; }
+  .achievements .achievement {
+    margin-bottom: 60px;
+    .achievement__count { margin-bottom: 10px; }
+  }
+  .about {
+    padding-left: 0;
+    padding-right: 0;
+    .team .team-member { margin-bottom: 50px; }
+  }
+  .section-description,
+  .news .news-list,
+  .contact .contact-form { width: 70%; }
+  .contact .contact-form .contact-form-group .contact-form__input-field { margin-bottom: 40px; }
+}
+
+@media screen and (max-width: 767px) {
+  .page-nav {
+    .page-nav__logo {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+      .navbar-toggle {
+        margin: 0;
+      }
+    }
+    .page-nav__menu {
+      float: none;
+      width: 100%;
+      .page-nav__menu-item {
+        display: block;
+        text-align: center;
+        &:not(:last-child) { margin-right: 0; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .portfolio .work-tabs {
+    .work-tabs__nav .work-tabs__nav-item:not(:last-child) { margin: 0; }
+    .works .work { height: 250px; }
+  }
+  .about .team .team-member .team-member__photo { height: 170px; }
+  .news .news-list .news-block {
+    .news-block__date { float: none; }
+    .news-block__description {
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .contact .contact-form {
+    .contact-form-group .contact-form__input-field,
+    .contact-form__message { background-image: none;}
+    .contact-form__submit { width: 100%; }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .services .services-tabs .service-list .service .service__title {
+    width: 70px;
+    @include word-wrap(break-word);
+  }
+}
+
+@media screen and (max-width: 325px) {
+  .page-nav {
+    .page-nav__logo a {
+      display: inline-block;
+      margin-top: 5px;
+    }
+    .page-nav__menu .page-nav__menu-item a { line-height: 20px; }
+  }
+  .services {
+    .services-tabs .service-list .service:after {
+      left: 40%;
+      width: 48px;
+    }
+    .invitation-to-start .switch-buttons .switch-button {
+      float: left;
+      height: 90px;
+    }
+  }
+  .contact .contact-form .contact-form__message {
+    margin-top: 0;
+    height: 100px;
+  }
+  .page-footer .main-contact .main-contact-inner { max-width: 100%; }
+}

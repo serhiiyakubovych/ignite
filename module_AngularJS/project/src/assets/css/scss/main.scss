@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,700');
+
+$active-color: #00e1ff;
+
+html, body {
+  font: 15px/1.5 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
+/* COMMON */
+@import "mixins";
+@import "ket-button"; // template for custom buttons
+@import "section-head"; // section title, section description
+
+/* PAGE NAVIGATION */
+@import "page-nav";
+
+/* PAGE BANNER */
+@import "banner";
+
+/* SERVICES SECTION */
+@import "services";
+
+/* PORTFOLIO SECTION */
+@import "portfolio";
+
+/* ACHIEVEMENTS SECTION */
+@import "achievements";
+
+/* ABOUT US SECTION */
+@import "about";
+
+/* NEWS SECTION */
+@import "news";
+
+/* CONTACT SECTION */
+@import "contact";
+
+/* FOOTER OF THE PAGE */
+@import "page-footer";
+
+/* NEWS PAGE */
+@import "news-page/news-page";
+
+/* MEDIA */
+@import "media";

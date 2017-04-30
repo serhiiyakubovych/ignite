@@ -1,0 +1,12 @@
+<div class="news-block">
+    <div class="news-block__date">
+        <h3 class="news-block__day">{{news.day}}</h3>
+        <p class="news-block__month">{{news.month}}</p>
+    </div>
+    <div class="news-block__description">
+        <p class="news-block__description-preview">{{news.text}}</p>
+        <div class="news-block__read-more-link" ng-if="hasReadMoreLink">
+            <a ng-href="#/news/{{news.id}}">Read More</a>
+        </div>
+    </div>
+</div>

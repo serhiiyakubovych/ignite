@@ -1,0 +1,164 @@
+<div>
+    <!-- BANNER OF THE SITE -->
+    <section class="banner">
+        <div class="banner-inner">
+            <h1 class="banner__title">We make websites</h1>
+            <a class="banner__link-button" href="#" ng-click="home.goToTheSection('portfolio')">Start tour</a>
+        </div>
+    </section>
+    <!-- /BANNER OF THE SITE -->
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services" du-scroll-container>
+        <div class="services-tabs">
+            <div class="service-list">
+                <div id="service-web" class="service active" ng-click="home.setActiveService('service-web')">
+                    <div class="service__logo_web"></div>
+                    <h2 class="service__title">Web design</h2>
+                </div>
+                <div id="service-graphic" class="service" ng-click="home.setActiveService('service-graphic')">
+                    <div class="service__logo_graphic"></div>
+                    <h2 class="service__title">Graphic design</h2>
+                </div>
+                <div id="service-programming" class="service" ng-click="home.setActiveService('service-programming')">
+                    <div class="service__logo_programming"></div>
+                    <h2 class="service__title">Programming</h2>
+                </div>
+                <div id="service-photography" class="service" ng-click="home.setActiveService('service-photography')">
+                    <div class="service__logo_photography"></div>
+                    <h2 class="service__title">Photography</h2>
+                </div>
+            </div>
+            <div class="service-description" ng-switch on="home.activeService">
+                <p ng-switch-when="service-web">Lorem ipsum dolor sit amet, consectetur adipiscing elitor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute i rure dolor in reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p ng-switch-when="service-graphic">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab,
+                    accusantium dicta doloremque est fuga molestias nisi obcaecati odit quae, quaerat quod ratione
+                    rerum. Aliquid, numquam.</p>
+                <p ng-switch-when="service-programming">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
+                    at enim expedita incidunt natus nemo pariatur porro, quibusdam repellat sed tempore, temporibus vero
+                    voluptas, voluptates. A alias eum quod.</p>
+                <p ng-switch-when="service-photography">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
+                    cupiditate dolore magni placeat ut voluptatibus!</p>
+            </div>
+        </div>
+        <div class="invitation-to-start">
+            <div class="switch-buttons">
+                <div class="switch-button">Start tour</div><div class="switch-button active">For all devices</div>
+            </div>
+            <div class="invitation clearfix">
+                <div class="invitation__phone-photo">
+                    <img src="assets/images/phone.png" alt="Phone photo">
+                </div>
+                <div class="invitation__info-block">
+                    <h2 class="invitation__title">Fully Responsive</h2>
+                    <p class="invitation__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
+                        consequuntur cum delectus dolor dolore ea eligendi esse et, facere facilis libero maxime minus
+                        necessitatibus neque non officia officiis possimus praesentium quam repellat reprehenderit saepe
+                        sapiente temporibus tenetur ullam unde voluptate.</p>
+                    <a class="invitation__button" href="#" ng-click="home.goToTheSection('contact')">Get now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /SERVICES SECTION -->
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="portfolio" du-scroll-container>
+        <h2 class="section-title">Our Portfolio</h2>
+        <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dolorum incidunt
+            iure labore natus, neque nisi optio quia repudiandae temporibus totam vel voluptatem. Iste, laboriosam?</p>
+        <div class="work-tabs">
+            <ul class="work-tabs__nav">
+                <li class="work-tabs__nav-item active" ng-click="home.setActivePortfolioCategory('*')">All</li>
+                <li class="work-tabs__nav-item" ng-click="home.setActivePortfolioCategory('web')">Web</li>
+                <li class="work-tabs__nav-item" ng-click="home.setActivePortfolioCategory('photography')">Photography</li>
+                <li class="work-tabs__nav-item" ng-click="home.setActivePortfolioCategory('graphic-design')">Graphic design</li>
+            </ul>
+            <div class="works container-fluid">
+                <div class="work col-md-2 col-sm-4" ng-repeat="work in home.portfolioWorks | filter: home.filterWorksByCategory">
+                    <div class="work-photo">
+                        <img ng-src="{{work.image}}" alt="{{work.category}}">
+                    </div>
+                    <div class="hidden-work">
+                        <h2 class="work-title">{{work.title}}</h2>
+                        <h2 class="work-subtitle">{{work.subtitle}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /PORTFOLIO SECTION -->
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section class="achievements">
+        <div class="container">
+            <div class="achievement col-md-3" ng-repeat="achievement in home.achievements" achievements-counter="achievement">
+                <div class="{{achievement.classOfIcon}}"></div>
+                <div class="achievement__count">{{achievement.count}}</div>
+                <div class="achievement__title">{{achievement.title}}</div>
+            </div>
+        </div>
+    </section>
+    <!-- /ACHIEVEMENTS SECTION -->
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about" du-scroll-container>
+        <h2 class="section-title">We are the one</h2>
+        <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, aspernatur cum,
+            enim esse hic, in magnam magni maandae suscipit vero.</p>
+        <div class="team container">
+            <team-member ng-repeat="member in home.members" member="member"></team-member>
+        </div>
+    </section>
+    <!-- /ABOUT SECTION -->
+
+    <!-- NEWS SECTION -->
+    <section id="news" class="news" du-scroll-container>
+        <h2 class="section-title">Check our news</h2>
+        <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, aspernatur cum,
+            enim esse hic, in magnam magni maiores nulla possimus quo rem repudiandae suscipit vero.</p>
+        <div class="news-list">
+            <news-block ng-repeat="news in home.newsData" news="news" has-read-more-link="true"></news-block>
+        </div>
+    </section>
+    <!-- /NEWS SECTION -->
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact" du-scroll-container>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, aspernatur cum,
+            enim esse hic, in magnam magni maiores nulla possimus quo rem repudiandae suscipit vero.</p>
+        <form name="messageForm" class="contact-form container" novalidate>
+            <div class="row">
+                <div class="contact-form-group col-md-6">
+                    <input type="text" name="name" placeholder="Your name here" class="contact-form__input-field"
+                           required ng-model="newMsg.name" ng-pattern="/^[a-z]+$/i">
+                    <p class="contact-form__error" ng-show="messageForm.name.$invalid && messageForm.name.$dirty">
+                        {{home.getInputError(messageForm.name.$error, "Name should contain only English letters.")}}
+                    </p>
+                </div>
+                <div class="contact-form-group col-md-6">
+                    <input type="email" name="email" placeholder="Your mail here" class="contact-form__input-field"
+                           required ng-model="newMsg.email" ng-pattern="/^[a-z0-9._]+@[a-z0-9.]+\.[a-z]{2,3}$/i">
+                    <p class="contact-form__error" ng-show="messageForm.email.$invalid && messageForm.email.$dirty">
+                        {{home.getInputError(messageForm.email.$error, "Email should be in the format 'zxcv@qwer.com'.")}}
+                    </p>
+                </div>
+            </div>
+            <div class="contact-form-group">
+                <textarea name="message" class="contact-form__message" placeholder="Your message here"
+                          required ng-model="newMsg.message" ng-pattern="/^[\w\W]{20,}$/"></textarea>
+                <p class="contact-form__error" ng-show="messageForm.message.$invalid && messageForm.message.$dirty">
+                    {{home.getInputError(messageForm.message.$error, "Message should have 20 symbols at least.")}}
+                </p>
+            </div>
+            <input type="submit" class="contact-form__submit" value="Send Message"
+                   ng-disabled="messageForm.$invalid || messageForm.$pristine">
+        </form>
+    </section>
+    <!-- /CONTACT SECTION -->
+</div>

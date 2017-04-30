@@ -1,0 +1,43 @@
+.achievements {
+  padding: 80px 0;
+  background: #131316;
+  color: #fff;
+  .achievement {
+    text-align: center;
+
+    %achievement__icon {
+      display: inline-block;
+      width: 70px;
+      height: 70px;
+      background: url("../images/achievements.png") no-repeat;
+      @include bg-size(cover);
+    }
+    .achievement__icon_projects {
+      @extend %achievement__icon;
+    }
+    .achievement__icon_pressed {
+      @extend %achievement__icon;
+      background-position: -70px 0;
+    }
+    .achievement__icon_sented {
+      @extend %achievement__icon;
+      background-position: -140px 0;
+    }
+    .achievement__icon_tolds {
+      @extend %achievement__icon;
+      background-position: -210px 0;
+    }
+
+    .achievement__count {
+      margin-bottom: 25px;
+      font-size: 40px;
+    }
+
+    .achievement__title {
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+  }
+}
