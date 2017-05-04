@@ -1,0 +1,25 @@
+{
+  "name": "ignite",
+  "version": "1.0.0",
+  "description": "Educational cource",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serhiiyakubovych/ignite.git"
+  },
+  "author": "Serhii Yakubovych",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serhiiyakubovych/ignite/issues"
+  },
+  "homepage": "https://github.com/serhiiyakubovych/ignite#readme"
+}

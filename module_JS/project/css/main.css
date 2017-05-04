@@ -610,11 +610,16 @@ html, body {
       padding: 20px;
       border: 2px solid #fff;
       background: transparent; }
+      .send-us-a-message .message-form .message-input:focus, .send-us-a-message .message-form .message-field:focus {
+        outline: none;
+        border-color: #ffe600; }
       .send-us-a-message .message-form .message-input::-webkit-input-placeholder, .send-us-a-message .message-form .message-field::-webkit-input-placeholder {
+        color: #fff; }
+      .send-us-a-message .message-form .message-input:-ms-input-placeholder, .send-us-a-message .message-form .message-field:-ms-input-placeholder {
         color: #fff; }
       .send-us-a-message .message-form .message-input::-moz-placeholder, .send-us-a-message .message-form .message-field::-moz-placeholder {
         color: #fff; }
-      .send-us-a-message .message-form .message-input:-ms-input-placeholder, .send-us-a-message .message-form .message-field:-ms-input-placeholder {
+      .send-us-a-message .message-form .message-input:-moz-placeholder, .send-us-a-message .message-form .message-field:-moz-placeholder {
         color: #fff; }
     .send-us-a-message .message-form .input-error-message {
       color: #ff3128; }
