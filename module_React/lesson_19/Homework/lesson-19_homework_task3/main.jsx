@@ -13,7 +13,7 @@ const React = require("react"),
 
 class StyledText extends React.Component {
     render() {
-        return <p style={{ color: this.props.color, fontSize: parseInt(this.props.fontSize) }}>Lorem imp</p>;
+        return <p style={{ color: this.props.color, fontSize: parseFloat(this.props.fontSize) }}>Lorem imp</p>;
     }
 }
 StyledText.propTypes = {
