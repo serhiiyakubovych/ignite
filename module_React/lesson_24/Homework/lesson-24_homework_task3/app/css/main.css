@@ -1,0 +1,15 @@
+.users-table {
+    border-collapse: collapse;
+}
+
+.users-table,
+.users-table th,
+.users-table td {
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+.users-table td:hover {
+    background: #eee;
+    cursor: pointer;
+}

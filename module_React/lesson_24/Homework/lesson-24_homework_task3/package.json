@@ -1,7 +1,7 @@
 {
-  "name": "lesson-24_homework_task2",
+  "name": "lesson-24_homework_task3",
   "version": "1.0.0",
-  "description": "Task 2",
+  "description": "Task 3",
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack -w"
@@ -9,9 +9,9 @@
   "author": "Serhii Yakubovych",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-router": "^3.0.5",
+    "react": "15.3.1",
+    "react-dom": "15.3.1",
+    "react-router": "^2.7.0",
     "react-router-transition": "0.0.6"
   },
   "devDependencies": {

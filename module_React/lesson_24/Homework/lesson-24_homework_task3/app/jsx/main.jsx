@@ -23,15 +23,27 @@
 * ### Задача 2
 * Модицифицируйте код предыдущей задачи.
 * Добавьте анимацию при переходе по путям, указанным в конфигурации маршрутизации приложения.
+*
+* ### Задача 3
+* Модицифицируйте код предыдущей задачи. Реализуйте следующее:
+* 1) При клике по каждому элементу списка происходит перенаправление на
+* страницу “/tableView/:id” или “/listView/:id”, в зависимости от текущего
+* пути приложения, где id – соответствующее свойтво id элемента списка или
+* таблицы, по которому кликнул пользователь
+* 2) На странице, на которую будет происходить перенаправление, должна
+* отображаться инфомация об элементе массива users, id которого был передан
+* в поисковой строке. Реализуйте передачу этой информации через query параметры.
 */
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, Route, hashHistory } from "react-router";
+import { Router, Route, IndexRoute, Redirect, hashHistory } from "react-router";
 
 import App from "./components/app.jsx";
 import ListView from "./components/listview.jsx";
 import TableView from "./components/tableview.jsx";
+import Home from "./components/home.jsx";
+import User from "./components/user.jsx";
 
 var users = [
     {first_name:"Matthew",last_name:"Phillips",email:"mphillips0@myspace.com",gender:"Male",ip_address:"14.241.172.154", id:23468},
@@ -42,13 +54,17 @@ var users = [
     {first_name:"Kimberly",last_name:"Nelson",email:"knelson5@nifty.com",gender:"Female",ip_address:"111.174.89.57", id:83425},
     {first_name:"Willie",last_name:"Banks",email:"wbanks6@abc.net.au",gender:"Male",ip_address:"97.0.19.154", id:99873},
     {first_name:"Michael",last_name:"King",email:"mking7@w3.org",gender:"Male",ip_address:"149.114.62.6", id: 34239}
-    ];
+];
 
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={App}>
+            <IndexRoute component={Home} />
             <Route path="listview" component={ListView} usersList={users} />
             <Route path="tableview" component={TableView} usersList={users} />
+            <Route path="listview/:id" compoment={User} />
+            <Route path="tableview/:id" compoment={User} />
+            <Redirect from="*" to="/" />
         </Route>
     </Router>,
     document.getElementById("output")
