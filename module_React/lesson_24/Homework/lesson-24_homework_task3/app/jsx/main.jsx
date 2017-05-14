@@ -59,11 +59,11 @@ var users = [
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={Home} />
+            <IndexRoute component={Home}/>
             <Route path="listview" component={ListView} usersList={users} />
             <Route path="tableview" component={TableView} usersList={users} />
-            <Route path="listview/:id" compoment={User} />
-            <Route path="tableview/:id" compoment={User} />
+            <Route path="listview/:userId" component={User} />
+            <Route path="/tableview/:userId" component={User} />
             <Redirect from="*" to="/" />
         </Route>
     </Router>,

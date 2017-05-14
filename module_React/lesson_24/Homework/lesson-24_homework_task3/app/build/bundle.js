@@ -14586,15 +14586,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var User = function (_React$Component) {
     _inherits(User, _React$Component);
 
-    function User() {
+    function User(props) {
         _classCallCheck(this, User);
 
-        return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).call(this, props));
+
+        _this.checkExistenceOfQueryString = _this.checkExistenceOfQueryString.bind(_this);
+        return _this;
     }
 
     _createClass(User, [{
         key: "render",
         value: function render() {
+            this.checkExistenceOfQueryString();
             return _react2.default.createElement(
                 "div",
                 null,
@@ -14642,10 +14646,45 @@ var User = function (_React$Component) {
                 )
             );
         }
+    }, {
+        key: "checkExistenceOfQueryString",
+        value: function checkExistenceOfQueryString() {
+            var _this2 = this;
+
+            if (!this.props.location) {
+                this.props.location = {};
+            }
+            if (!this.props.location.query) {
+                this.props.location.query = {};
+            }
+            var requiredQueryProps = ["first_name", "last_name", "email", "gender", "ip_address"];
+            requiredQueryProps.forEach(function (prop) {
+                if (!_this2.props.location.query[prop]) {
+                    _this2.props.location.query[prop] = "";
+                }
+            });
+        }
     }]);
 
     return User;
 }(_react2.default.Component);
+// import React from "react";
+//
+// export default class User extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <h2>hi</h2>
+//                 <div>
+//                     <p><b>Email:</b></p>
+//                     <p><b>Gender:</b></p>
+//                     <p><b>IP address:</b></p>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+
 
 exports.default = User;
 
@@ -14746,8 +14785,8 @@ _reactDom2.default.render(_react2.default.createElement(
         _react2.default.createElement(_reactRouter.IndexRoute, { component: _home2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: "listview", component: _listview2.default, usersList: users }),
         _react2.default.createElement(_reactRouter.Route, { path: "tableview", component: _tableview2.default, usersList: users }),
-        _react2.default.createElement(_reactRouter.Route, { path: "listview/:id", compoment: _user2.default }),
-        _react2.default.createElement(_reactRouter.Route, { path: "tableview/:id", compoment: _user2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: "listview/:userId", component: _user2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: "/tableview/:userId", component: _user2.default }),
         _react2.default.createElement(_reactRouter.Redirect, { from: "*", to: "/" })
     )
 ), document.getElementById("output"));
