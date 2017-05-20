@@ -2,8 +2,8 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import UserContainer from "./usersContainer.jsx";
-import UserList from "./usersList.jsx";
+import UsersContainer from "./usersContainer.jsx";
+import UsersList from "./usersList.jsx";
 import * as actions from "../actions/actions.js";
 
 class App extends React.Component {
@@ -14,9 +14,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <UserContainer isUsersVisible={this.props.isUsersVisible} toggleClickHandler={this._handleToggleClick}>
-                    <UserList users={this.props.users} />
-                </UserContainer>
+                <UsersContainer isUsersVisible={this.props.isUsersVisible} toggleClickHandler={this._handleToggleClick}>
+                    <UsersList users={this.props.users} />
+                </UsersContainer>
             </div>
         );
     }
