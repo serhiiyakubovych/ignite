@@ -1,0 +1,20 @@
+[
+    {
+        "imgSrc": "./images/slide-1.jpeg",
+        "subtitle": "The Ham is a PSD template",
+        "title": "We are creative",
+        "description": "Nam varius accumsan elementum aliquam"
+    },
+    {
+        "imgSrc": "./images/slide-2.jpeg",
+        "subtitle": "Another subtitle",
+        "title": "We are rock stars",
+        "description": "Lorem ius accumsan ele"
+    },
+    {
+        "imgSrc": "./images/slide-3.jpeg",
+        "subtitle": "Third subtitle",
+        "title": "We are great",
+        "description": "Nfsomf gofg lementum aliquam"
+    }
+]

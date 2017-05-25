@@ -1,0 +1,6 @@
+[
+    {"imgSrc": "./images/team/member-1.jpeg", "name": "Dennis Strong", "occupation": "Founder"},
+    {"imgSrc": "./images/team/member-2.jpeg", "name": "Rob Kind", "occupation": "UX Designer"},
+    {"imgSrc": "./images/team/member-3.jpeg", "name": "Ann Smart", "occupation": "Web Designer"},
+    {"imgSrc": "./images/team/member-4.jpeg", "name": "Dan Luccy", "occupation": "Graphic Designer"}
+]

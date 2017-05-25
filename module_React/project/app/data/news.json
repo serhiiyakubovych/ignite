@@ -1,0 +1,18 @@
+[
+    {"imgSrc": "./images/slide-1.jpeg", "title": "Amazing Image Post", "id": 1, "date": {"day": 13, "month": "Feb"}},
+    {"imgSrc": "./images/slide-2.jpeg", "title": "Amazing Image Post", "id": 2, "date": {"day": 12, "month": "Feb"}},
+    {"imgSrc": "./images/slide-3.jpeg", "title": "Amazing Image Post", "id": 3, "date": {"day": 12, "month": "Feb"}},
+    {"imgSrc": "./images/slide-1.jpeg", "title": "Amazing Image Post", "id": 4, "date": {"day": 12, "month": "Feb"}},
+    {"imgSrc": "./images/slide-2.jpeg", "title": "Amazing Image Post", "id": 5, "date": {"day": 12, "month": "Feb"}},
+    {"imgSrc": "./images/slide-3.jpeg", "title": "Amazing Image Post", "id": 6, "date": {"day": 11, "month": "Feb"}},
+    {"imgSrc": "./images/slide-1.jpeg", "title": "Amazing Image Post", "id": 7, "date": {"day": 9, "month": "Feb"}},
+    {"imgSrc": "./images/slide-2.jpeg", "title": "Amazing Image Post", "id": 8, "date": {"day": 25, "month": "Jan"}},
+    {"imgSrc": "./images/slide-3.jpeg", "title": "Amazing Image Post", "id": 9, "date": {"day": 25, "month": "Jan"}},
+    {"imgSrc": "./images/slide-1.jpeg", "title": "Amazing Image Post", "id": 10, "date": {"day": 25, "month": "Jan"}},
+    {"imgSrc": "./images/slide-2.jpeg", "title": "Amazing Image Post", "id": 11, "date": {"day": 20, "month": "Jan"}},
+    {"imgSrc": "./images/slide-3.jpeg", "title": "Amazing Image Post", "id": 12, "date": {"day": 15, "month": "Jan"}},
+    {"imgSrc": "./images/slide-1.jpeg", "title": "Amazing Image Post", "id": 13, "date": {"day": 10, "month": "Jan"}},
+    {"imgSrc": "./images/slide-2.jpeg", "title": "Amazing Image Post", "id": 14, "date": {"day": 5, "month": "Jan"}},
+    {"imgSrc": "./images/slide-3.jpeg", "title": "Amazing Image Post", "id": 15, "date": {"day": 3, "month": "Jan"}},
+    {"imgSrc": "./images/slide-2.jpeg", "title": "Amazing Image Post", "id": 16, "date": {"day": 1, "month": "Jan"}}
+]

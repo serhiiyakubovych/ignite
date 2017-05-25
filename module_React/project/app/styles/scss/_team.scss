@@ -1,0 +1,112 @@
+.team {
+  padding: 110px 0 170px;
+  margin-top: 5px;
+  .team-members {
+    margin-top: 60px;
+    .team-member {
+      margin-bottom: 25px;
+      &:hover {
+        .team-member__photo .team-member__photo-hidden { opacity: 1; }
+        .team-member__title {
+          background: $active-color;
+          .team-member__occupation { color: #2e4a5b; }
+        }
+        .team-member__social-blocks %team-member__social-block {
+          background: $active-color;
+        }
+      }
+      .team-member__photo {
+        position: relative;
+        width: 100%;
+        height: 225px;
+        background: #252726;
+        overflow: hidden;
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          min-height: 100%;
+          object-fit: cover;
+        }
+        .team-member__photo-hidden {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(140, 140, 140, .5);
+          cursor: pointer;
+          opacity: 0;
+            @include transition(all .3s);
+          .team-member__photo-target {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform( translate(-50%, -50%) );
+            padding: 5px;
+            width: 70px;
+            height: 70px;
+            line-height: 60px;
+            border: 2px solid $active-color;
+            border-radius: 50%;
+            text-align: center;
+            color: $active-color;
+            font-size: 25px;
+            background: #fff;
+            background-clip:content-box;
+          }
+        }
+      }
+      .team-member__title {
+        padding: 20px 25px;
+        background: #2e4a5b;
+        @include transition(all .3s);
+        .team-member__name {
+          font-size: 16px;
+          font-weight: bold;
+          color: #fff;
+        }
+        .team-member__occupation {
+          margin-top: 5px;
+          font-size: 13px;
+          font-weight: 300;
+          color: $active-color;
+        }
+      }
+      .team-member__social-blocks {
+        %team-member__social-block {
+          float: left;
+          margin-top: 1px;
+          width: calc(25% - 1px);
+          height: 60px;
+          line-height: 60px;
+          background: #2e4a5b;
+          text-align: center;
+          font-size: 20px;
+          color: #fff;
+          @include transition(all .3s);
+          &:not(:last-child) { margin-right: 1px; }
+          &:hover { color: #fff; }
+        }
+        .team-member__social-block_fb {
+          @extend %team-member__social-block;
+          &:hover { background: #36609e; }
+        }
+        .team-member__social-block_tw {
+          @extend %team-member__social-block;
+          &:hover { background: #2ca9e1; }
+        }
+        .team-member__social-block_sk {
+          @extend %team-member__social-block;
+          &:hover { background: #01aef2; }
+        }
+        .team-member__social-block_vi {
+          @extend %team-member__social-block;
+          &:hover { background: #1ab7ea; }
+        }
+      }
+
+    }
+  }
+}

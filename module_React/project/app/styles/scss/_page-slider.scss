@@ -1,0 +1,103 @@
+.slider-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #3c3c3c;
+  .slider {
+    height: 100%;
+    .slide {
+      position: relative;
+      float: left;
+      width: 100vw;
+      height: 100%;
+
+      .slide-photo {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .slide-wrap {
+        position: absolute;
+        top: 50%;
+        @include transform( translateY(calc(-50% + 30px)) );
+        width: 100vw;
+        color: #fff;
+        text-align: center;
+
+        .slide-inner {
+          position: relative;
+          display: inline-block;
+          padding: 60px;
+          width: 50%;
+          font-size: 20px;
+          font-weight: bold;
+          .slide__subtitle {
+            text-transform: uppercase;
+            font-size: 25px;
+          }
+          .slide__title {
+            text-transform: uppercase;
+            font-size: 55px;
+          }
+          .slide__description {
+            margin-bottom: 100px;
+            font-weight: 300;
+            font-size: 22px;
+          }
+          %slide__link-button {
+            display: inline-block;
+            padding: 20px 30px;
+            margin-left: 10px;
+            border-top: 5px solid #fff;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 13px;
+            color: #fff;
+            cursor: pointer;
+            @include transition(all .3s);
+            &:hover {
+              text-decoration: none;
+              box-shadow: 0 0 25px #fff;
+            }
+          }
+          .slide__link-button_explore {
+            @extend %slide__link-button;
+            background: #18cfab;
+          }
+          .slide__link-button_purchase {
+            @extend %slide__link-button;
+            background: #00cbf6;
+          }
+        }
+
+        %nav-arrow-slide {
+          position: absolute;
+          top: 50%;
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          cursor: pointer;
+          font-size: 25px;
+          color: #878787;
+          background: #3c4140;
+          @include transition(all .3s);
+          &:hover {
+            color: #fff;
+            background: $active-color;
+          }
+        }
+        .prev-slide {
+          @extend %nav-arrow-slide;
+          padding-right: 3px;
+          left: 20%;
+        }
+        .next-slide {
+          @extend %nav-arrow-slide;
+          padding-left: 3px;
+          right: 20%;
+        }
+      }
+
+    }
+  }
+}

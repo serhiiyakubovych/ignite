@@ -1,0 +1,14 @@
+[
+    {"imgSrc": "./images/portfolio/work-1.jpeg", "title": "Creative design", "category": "Graphic Design"},
+    {"imgSrc": "./images/portfolio/work-2.jpeg", "title": "Creative design", "category": "Graphic Design"},
+    {"imgSrc": "./images/portfolio/work-3.jpeg", "title": "Creative design", "category": "Graphic Design"},
+    {"imgSrc": "./images/portfolio/work-4.jpeg", "title": "Creative design", "category": "Web Design"},
+    {"imgSrc": "./images/portfolio/work-5.jpeg", "title": "Creative design", "category": "Web Design"},
+    {"imgSrc": "./images/portfolio/work-6.jpeg", "title": "Creative design", "category": "Web Design"},
+    {"imgSrc": "./images/portfolio/work-7.jpeg", "title": "Creative design", "category": "Landing pages"},
+    {"imgSrc": "./images/portfolio/work-8.jpeg", "title": "Creative design", "category": "Landing pages"},
+    {"imgSrc": "./images/portfolio/work-9.jpeg", "title": "Creative design", "category": "Landing pages"},
+    {"imgSrc": "./images/portfolio/work-10.jpeg", "title": "Creative design", "category": "Wordpress"},
+    {"imgSrc": "./images/portfolio/work-11.jpeg", "title": "Creative design", "category": "Wordpress"},
+    {"imgSrc": "./images/portfolio/work-12.jpeg", "title": "Creative design", "category": "Wordpress"}
+]

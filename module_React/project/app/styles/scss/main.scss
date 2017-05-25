@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+
+$active-color: #18cfab;
+
+html, body {
+  font: 14px/1.5 'Montserrat', sans-serif;
+}
+
+/* COMMON */
+@import "mixins";
+@import "ham-buttons"; // template for custom buttons
+@import "section-head"; // section title, section description
+
+/* PAGE NAVIGATION */
+@import "page-nav";
+
+/* PAGE SLIDER */
+@import "page-slider";
+
+/* OPTIONS SECTION */
+@import "options";
+
+/* SERVICES SECTION */
+@import "services";
+
+/* ABOUT SECTION */
+@import "about";
+/* /ABOUT SECTION */
+
+/* PORTFOLIO SECTION */
+@import "portfolio";
+
+/* ABOUT US SECTION */
+@import "team";
+
+/* FACTS SECTION */
+@import "facts";
+
+/* NEWS SECTION */
+@import "news";
+
+/* FEEDBACK SECTION */
+@import "feedback";
+
+/* CONTACT SECTION */
+@import "contact";
+
+/* FOOTER OF THE PAGE */
+@import "page-footer";
+
+/* MEDIA */
+@import "media";

@@ -1,0 +1,68 @@
+.feedback {
+    margin-top: 5px;
+    padding: 100px 12% 115px;
+    background: #f8fcfe;
+    .messages {
+        margin-top: 60px;
+        margin-bottom: 75px;
+        padding: 35px;
+        height: 600px;
+        overflow: auto;
+        border: 1px solid #b8c6c7;
+        background: #fff;
+        box-shadow: 0 0 3px #b8c6c7, inset 0 0 3px #b8c6c7;
+        .message {
+            position: relative;
+            margin-bottom: 15px;
+            border: 1px solid #dedede;
+            border-radius: 5px;
+            color: #4e4e4e;
+            box-shadow: 0 1px 1px #f7f7f7;
+            .message__close {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                cursor: pointer;
+                &:hover { color: $active-color; }
+            }
+            .message__title {
+                padding: 15px;
+                border-bottom: 1px solid #dedede;
+                background: #f7f7f7;
+                font-size: 18px;
+                font-weight: 500;
+            }
+            .message__text {
+                padding: 20px 15px;
+                font-size: 14px;
+                font-weight: 300;
+            }
+        }
+    }
+    .message-leaving {
+        padding: 0 100px;
+        .message-leaving-form {
+            float: left;
+            input, textarea {
+                padding: 20px 15px;
+                margin-bottom: 7px;
+                width: 100%;
+                border: 1px solid #eef3f2;
+                background: #fff;
+                @include placeholder {
+                    color: #90aebd;
+                    font-size: 20px;
+                };
+            }
+            textarea { resize: none; }
+        }
+        .message-leaving-invitation {
+            float: right;
+            .message-leaving-invitation__title {
+                font-size: 36px;
+                font-weight: 500;
+                color: #4e4e4e;
+            }
+        }
+    }
+}

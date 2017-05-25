@@ -1,0 +1,62 @@
+$services-bg-color: #f7f7f7;
+
+.services {
+  padding: 115px 12% 160px;
+  .services-tabs {
+    margin: auto;
+
+    .service-list {
+      display: flex;
+      margin-top: 70px;
+      margin-bottom: 25px;
+      padding: 0;
+      .service {
+        display: inline-block;
+        padding: 25px 0;
+        border: 1px solid #ebebeb;
+        background: #f8fcfe;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        color: #717171;
+
+        &:hover {
+          background: #ebebeb;
+          cursor: pointer;
+        }
+        &.active {
+          position: relative;
+          border-color: $active-color;
+          background: $active-color;
+          color: #fff;
+          &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -7px;
+            @include transform( translateX(-50%) rotate(45deg) );
+            width: 14px;
+            height: 14px;
+            background: $active-color;
+          }
+        }
+      } // /service
+    } // /service-list
+    .service-description {
+      .service-description__image {
+        float: left;
+        margin-right: 20px; 
+        width: 180px;
+        height: 120px;
+        img { max-width: 100%; }
+      }
+      .service-description__text {
+        float: right;
+        width: calc(100% - 200px);
+        color: #777;
+        font-size: 13px;
+      }
+    }
+  } // /services-tabs
+} // /services

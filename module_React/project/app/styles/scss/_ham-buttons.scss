@@ -1,0 +1,14 @@
+.ham-button {
+    display: inline-block;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background: $active-color;
+    @include transition(all .3s);
+    &:hover { background: darken($active-color, 5%); }
+    .fa { margin-right: 15px; }
+}

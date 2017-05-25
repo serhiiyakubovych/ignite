@@ -1,0 +1,72 @@
+.facts {
+    padding: 0;
+    .fact {
+        padding: 35px 0;
+        border-top: 7px solid $active-color;
+        background: #1c2a33;
+        color: $active-color;
+        &:nth-child(2n) {
+            border-top-color: #25333c;
+            background: $active-color;
+            color: #fff;
+            .fact-inner {
+                .fact__icon-wrap {
+                    border-color: #25333c;
+                    background-color: #25333c;
+                }
+                .fact__title {
+                    color: #25333c;
+                }
+            }
+        }
+        .fact-inner {
+            margin: auto;
+            text-align: center;
+            .fact__icon-wrap {
+                display: inline-block;
+                padding: 15px;
+                width: 125px;
+                height: 125px;
+                line-height: 175px;
+                border: 2px solid $active-color;
+                border-radius: 50%;
+                background: $active-color;
+                background-clip: content-box;
+            }
+            %fact__icon {
+                display: inline-block;
+                margin-bottom: 25px;
+                width: 45px;
+                height: 45px;
+                background: url("../../images/facts.png") no-repeat;
+                @include bg-size(cover);
+            }
+            .fact__icon_works {
+                @extend %fact__icon;
+            }
+            .fact__icon_customers {
+                @extend %fact__icon;
+                background-position: -45px 0;
+            }
+            .fact__icon_purchase {
+                @extend %fact__icon;
+                background-position: -90px 0;
+            }
+            .fact__icon_office {
+                @extend %fact__icon;
+                background-position: -135px 0;
+            }
+            .fact__count {
+                margin-top: 25px;
+                font-size: 36px;
+                font-weight: 500;
+                color: #fff;
+            }
+            .fact__title {
+                font-weight: 300;
+                font-size: 18px;
+                color: $active-color;
+            }
+        }
+    }
+}
