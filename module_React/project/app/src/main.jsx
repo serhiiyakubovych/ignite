@@ -17,6 +17,7 @@ import portfolioReducer from "./reducers/portfolioReducer.js";
 import teamReducer from "./reducers/teamReducer.js";
 import newsReducer from "./reducers/newsReducer.js";
 import feedbackReducer from "./reducers/feedbackReducer.js";
+import contactReducer from "./reducers/contactReducer.js";
 
 import App from "./components/app.jsx";
 
@@ -27,7 +28,8 @@ const reducers = combineReducers({
     portfolio: portfolioReducer,
     team: teamReducer,
     news: newsReducer,
-    feedback: feedbackReducer
+    feedback: feedbackReducer,
+    contact: contactReducer
 });
 const appStore = createStore(reducers, middleware);
 appStore.dispatch(fetchData("slides", "./data/slides.json"));

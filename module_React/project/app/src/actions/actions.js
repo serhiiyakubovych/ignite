@@ -31,3 +31,22 @@ export function removeFeedbackReview(reviewIndex) {
         reviewIndex
     };
 }
+
+export function changeContactInputedName(newInputedName) {
+    return {
+        type: "CHANGE_CONTACT_INPUTED_NAME",
+        newInputedName
+    }
+}
+export function changeContactInputedEmail(newInputedEmail) {
+    return {
+        type: "CHANGE_CONTACT_INPUTED_EMAIL",
+        newInputedEmail
+    }
+}
+export function changeContactInputedMessage(newInputedMessage) {
+    return {
+        type: "CHANGE_CONTACT_INPUTED_MESSAGE",
+        newInputedMessage
+    }
+}

@@ -724,9 +724,7 @@ html, body {
   .contact .contact-photo {
     margin-bottom: 20px;
     height: 520px;
-    background: #9e9e9e url(../../images/slide-3.jpeg) no-repeat;
-    -webkit-background-size: cover;
-    background-size: cover; }
+    background: #9e9e9e; }
   .contact .contact-message {
     padding-left: 25px; }
     .contact .contact-message .section-title {
@@ -759,6 +757,9 @@ html, body {
           font-size: 14px; }
       .contact .contact-message .contact-form textarea {
         height: 180px; }
+      .contact .contact-message .contact-form .contact-form__error {
+        margin-bottom: 15px;
+        color: orangered; }
       .contact .contact-message .contact-form .contact-form__submit {
         padding: 15px;
         width: 100%;

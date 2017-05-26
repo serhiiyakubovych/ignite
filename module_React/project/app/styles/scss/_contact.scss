@@ -26,6 +26,10 @@
                 };
             }
             textarea { height: 180px; }
+            .contact-form__error {
+                margin-bottom: 15px;
+                color: orangered;
+            }
             .contact-form__submit {
                 padding: 15px;
                 width: 100%;
