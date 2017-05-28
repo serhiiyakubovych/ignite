@@ -1,0 +1,4 @@
+content-type: text/plain
+host: localhost:1337
+connection: close
+transfer-encoding: chunked
