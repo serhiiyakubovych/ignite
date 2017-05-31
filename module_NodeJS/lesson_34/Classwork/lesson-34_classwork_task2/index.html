@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        /**
+        * Lesson 34, Classwork, Serhii Yakubovych
+        * 
+        * ###Задача 1 
+        * * Создайте Express сервер и подключите к нему модуль socket.io.  
+        * 
+        * ###Задача 2 
+        * Дополните код предыдущей задачи. 
+        * 
+        * 1) С помощью socket.io сгенерируйте событие 'greet', 
+        * которое передаст следующие данные: {text: 'Hello from Socket.IO'}. 
+        * 2) Создайте клиента socket.io. Установите обработчик события 'greet', 
+        * которая выводит на экран данные, переданные через событие и генерирует событие 'receive_message'. 
+        * 3) На стороне сервера установите обработчик события 'receive_message', 
+        * который выведет в консоль текст 'message received'. 
+        */
+    -->
+
+    <p>Home page</p>
+    <div id="socket-output"></div>
+
+    <script src="/libs/socket.io/socket.io.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            let socket = io.connect("http://localhost:1337");
+            socket.on("greet", (data) => {
+                let socketOutputElem = document.getElementById("socket-output");
+                socketOutputElem.textContent = data.text;
+
+                socket.emit("receive_message");
+            });
+        });
+    </script>
+
+</body>
+</html>
