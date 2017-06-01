@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        ###Задача 2  
+        Создание простого чата. 
+
+        * Создайте Express сервер и подключите к нему модуль socket.io.   
+        * На стороне клиента создайте html страницу с полем ввода и кнопкой. 
+        * Если поле ввода не пустое, при нажатии на кнопку генерируется событие 'send_message',
+          через событие передаются данные поля ввода. 
+        * На стороне сервера создайте обработчик события 'send_message'.
+          Обработчик генерирует событие 'chat_message' и отсылает его всем подключенным клиентам.
+          Через событие 'chat_message' передаются данные, полученные в событии 'send_message'. 
+        * На стороне клиента создайте обработчик события 'chat_message',
+          который выводит на экран данные, переданные через событие. 
+    -->
+
+    <form id="message-form">
+        <input type="text" name="message" value="" placeholder="Message" required>
+        <input type="submit" value="Send message">
+    </form>
+    <section id="messages"></section>
+
+    <script src="/libs/socket.io/socket.io.js"></script>
+    <script src="/js/client.js"></script>
+</body>
+</html>

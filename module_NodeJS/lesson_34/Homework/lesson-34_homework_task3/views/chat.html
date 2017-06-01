@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+    <style>
+        .message-form, .messages, .users {
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        ###Задача 2  
+        Создание простого чата. 
+
+        * Создайте Express сервер и подключите к нему модуль socket.io.   
+        * На стороне клиента создайте html страницу с полем ввода и кнопкой. 
+        * Если поле ввода не пустое, при нажатии на кнопку генерируется событие 'send_message',
+          через событие передаются данные поля ввода. 
+        * На стороне сервера создайте обработчик события 'send_message'.
+          Обработчик генерирует событие 'chat_message' и отсылает его всем подключенным клиентам.
+          Через событие 'chat_message' передаются данные, полученные в событии 'send_message'. 
+        * На стороне клиента создайте обработчик события 'chat_message',
+          который выводит на экран данные, переданные через событие. 
+
+          ###Задача 3(Дополнительное задание) 
+          Добавьте в чат, созданный в предыдущей задаче, возможность авторизации пользователей. 
+    -->
+
+    <section class="message-form">
+        <h2>Chat</h2>
+        <form id="message-form">
+            <input type="text" name="message" value="" placeholder="Message" required>
+            <input type="submit" value="Send message">
+        </form>
+    </section>
+
+    <section class="messages">
+        <h2>Messages</h2>
+        <div id="messages"></div>
+    </section>
+
+    <section class="users">
+        <h2>Users</h2>
+        <div id="users"></div>
+    </section>
+
+    <script src="/libs/socket.io/socket.io.js"></script>
+    <script src="/js/client-chat.js"></script>
+</body>
+</html>
