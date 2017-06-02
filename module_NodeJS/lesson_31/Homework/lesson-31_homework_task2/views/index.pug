@@ -1,0 +1,18 @@
+html
+    head
+        title Home page
+    body
+        h1 Items
+        table
+            thead
+                tr
+                    th ID
+                    th Name
+                    th Info
+            tbody
+                each row in rows
+                    tr
+                        td= row.id
+                        td= row.name
+                        td= row.info
+        a(href='/addItem') Add new item

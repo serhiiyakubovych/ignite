@@ -1,0 +1,20 @@
+html
+    head
+        title Add item
+    body
+        h1 Add new item
+        form#add-item-form
+            input(
+                name='name'
+                placeholder='Name'
+                required
+            )
+            input(
+                name='info'
+                placeholder='Info'
+                required
+            )
+            input(
+                type='submit'
+            )
+        script(src='js/addItem.js')

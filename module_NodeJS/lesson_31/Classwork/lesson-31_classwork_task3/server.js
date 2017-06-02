@@ -15,19 +15,20 @@ const express = require("express"),
       http = require("http"),
       mysql = require("mysql");
 
-const app = express(),
-      dbConnection = mysql.createConnection({
-          host: "localhost",
-          port: 3306,
-          user: "root",
-          password: "123",
-          database: "test"
-      });
+const app = express();
 
 app.set("PORT", process.env.port || 1337);
 
 app.route("/")
     .get((req, res, next) => {
+        const dbConnection = mysql.createConnection({
+            host: "localhost",
+            port: 3306,
+            user: "root",
+            password: "123",
+            database: "test"
+        });
+
         dbConnection.connect((connErr) => {
             if (connErr) {
                 console.log(connErr);
@@ -35,8 +36,13 @@ app.route("/")
                 return;
             }
 
-            insertTestDataIntoDB(dbConnection, "test_table", {id: 456, name: "John", info: "Kind man"});
+            insertTestDataIntoDB(dbConnection, "test_table", {
+                id: parseInt(Math.random() * 10000), // add element with random id
+                name: "John",
+                info: "Kind man"
+            });
             renderPageWithAllDBRecords(dbConnection, "test_table", res);
+            endDBConnection(dbConnection);
         })
     });
 
@@ -72,5 +78,14 @@ function renderPageWithAllDBRecords(dbConnection, tableName, res) {
         }
         res.write("</tbody></table>");
         res.end();
+    });
+}
+function endDBConnection(dbConnection) {
+    dbConnection.end((endErr) => {
+        if (endErr) {
+            console.log(endErr);
+            res.status(500).end("500. Connection error of DB.")
+            return;
+        }
     });
 }

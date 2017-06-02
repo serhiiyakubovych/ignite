@@ -9,19 +9,20 @@ const express = require("express"),
       http = require("http"),
       mysql = require("mysql");
 
-const app = express(),
-      dbConnection = mysql.createConnection({
-          host: "localhost",
-          port: 3306,
-          user: "root",
-          password: "123",
-          database: "test"
-      });
+const app = express();
 
 app.set("PORT", process.env.port || 1337);
 
 app.route("/")
     .get((req, res, next) => {
+        const dbConnection = mysql.createConnection({
+            host: "localhost",
+            port: 3306,
+            user: "root",
+            password: "123",
+            database: "test"
+        });
+        
         dbConnection.connect((connErr) => {
             if (connErr) {
                 console.log(connErr);
@@ -29,7 +30,14 @@ app.route("/")
                 return;
             }
 
-            res.end("Connection was successful.");
+            dbConnection.end((endErr) => {
+                if (endErr) {
+                    console.log(endErr);
+                    res.status(500).end("500. Connection error of DB.")
+                    return;
+                }
+                res.end("Connection was successful.");
+            });
         })
     });
 
