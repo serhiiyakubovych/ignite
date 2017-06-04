@@ -19,10 +19,12 @@
  */
 
 const express = require("express"),
-      http = require("http"),
+      http = require("http")
+      session = require("express-session"),
       path = require("path"),
       bodyParser = require("body-parser"),
-      requestsHandlers = require("./js/requests_handlers");
+      requestsHandlers = require("./js/requests_handlers"),
+      sessionStore = require("./js/db_connections").sessionStore;
 
 const app = express(),
       jsonParser = bodyParser.json();
@@ -33,13 +35,19 @@ app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "views")));
 app.use(jsonParser);
+app.use(session({
+      secret: "Secret key",
+      saveUninitialized: true,
+      resave: true,
+      store: sessionStore
+}));
 
 app.route("/").get(requestsHandlers.displayHomePage);
 app.route("/signup")
     .get(requestsHandlers.displaySignupPage)
     .post(requestsHandlers.signupUser);
 
-app.route("/signup")
+app.route("/login")
     .get(requestsHandlers.displayLoginPage)
     .post(requestsHandlers.loginUser);
 

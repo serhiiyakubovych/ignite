@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Log in
+    link(rel='stylesheet' href='/css/main.css')
+body
+    section.page-section
+        h1 Log in
+    section.page-section
+        form#login-form
+            input(
+                name='userName'
+                placeholder='Name'
+                required
+            )
+            input(
+                type='password'
+                name='userPassword'
+                placeholder='Password'
+                required
+            )
+            input(type='submit')
+        p#login-error.login-error
+    script(src='js/login.js')

@@ -9,6 +9,9 @@ head
 body
     section.page-section
         h1 Home page
+    - if (username)
+        section.page-section
+            p= 'Hello, ' + username
     section.page-section
         a(href='/signup') Sign up
     section.page-section
