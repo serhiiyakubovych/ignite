@@ -1,0 +1,28 @@
+html
+    head
+        title Edit item
+        link(rel="stylesheet" href="/css/main.css")
+    body
+        section.page-section
+            h1 Edit item
+        
+        section.page-section
+            form#edit-item-form(data-item-id= itemId)
+                input(
+                    name='name'
+                    placeholder='Name'
+                    value= itemName
+                    required
+                )
+                input(
+                    name='info'
+                    placeholder='Info'
+                    value= itemInfo
+                    required
+                )
+                input(
+                    type='submit'
+                    value='Apply'
+                )
+        
+        script(src='/js/editItem.js')

@@ -1,0 +1,25 @@
+html
+    head
+        title Add item
+        link(rel="stylesheet" href="/css/main.css")
+    body
+        section.page-section
+            h1 Add new item
+        
+        section.page-section
+            form#add-item-form
+                input(
+                    name='name'
+                    placeholder='Name'
+                    required
+                )
+                input(
+                    name='info'
+                    placeholder='Info'
+                    required
+                )
+                input(
+                    type='submit'
+                )
+        
+        script(src='js/addItem.js')

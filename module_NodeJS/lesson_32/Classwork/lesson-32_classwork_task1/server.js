@@ -17,7 +17,7 @@ app.set("PORT", process.env.port || 1337);
 app.use(cookieParser("Secret info for signing."));
 
 app.route("*")
-    .get((req, res, next) => {
+    .all((req, res, next) => {
         res.cookie("test", "Test cookie value", {
             httpOnly: true,
             signed: true,

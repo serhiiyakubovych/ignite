@@ -1,0 +1,17 @@
+.page-section {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #000;
+    background: #eee;
+}
+
+.items-table {
+    border-collapse: collapse;
+}
+.items-table,
+.items-table th,
+.items-table td {
+    padding: 5px;
+    border: 1px solid #000;
+    background: #fff;
+}
