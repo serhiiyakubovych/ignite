@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .page-section {
+            margin: 15px;
+            padding: 15px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <section class="container page-section">
+        <table class="table" id="todo-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+        </table>
+    </section>
+
+    <section class="container page-section">
+        <form id="todo-item-form">
+            <input type="text" name="id" class="form-group form-control" placeholder="ID">
+            <input type="text" name="name" class="form-group form-control" placeholder="Name">
+            <input type="text" name="description" class="form-group form-control" placeholder="Description">
+        </form>
+        <button id="add-item" class="btn btn-default">Add Item</button>
+        <button id="delete-item" class="btn btn-warning">Delete Item</button>
+        <button id="update-item" class="btn btn-primary">Update Item</button>
+    </section>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            getAllItems();
+
+            let addItemButton = document.getElementById("add-item"),
+                deleteItemButton = document.getElementById("delete-item"),
+                updateItemButton = document.getElementById("update-item"),
+                todoItemForm = document.getElementById("todo-item-form");
+            
+            addItemButton.addEventListener("click", addItem);
+            updateItemButton.addEventListener("click", updateItem);
+            deleteItemButton.addEventListener("click", deleteItem);
+
+            function getAllItems() {
+                let xhr = new XMLHttpRequest();
+                xhr.open("GET", "/getAllItems");
+
+                xhr.addEventListener("load", () => {
+                    if (xhr.status === 200) {
+                        let items = JSON.parse(xhr.responseText),
+                            tbody = document.createElement("tbody");
+                        
+                        items.forEach((item) => {
+                            tbody.innerHTML += `
+                                    <tr>
+                                        <td>${item.id}</td>
+                                        <td>${item.name}</td>
+                                        <td>${item.description}</td>
+                                    </tr>`;
+                        });
+
+                        let todoTable = document.getElementById("todo-table");
+                        todoTable.appendChild(tbody);
+                    } else {
+                        console.log("Cannot load todo items.");
+                    }
+                });
+
+                xhr.send();
+            }
+
+            function addItem() {
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "/addItem");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                let newItemJSON = JSON.stringify({
+                    id: todoItemForm.elements.id.value,
+                    name: todoItemForm.elements.name.value,
+                    description: todoItemForm.elements.description.value
+                });
+
+                xhr.addEventListener("load", () => {
+                    if (xhr.status === 200) {
+                        window.location.reload();
+                    } else {
+                        console.log("Cannot add new item.");
+                    }
+                });
+
+                xhr.send(newItemJSON);
+            }
+
+            function updateItem() {
+                let itemID = todoItemForm.elements.id.value,
+                    xhr = new XMLHttpRequest();
+
+                xhr.open("PUT", `/update/${itemID}`);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                let updatedItemJSON = JSON.stringify({
+                    name: todoItemForm.elements.name.value,
+                    description: todoItemForm.elements.description.value
+                });
+
+                xhr.addEventListener("load", () => {
+                    if (xhr.status === 200) {
+                        window.location.reload();
+                    } else {
+                        console.log(`Cannot update item with ID ${itemID}.`);
+                    }
+                });
+
+                xhr.send(updatedItemJSON);
+            }
+
+            function deleteItem() {
+                let itemID = todoItemForm.elements.id.value,
+                    xhr = new XMLHttpRequest();
+
+                xhr.open("DELETE", `/delete/${itemID}`)
+
+                xhr.addEventListener("load", () => {
+                    if (xhr.status === 200) {
+                        window.location.reload();
+                    } else {
+                        console.log(`Cannot delete item with ID ${itemID}.`);
+                    }
+                });
+
+                xhr.send();
+            }
+        });
+    </script>
+</body>
+</html>
