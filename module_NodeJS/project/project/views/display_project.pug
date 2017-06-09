@@ -1,0 +1,44 @@
+extends base
+
+block append head
+    link(rel="stylesheet", href="/style/css/add_project.css")
+
+block append content
+    section.page-content-head
+        h1.page-title Check out our work
+    section.edit-project.container
+        ul.categories
+            li.category
+                a(href="#") All
+            li.category
+                a(href="#") Print
+            li.category
+                a(href="#") Photography
+            li.category
+                a(href="#") Web
+            li.category
+                a(href="#") Applications
+        form.edit-project-form
+            div
+                img.project-image
+                div.edit-project-form__project-main
+                    input.edit-project-form__control(
+                        name="title"
+                        placeholder="Project title"
+                    )
+                    input.edit-project-form__control(
+                        name="author"
+                        placeholder="Project author"
+                    )
+                    input.edit-project-form__control(
+                        name="category"
+                        placeholder="Category"
+                    )
+            input.edit-project-form__control(
+                name="description"
+                placeholder="Description"
+            )
+            input.edit-project-form__submit(
+                type="submit"
+                value="Done"
+            )

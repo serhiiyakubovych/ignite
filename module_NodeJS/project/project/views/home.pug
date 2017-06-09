@@ -1,0 +1,49 @@
+extends base
+
+block append head
+    link(rel="stylesheet", href="/css/home.css")
+
+block append content
+    section.enterance.container
+        h1.enterance__welcome Check out our work
+        form.login-form
+            input.login-form__control(
+                name="username"
+                placeholder="Username"
+                required
+            )
+            input.login-form__control(
+                name="password"
+                type="password"
+                placeholder="Password"
+                required
+            )
+            input(
+                type="submit"
+                value="Log in"
+            )
+    section.portfolio.container
+        ul.categories
+            li.category
+                a(href="#") All
+            li.category
+                a(href="#") Print
+            li.category
+                a(href="#") Photography
+            li.category
+                a(href="#") Web
+            li.category
+                a(href="#") Applications
+        div.works
+            each work in works
+                div.work
+                    div.hidden-work-block
+                        div.hidden-work-block__edit-button
+                        div.hidden-work-block__info-button
+                        div.hidden-work-block__close-button
+                    div.work-block
+                        img(src= work.img)
+            div.add-work
+    section.invitation-to-contact
+        h1.invitation-to-contact__title Are you impressed by our creativy?
+        div.invitation-to-contact__anchor Contact us right now

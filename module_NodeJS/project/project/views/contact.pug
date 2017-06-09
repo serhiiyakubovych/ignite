@@ -1,0 +1,28 @@
+extends base
+
+block append head
+    link(rel="stylesheet", href="/style/css/contact.css")
+
+block append content
+    section.page-content-head
+        h1.page-title Got a Question or Inquiry?
+    section.map
+    section.contact.container
+        form.contact-form
+            input.contact-form-control(
+                name="name"
+                placeholder="Name"
+            )
+            input.contact-form-control(
+                name="email"
+                type="email"
+                placeholder="Email Address"
+            )
+            input.contact-form-control(
+                name="subject"
+                placeholder="Subject"
+            )
+            input.contact-form-submit(
+                type="submit"
+                value="Send message"
+            )
