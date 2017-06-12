@@ -11,8 +11,10 @@
     margin-right: 50px;
     width: 300px;
     height: 220px;
+    line-height: 220px;
     background: #eee;
-    overflow: hidden; }
+    overflow: hidden;
+    text-align: center; }
     .view-project .project__image img {
       max-width: 100%; }
     @media screen and (max-width: 640px) {

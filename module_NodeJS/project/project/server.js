@@ -23,6 +23,7 @@ app.use("/css", sassMiddleware({
     dest: path.join(__dirname, "public/css")
 }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(session({
     secret: "Secret key",
     saveUninitialized: true,

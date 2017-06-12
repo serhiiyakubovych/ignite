@@ -1,6 +1,9 @@
 window.addEventListener("DOMContentLoaded", () => {
-    const editProjectForm = document.getElementById("edit-project-form");
+    const editProjectForm = document.getElementById("edit-project-form"),
+          projectImageInput = document.getElementById("project-image-input");
+
     editProjectForm.addEventListener("submit", updateProject);
+    projectImageInput.addEventListener("change", displayProjectImage);
 
     function updateProject(event) {
         if (editProjectForm.dataset.editMethod !== "PUT") {
@@ -8,25 +11,43 @@ window.addEventListener("DOMContentLoaded", () => {
         }
         event.preventDefault();
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("PUT", `/update/${editProjectForm.dataset.projectId}`);
-        xhr.setRequestHeader("Content-Type", "application/json");
+        let xhr = new XMLHttpRequest(),
+            projectId = editProjectForm.dataset.projectId,
+            formData = new FormData(editProjectForm);
 
-        let updatedProjectJSON = JSON.stringify({
-            title: editProjectForm.elements.title.value,
-            author: editProjectForm.elements.author.value,
-            category: editProjectForm.elements.category.value,
-            description: editProjectForm.elements.description.value
-        });
+        if ((!formData.get("projectImage")) || (!formData.get("projectImage").size)) {
+            let projectImage = projectImageInput.parentNode.querySelector("img") || {};
+            formData.append("projectImage", projectImage.src);
+        }
+
+        xhr.open("PUT", `/update/${projectId}`);
 
         xhr.addEventListener("load", () => {
             if (xhr.status === 200) {
-                window.location.reload();
+                window.location.href = `/view/${projectId}`;
             } else {
                 console.log(xhr.responseText);
             }
         });
 
-        xhr.send(updatedProjectJSON);
+        xhr.send(formData);
+    }
+
+    function displayProjectImage(event) {
+        let imageInput = event.target;
+
+        if (imageInput.files && imageInput.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = function (ev) {
+                let imageInputLabel = imageInput.parentNode,
+                    projectImage = imageInputLabel.querySelector("img") || new Image();
+
+                projectImage.src = ev.target.result;
+                imageInput.parentNode.appendChild(projectImage);
+            };
+
+            reader.readAsDataURL(imageInput.files[0]);
+        }
     }
 });

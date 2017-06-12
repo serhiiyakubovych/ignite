@@ -1,0 +1,30 @@
+extends base
+
+block append head
+    link(rel="stylesheet", href="/css/home.css")
+
+block append content
+    section.page-content-head
+        div.container
+            h1.page-title Login
+            form#login-form.login-form
+                - if (username)
+                    span Welcome, #{username}
+                - else
+                    input.login-form__control(
+                        name="username"
+                        placeholder="Username"
+                        required
+                    )
+                    input.login-form__control(
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        required
+                    )
+                    input.login-form__submit(
+                        type="submit"
+                        value="Log in"
+                    )
+                    div.login-form-errors
+    script(src="/js/login.js")

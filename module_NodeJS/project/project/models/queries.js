@@ -93,7 +93,8 @@ function addProject(dbPool, newProject) {
                 return;
             }
             let sql = "INSERT INTO `projects` (title, author, description, category, src, date) VALUES (?, ?, ?, ?, ?, ?)",
-                values = [newProject.title, newProject.author, newProject.description, newProject.category, "/images/001.jpg", new Date()];
+                values = [newProject.title, newProject.author, newProject.description, newProject.category,
+                    newProject.src, new Date()];
 
             dbConnection.query(sql, values, (queryError) => {
                 dbConnection.release();
@@ -116,7 +117,7 @@ function updateProject(dbPool, updatedProject) {
 
             let sql = "UPDATE `projects` SET title=?, author=?, description=?, category=?, src=?, date=? WHERE id=?",
                 values = [updatedProject.title, updatedProject.author, updatedProject.description,
-                    updatedProject.category, "/images/001.jpg", new Date(), updatedProject.id];
+                    updatedProject.category, updatedProject.src, new Date(), updatedProject.id];
 
             dbConnection.query(sql, values, (queryError) => {
                 dbConnection.release();
