@@ -1,0 +1,77 @@
+.edit-project {
+  padding: 50px 0; }
+  .edit-project .edit-project-form {
+    max-width: 70%; }
+    @media screen and (max-width: 640px) {
+      .edit-project .edit-project-form {
+        padding: 0 20px;
+        max-width: 100%; } }
+    .edit-project .edit-project-form .add-project-image {
+      float: left;
+      margin-right: 50px;
+      width: 50%;
+      height: 220px;
+      background: #2ecc71 url("/images/add-project.png") no-repeat center center;
+      cursor: pointer;
+      overflow: hidden;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s; }
+      .edit-project .edit-project-form .add-project-image:hover {
+        background-color: #40d47e; }
+      .edit-project .edit-project-form .add-project-image img {
+        max-width: 100%; }
+      @media screen and (max-width: 640px) {
+        .edit-project .edit-project-form .add-project-image {
+          width: 100%; } }
+    .edit-project .edit-project-form .edit-project-form__project-main {
+      float: left;
+      display: inline-block;
+      margin-top: 30px;
+      width: calc(50% - 50px); }
+      @media screen and (max-width: 640px) {
+        .edit-project .edit-project-form .edit-project-form__project-main {
+          width: 100%; } }
+    .edit-project .edit-project-form .edit-project-form__control, .edit-project .edit-project-form .edit-project-form__description {
+      padding: 10px 0;
+      margin-bottom: 5px;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #e4e4e4; }
+      .edit-project .edit-project-form .edit-project-form__control:-ms-input-placeholder, .edit-project .edit-project-form .edit-project-form__description:-ms-input-placeholder {
+        background-color: transparent;
+        color: #a5a5a5;
+        font-family: "Berlin Sans FB", sans-serif;
+        font-size: 14px; }
+      .edit-project .edit-project-form .edit-project-form__control:-moz-placeholder, .edit-project .edit-project-form .edit-project-form__description:-moz-placeholder {
+        background-color: transparent;
+        color: #a5a5a5;
+        font-family: "Berlin Sans FB", sans-serif;
+        font-size: 14px; }
+      .edit-project .edit-project-form .edit-project-form__control::-moz-placeholder, .edit-project .edit-project-form .edit-project-form__description::-moz-placeholder {
+        background-color: transparent;
+        color: #a5a5a5;
+        font-family: "Berlin Sans FB", sans-serif;
+        font-size: 14px; }
+      .edit-project .edit-project-form .edit-project-form__control::-webkit-input-placeholder, .edit-project .edit-project-form .edit-project-form__description::-webkit-input-placeholder {
+        background-color: transparent;
+        color: #a5a5a5;
+        font-family: "Berlin Sans FB", sans-serif;
+        font-size: 14px; }
+      @media screen and (max-width: 640px) {
+        .edit-project .edit-project-form .edit-project-form__control, .edit-project .edit-project-form .edit-project-form__description {
+          width: 100%; } }
+    .edit-project .edit-project-form .edit-project-form__description {
+      margin: 35px 0;
+      width: 100%; }
+    .edit-project .edit-project-form .edit-project-form__submit {
+      padding: 15px 18px;
+      border: none;
+      background: #2ecc71;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #fff; }
+      .edit-project .edit-project-form .edit-project-form__submit:hover {
+        background: #29b765; }

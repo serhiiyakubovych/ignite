@@ -1,28 +1,48 @@
 extends base
 
 block append head
-    link(rel="stylesheet", href="/style/css/contact.css")
+    link(rel="stylesheet", href="/css/contact.css")
 
 block append content
     section.page-content-head
-        h1.page-title Got a Question or Inquiry?
-    section.map
+        div.container
+            h1.page-title Got a Question or Inquiry?
+    section#map.map
     section.contact.container
-        form.contact-form
-            input.contact-form-control(
-                name="name"
-                placeholder="Name"
-            )
-            input.contact-form-control(
-                name="email"
-                type="email"
-                placeholder="Email Address"
-            )
-            input.contact-form-control(
-                name="subject"
-                placeholder="Subject"
-            )
+        form#contact-form.contact-form
+            h2.form-caption Contact form
+            div
+                input.contact-form-control(
+                    name="name"
+                    placeholder="Name"
+                )
+                div.input-error-message
+            div
+                input.contact-form-control(
+                    name="email"
+                    type="email"
+                    placeholder="Email Address"
+                )
+                div.input-error-message
+            div
+                input.contact-form-control(
+                    name="subject"
+                    placeholder="Subject"
+                )
+                div.input-error-message
+            div
+                textarea.contact-form-message(
+                    name="message"
+                )
+                div.input-error-message
             input.contact-form-submit(
                 type="submit"
                 value="Send message"
             )
+    // The site's script
+    script(src="/js/contact.js")
+    // Google Maps API
+    script(
+        async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTmMtn8L2UFW59irzZMltAcw1w6FU_ZSg&callback=initMap"
+    )

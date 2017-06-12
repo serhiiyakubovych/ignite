@@ -1,0 +1,17 @@
+$active-color: #2ecc71;
+
+@font-face {
+  font-family: Novecentosanswide;
+  src: url("/fonts/Novecentosanswide-DemiBold.otf");
+}
+
+body {
+  font: 18px/1.25 Novecentosanswide, sans-serif;
+}
+
+@import "mixins";
+
+@import "page-head";
+@import "page-content-head";
+@import "categories";
+@import "page-footer";

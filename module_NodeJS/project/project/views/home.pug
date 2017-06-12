@@ -4,46 +4,54 @@ block append head
     link(rel="stylesheet", href="/css/home.css")
 
 block append content
-    section.enterance.container
-        h1.enterance__welcome Check out our work
-        form.login-form
-            input.login-form__control(
-                name="username"
-                placeholder="Username"
-                required
-            )
-            input.login-form__control(
-                name="password"
-                type="password"
-                placeholder="Password"
-                required
-            )
-            input(
-                type="submit"
-                value="Log in"
-            )
+    section.page-content-head
+        div.container
+            h1.page-title Check out our work
+            form#login-form.login-form
+                - if (username)
+                    span Welcome, #{username}
+                - else
+                    input.login-form__control(
+                    name="username"
+                    placeholder="Username"
+                    required
+                    )
+                    input.login-form__control(
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                    )
+                    input.login-form__submit(
+                    type="submit"
+                    value="Log in"
+                    )
+                    div.login-form-errors
     section.portfolio.container
         ul.categories
-            li.category
-                a(href="#") All
-            li.category
-                a(href="#") Print
-            li.category
-                a(href="#") Photography
-            li.category
-                a(href="#") Web
-            li.category
-                a(href="#") Applications
-        div.works
-            each work in works
-                div.work
-                    div.hidden-work-block
-                        div.hidden-work-block__edit-button
-                        div.hidden-work-block__info-button
-                        div.hidden-work-block__close-button
-                    div.work-block
-                        img(src= work.img)
-            div.add-work
+            li.category(class= (!currentCategory) ? "active" : "")
+                a(href="/home") All
+            li.category(class= (currentCategory === "print") ? "active" : "")
+                a(href="/home?category=print") Print
+            li.category(class= (currentCategory === "photography") ? "active" : "")
+                a(href="/home?category=photography") Photography
+            li.category(class= (currentCategory === "web") ? "active" : "")
+                a(href="/home?category=web") Web
+            li.category(class= (currentCategory === "applications") ? "active" : "")
+                a(href="/home?category=applications") Applications
+        div#projects.projects
+            each project in projects
+                div.project(data-project-id= project.id)
+                    div.hidden-project-block
+                        div.hidden-project-block__buttons
+                            div.hidden-project-block__edit-button
+                            div.hidden-project-block__info-button
+                            div.hidden-project-block__close-button
+                    div.project-block
+                        img(src= project.src)
+            div#add-new-project.add-project
     section.invitation-to-contact
-        h1.invitation-to-contact__title Are you impressed by our creativy?
-        div.invitation-to-contact__anchor Contact us right now
+        div.container
+            h1.invitation-to-contact__title Are you impressed by our creativy?
+            a.invitation-to-contact__anchor(href="/contact") Contact us right now
+    script(src="/js/home.js")

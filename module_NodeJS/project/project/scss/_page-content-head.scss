@@ -1,0 +1,19 @@
+.page-content-head {
+  padding: 40px 0;
+  background: $active-color;
+  .page-title {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 30px;
+    @media screen and (max-width: 767px) {
+      float: none;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    text-align: center;
+  }
+}

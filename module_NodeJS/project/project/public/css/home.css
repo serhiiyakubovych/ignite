@@ -1,0 +1,162 @@
+.page-content-head .login-form {
+  float: right; }
+  @media screen and (max-width: 767px) {
+    .page-content-head .login-form {
+      float: none;
+      margin-top: 30px; } }
+  .page-content-head .login-form .login-form__control {
+    margin-right: 20px;
+    padding: 15px 8px;
+    width: 100px;
+    height: 20px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent; }
+    .page-content-head .login-form .login-form__control:-ms-input-placeholder {
+      color: #fff;
+      font-size: 14px; }
+    .page-content-head .login-form .login-form__control:-moz-placeholder {
+      color: #fff;
+      font-size: 14px; }
+    .page-content-head .login-form .login-form__control::-moz-placeholder {
+      color: #fff;
+      font-size: 14px; }
+    .page-content-head .login-form .login-form__control::-webkit-input-placeholder {
+      color: #fff;
+      font-size: 14px; }
+    @media screen and (max-width: 325px) {
+      .page-content-head .login-form .login-form__control {
+        width: 100%; } }
+  .page-content-head .login-form .login-form__submit {
+    padding: 15px 17px;
+    border: none;
+    background: #fff;
+    color: #2ecc71;
+    text-transform: uppercase;
+    font-size: 14px; }
+    .page-content-head .login-form .login-form__submit:hover {
+      background: #eee; }
+    @media screen and (max-width: 325px) {
+      .page-content-head .login-form .login-form__submit {
+        margin-top: 30px;
+        width: 100%; } }
+
+.portfolio {
+  padding: 50px 0 75px; }
+  .portfolio .projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .portfolio .projects .project,
+    .portfolio .projects .add-project {
+      width: 32%;
+      height: 220px; }
+      @media screen and (max-width: 640px) {
+        .portfolio .projects .project,
+        .portfolio .projects .add-project {
+          width: 48%; } }
+      @media screen and (max-width: 480px) {
+        .portfolio .projects .project,
+        .portfolio .projects .add-project {
+          width: 100%; } }
+    .portfolio .projects .project {
+      position: relative;
+      margin-bottom: 25px;
+      overflow: hidden;
+      cursor: pointer; }
+      .portfolio .projects .project:hover .hidden-project-block {
+        opacity: 1; }
+      .portfolio .projects .project .hidden-project-block {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background: rgba(46, 204, 113, 0.75);
+        -webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s; }
+        .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 130px;
+          text-align: center;
+          -webkit-transform: translate(-50%, -50%);
+          -moz-transform: translate(-50%, -50%);
+          -ms-transform: translate(-50%, -50%);
+          -o-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__edit-button,
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__info-button,
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__close-button {
+            display: inline-block; }
+            .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__edit-button:hover,
+            .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__info-button:hover,
+            .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__close-button:hover {
+              opacity: .5; }
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__edit-button,
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__info-button {
+            width: 60px;
+            height: 60px; }
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__edit-button {
+            background: url("/images/project_icons.png") no-repeat; }
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__info-button {
+            background: url("/images/project_icons.png") no-repeat;
+            background-position: -60px 0; }
+          .portfolio .projects .project .hidden-project-block .hidden-project-block__buttons .hidden-project-block__close-button {
+            width: 35px;
+            height: 35px;
+            background: url("/images/project_icons.png") no-repeat;
+            background-position: 0 -60px; }
+      .portfolio .projects .project .project-block,
+      .portfolio .projects .project .project-block img {
+        width: 100%;
+        height: 100%; }
+      .portfolio .projects .project .project-block img {
+        object-fit: cover; }
+    .portfolio .projects .add-project {
+      background: #2ecc71 url("/images/add-project.png") no-repeat center center;
+      cursor: pointer;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s; }
+      .portfolio .projects .add-project:hover {
+        background-color: #40d47e; }
+
+.invitation-to-contact {
+  padding: 50px 0;
+  background: #322f2f; }
+  @media screen and (max-width: 767px) {
+    .invitation-to-contact {
+      text-align: center; } }
+  .invitation-to-contact .invitation-to-contact__title {
+    float: left;
+    margin: 0;
+    line-height: 45px;
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #fff; }
+    @media screen and (max-width: 767px) {
+      .invitation-to-contact .invitation-to-contact__title {
+        float: none;
+        margin-bottom: 30px; } }
+  .invitation-to-contact .invitation-to-contact__anchor {
+    float: right;
+    padding: 15px 20px;
+    background: #2ecc71;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase; }
+    .invitation-to-contact .invitation-to-contact__anchor:hover {
+      background: #29b765; }
+    @media screen and (max-width: 767px) {
+      .invitation-to-contact .invitation-to-contact__anchor {
+        float: none; } }

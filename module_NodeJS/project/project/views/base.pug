@@ -9,38 +9,45 @@ head
         meta(name="keywords" content="NodeJS Yakubovych")
         meta(name="description" content="Educational project")
         meta(name="author" content="Serhii Yakubovych")
-        title= `${title} | Display`
-        link
-        link(rel="icon", href="/images/favicon.png")
-        link(rel="stylesheet", href="/libs/bootstrap/bootstrap.min.css")
-        link(rel="stylesheet", href="/css/main.css")
+        title #{title} | Display
+        link(rel="icon" href="/images/favicon.png")
+        link(rel="stylesheet" href="/libs/bootstrap/bootstrap.min.css")
+        link(rel="stylesheet" href="/libs/bootstrap/font-awesome.min.css")
+        link(rel="stylesheet" href="/css/main.css")
 body
-    header.page-header.conteiner
-        div.page-header__top
-            div.page-header__logo
+    header.page-head.container
+        div.page-head__top.clearfix
+            a.page-head__logo(href="/")
             ul.social
                 li.social__icon_tw
                     a(href="#")
+                        i.fa.fa-twitter
                 li.social__icon_fb
                     a(href="#")
+                        i.fa.fa-facebook
                 li.social__icon_rss
                     a(href="#")
+                        i.fa.fa-rss
                 li.social__icon_pint
                     a(href="#")
+                        i.fa.fa-pinterest-p
                 li.social__icon_goog
                     a(href="#")
+                        i.fa.fa-google-plus
                 li.social__icon_dr
                     a(href="#")
+                        i.fa.fa-dribbble
         ul.page-menu
-            li.page-menu__item
+            li.page-menu__item(class= (title === "Home") ? "active" : "" )
                 a(href="/home") Home
-            li.page-menu__item
+            li.page-menu__item(class= (title === "Contact") ? "active" : "" )
                 a(href="/contact") Contact
     block content
     footer.page-footer
-        div.copyright Copyright 2013 Display. All rights reserved.
-        ul.footer-menu
-            li.footer-menu__item
-                a(href="#") Home
-            li.footer-menu__item
-                a(href="#") Contact
+        div.container.clearfix
+            div.copyright Copyright 2013 Display. All rights reserved.
+            ul.footer-menu
+                li.footer-menu__item
+                    a(href="/home") Home
+                li.footer-menu__item
+                    a(href="/contact") Contact

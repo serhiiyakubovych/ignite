@@ -1,0 +1,55 @@
+.view-project {
+  padding: 50px 0 75px;
+  color: #737373;
+  font-size: 14px; }
+  @media screen and (max-width: 767px) {
+    .view-project {
+      padding-left: 20px;
+      padding-right: 20px; } }
+  .view-project .project__image {
+    float: left;
+    margin-right: 50px;
+    width: 300px;
+    height: 220px;
+    background: #eee;
+    overflow: hidden; }
+    .view-project .project__image img {
+      max-width: 100%; }
+    @media screen and (max-width: 640px) {
+      .view-project .project__image {
+        float: none;
+        margin-bottom: 30px;
+        width: 100%;
+        height: 350px; } }
+    @media screen and (max-width: 480px) {
+      .view-project .project__image {
+        height: 300px; } }
+  .view-project .project__main-info {
+    float: left;
+    margin-bottom: 50px; }
+    @media screen and (max-width: 640px) {
+      .view-project .project__main-info {
+        float: none; } }
+    .view-project .project__main-info .project__title {
+      margin: 0 0 25px;
+      font-size: 24px;
+      text-transform: uppercase; }
+    .view-project .project__main-info .project__main-info-block {
+      padding: 25px 0;
+      vertical-align: middle;
+      border-bottom: 1px solid #e4e4e4;
+      font-family: "Berlin Sans FB", sans-serif; }
+      .view-project .project__main-info .project__main-info-block .project__author::before,
+      .view-project .project__main-info .project__main-info-block .project__date::before {
+        content: '';
+        display: inline-block;
+        margin-right: 15px;
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        background: url("/images/project-info.png") no-repeat; }
+      .view-project .project__main-info .project__main-info-block .project__date::before {
+        background-position: -32px 0; }
+  .view-project .project__description {
+    clear: both;
+    font-family: "Berlin Sans FB", sans-serif; }

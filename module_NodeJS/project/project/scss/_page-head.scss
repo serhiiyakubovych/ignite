@@ -1,0 +1,107 @@
+.page-head {
+  .page-head__top {
+    padding: 30px 0;
+    margin: 0;
+    border-bottom: 1px solid #dadada;
+    @media screen and (max-width: 480px) {
+      text-align: center;
+    }
+    .page-head__logo {
+      float: left;
+      margin: 30px 0;
+      width: 165px;
+      height: 50px;
+      background: url("/images/logo.png") no-repeat;
+      @include bg-size(cover);
+      @media screen and (max-width: 480px) {
+        float: none;
+        display: inline-block;
+      }
+    }
+    .social {
+      float: right;
+      margin: 30px 0;
+      padding: 0;
+      list-style: none;
+      @media screen and (max-width: 480px) {
+        float: none;
+      }
+      %social__icon {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        &:not(:last-child) { margin-right: 8px; }
+        a {
+          display: inline-block;
+          padding: 4px;
+          width: 100%;
+          height: 100%;
+          border: 5px solid #dadada;
+          border-radius: 50%;
+          text-align: center;
+          font-size: 0.8em;
+          color: #dadada;
+          text-decoration: none;
+        }
+      }
+      .social__icon_tw {
+        @extend %social__icon;
+        &:hover a {
+          border-color: #00bbf5;
+          color: #00bbf5;
+        }
+      }
+      .social__icon_fb {
+        @extend %social__icon;
+        &:hover a {
+          border-color: #4867aa;
+          color: #4867aa;
+        }
+      }
+      .social__icon_rss {
+        @extend %social__icon;
+        &:hover a {
+          border-color: #f49c52;
+          color: #f49c52;
+        }
+      }
+      .social__icon_pint {
+        @extend %social__icon;
+        &:hover a {
+          border-color: #bd081c;
+          color: #bd081c;
+        }
+      }
+      .social__icon_goog {
+        @extend %social__icon;
+        &:hover a {
+          border-color: #c9473a;
+          color: #c9473a;
+        }
+      }
+      .social__icon_dr {
+        @extend %social__icon;
+        &:hover a {
+          border-color: #dd3e7b;
+          color: #dd3e7b;
+        }
+      }
+    }
+  }
+  .page-menu {
+    padding: 30px 0;
+    margin: 0;
+    list-style: none;
+    .page-menu__item {
+      display: inline-block;
+      &:not(:last-child) { margin-right: 35px; }
+      &.active a { color: $active-color; }
+      &:not(.active):hover a { color: #bbb; }
+      a {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #737373;
+      }
+    }
+  }
+}

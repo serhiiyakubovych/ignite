@@ -1,0 +1,56 @@
+.map {
+  height: 500px;
+  background: #eee; }
+
+.contact {
+  padding: 85px 0 60px; }
+  .contact .contact-form {
+    margin: auto;
+    max-width: 40%; }
+    @media screen and (max-width: 640px) {
+      .contact .contact-form {
+        max-width: 75%; } }
+    .contact .contact-form .form-caption {
+      padding: 0;
+      margin: 0 0 25px;
+      text-transform: uppercase;
+      font-size: 24px;
+      color: #8a8888;
+      text-align: center; }
+    .contact .contact-form .contact-form-control, .contact .contact-form .contact-form-message {
+      padding: 18px 15px;
+      margin-bottom: 15px;
+      width: 100%;
+      border: 2px solid #8a8888;
+      background: transparent; }
+      .contact .contact-form .contact-form-control:-ms-input-placeholder, .contact .contact-form .contact-form-message:-ms-input-placeholder {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #8a8888;
+        font-size: 14px; }
+      .contact .contact-form .contact-form-control:-moz-placeholder, .contact .contact-form .contact-form-message:-moz-placeholder {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #8a8888;
+        font-size: 14px; }
+      .contact .contact-form .contact-form-control::-moz-placeholder, .contact .contact-form .contact-form-message::-moz-placeholder {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #8a8888;
+        font-size: 14px; }
+      .contact .contact-form .contact-form-control::-webkit-input-placeholder, .contact .contact-form .contact-form-message::-webkit-input-placeholder {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #8a8888;
+        font-size: 14px; }
+    .contact .contact-form .contact-form-message {
+      height: 220px;
+      resize: none; }
+    .contact .contact-form .input-error-message {
+      margin-bottom: 15px;
+      color: red; }
+    .contact .contact-form .contact-form-submit {
+      padding: 15px;
+      border: none;
+      background: #2ecc71;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px; }
+      .contact .contact-form .contact-form-submit:hover {
+        background: #29b765; }

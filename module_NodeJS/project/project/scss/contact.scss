@@ -1,0 +1,55 @@
+@import "mixins";
+
+$active-color: #2ecc71;
+
+.map {
+  height: 500px;
+  background: #eee;
+}
+
+.contact {
+  padding: 85px 0 60px;
+  .contact-form {
+    margin: auto;
+    max-width: 40%;
+    @media screen and (max-width: 640px) { max-width: 75%; }
+    .form-caption {
+      padding: 0;
+      margin: 0 0 25px;
+      text-transform: uppercase;
+      font-size: 24px;
+      color: #8a8888;
+      text-align: center;
+    }
+    .contact-form-control {
+      padding: 18px 15px;
+      margin-bottom: 15px;
+      width: 100%;
+      border: 2px solid #8a8888;
+      background: transparent;
+      @include placeholder {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #8a8888;
+        font-size: 14px;
+      };
+    }
+    .contact-form-message {
+      @extend .contact-form-control;
+      height: 220px;
+      resize: none;
+    }
+    .input-error-message {
+      margin-bottom: 15px;
+      color: red;
+    }
+    .contact-form-submit {
+      padding: 15px;
+      border: none;
+      background: $active-color;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+      &:hover { background: darken($active-color, 5%); }
+    }
+  }
+}
