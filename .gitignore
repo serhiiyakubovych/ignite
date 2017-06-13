@@ -1,4 +1,6 @@
 .idea
 .vscode
-node_modules
+.git
 .sass-cache
+node_modules
+scalingo.exe

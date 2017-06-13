@@ -111,7 +111,13 @@ function displayCreateNewProjectPage(req, res, next) {
 }
 
 function addProject(req, res, next) {
-    let target_path = saveFile(req);
+    let target_path;
+
+    if (req.file) {
+        target_path = saveFile(req);
+    } else {
+        target_path = "";
+    }
 
     let newProject = {
         title: req.body.title,
@@ -162,6 +168,7 @@ function handleServerError(err, req, res, next) {
     if (err) {
         console.log(err);
         res.status(500).end(err);
+        next(err.message);
     }
 }
 
